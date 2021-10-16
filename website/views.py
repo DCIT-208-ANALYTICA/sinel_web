@@ -27,3 +27,12 @@ class ContactView(View):
         context = {}
 
         return render(request, self.template_name, context)
+
+
+class GalleryView(View):
+    template_name = "website/gallery.html"
+
+    def get(self, request, *args, **kwargs):
+        context = {}
+
+        return render(request, self.template_name, context)
