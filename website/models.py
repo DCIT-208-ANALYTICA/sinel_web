@@ -29,6 +29,17 @@ class Insurance_Partner(model.Models):
     LOGO=models.URLField(max_length=200)
     Visible=models.BooleanField(default=False)
 
+# Gallery
+class Gallery(model.Models):
+    Title=models.CharField(max_length=100)
+    Description=models.CharField(max_length=200)
+    Type=models.CharField(max_length=200)
+    URL=models.URLField(max_length=200)
+    Visible=models.BooleanField(default=False)
+
+
+
+
    
    
     
