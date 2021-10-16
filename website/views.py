@@ -27,4 +27,12 @@ class ContactView(View):
         context = {}
 
         return render(request, self.template_name, context)
-        
+
+
+class BlogView(View):
+    template_name = "website/contact.html"
+
+    def get(self, request, *args, **kwargs):
+        context = {}
+
+        return render(request, self.template_name, context)
