@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     # Custom Apps
     'dashboard.apps.DashboardConfig',
     'website.apps.WebsiteConfig',
+    'blog.apps.BlogConfig',
 ]
 
 MIDDLEWARE = [
