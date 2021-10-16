@@ -52,7 +52,12 @@ class Banner(model.Models):
     Image=models.ImageField(max_length=200)
     Visible=models.BooleanField(default=False)
 
-
+# Services
+class Services(model.Models):
+    Title=models.CharField(max_length=100)
+    Description=models.CharField(max_length=200,null=True)
+    Image=models.ImageField(max_length=200)
+    Visible=models.BooleanField(default=False)
 
 
 
