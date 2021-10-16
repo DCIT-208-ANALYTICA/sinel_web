@@ -15,6 +15,16 @@ class Contact_Data_Entity(model.Models):
     Physical_Address=models.CharField(max_length=100)
     Telephone=models.CharField(max_length=100)
     LatLng=models.CharField(max_length=100)
+
+#Social_Media_Link
+class Social_Media_Link(model.Models):
+    Name=models.CharField(max_length=100)
+    Icon_Url=models.URLField(max_length=200)
+    Link=models.CharField(max_length=100)
+   
+   
+    
+
     
 
     
