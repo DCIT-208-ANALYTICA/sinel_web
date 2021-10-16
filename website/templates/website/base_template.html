@@ -34,8 +34,7 @@
             <div class="col-sm-8 text-sm">
               <div class="site-info">
                 <a href="#"
-                  ><span class="mai-call text-primary"></span> +00 123 4455
-                  6666</a
+                  ><span class="mai-call text-primary"></span> +233 24 029 3943</a
                 >
                 <span class="divider">|</span>
                 <a href="#"
@@ -100,20 +99,23 @@
                 <a class="nav-link" href="{% url 'website:index' %}">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="about.html">About Us</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="doctors.html">Doctors</a>
+                <a class="nav-link" href="{% url 'website:about' %}">About Us</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="blog.html">News</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contact.html">Contact</a>
+                <a class="nav-link" href="{% url 'website:contact' %}">Contact</a>
               </li>
               <li class="nav-item">
-                <a class="btn btn-primary ml-lg-3" href="#">Login / Register</a>
+                <a class="nav-link" href="{% url 'website:contact' %}">Services</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'website:contact' %}">Gallery</a>
+              </li>
+              <!-- <li class="nav-item">
+                <a class="btn btn-primary ml-lg-3" href="#">Login / Register</a>
+              </li> -->
             </ul>
           </div>
           <!-- .navbar-collapse -->

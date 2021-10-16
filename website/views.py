@@ -9,3 +9,22 @@ class IndexView(View):
         context = {}
 
         return render(request, self.template_name, context)
+
+
+class AboutView(View):
+    template_name = "website/about.html"
+
+    def get(self, request, *args, **kwargs):
+        context = {}
+
+        return render(request, self.template_name, context)
+
+
+class ContactView(View):
+    template_name = "website/contact.html"
+
+    def get(self, request, *args, **kwargs):
+        context = {}
+
+        return render(request, self.template_name, context)
+        
