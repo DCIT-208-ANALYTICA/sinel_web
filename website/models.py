@@ -21,6 +21,14 @@ class Social_Media_Link(model.Models):
     Name=models.CharField(max_length=100)
     Icon_Url=models.URLField(max_length=200)
     Link=models.CharField(max_length=100)
+
+# Insurance Partner
+class Insurance_Partner(model.Models):
+    Name=models.CharField(max_length=100)
+    Description=models.CharField(max_length=200)
+    LOGO=models.URLField(max_length=200)
+    Visible=models.BooleanField(default=False)
+
    
    
     
