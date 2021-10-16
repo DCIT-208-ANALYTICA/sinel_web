@@ -71,6 +71,15 @@ class open_hour(model.Models):
     DAYS=models.CharField(max_length=500)
     time=models.CharField(max_length=100)
     
+# Team_lead
+class Team_Lead(model.Models):
+    name=models.CharField(max_length=100)
+    Bio=name=models.CharField(max_length=500)
+    image=models.ImageField(max_length=200)
+    Visible=models.BooleanField(default=False)
+
+     
+
 
 
 
