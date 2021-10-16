@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="{% static 'vendor/animate/animate.css' %}" />
 
     <link rel="stylesheet" href="{% static 'css/theme.css' %}" />
+    {% block styleblock %}{% endblock %}
+
   </head>
   <body>
     <!-- Back to top button -->
@@ -226,5 +228,6 @@
     <script src="{% static 'vendor/wow/wow.min.js' %}"></script>
 
     <script src="{% static 'js/theme.js' %}"></script>
+    {% block scriptblock %}{% endblock %}
   </body>
 </html>
