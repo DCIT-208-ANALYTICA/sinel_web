@@ -56,6 +56,7 @@ coverage.xml
 *.pot
 
 # Django stuff:
+logs
 *.log
 local_settings.py
 db.sqlite3
@@ -127,3 +128,19 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+ 
+# Custom
+**/local_settings.py
+.vscode/
+virtualenv/**
+localvirtualenv/**
+**/migrations/**
+**/settings/prod.py
+migrations
+uploads
+.DS_Store
+media
+manual_test.py
+mobi_services2.py
+staticfiles
+compressed
