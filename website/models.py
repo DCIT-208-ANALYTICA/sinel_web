@@ -37,10 +37,23 @@ class Gallery(model.Models):
     URL=models.URLField(max_length=200)
     Visible=models.BooleanField(default=False)
 
+# Healt-Tips
 class Health_Tips(model.Models):
     Title=models.CharField(max_length=100)
     Slug=models.CharField(max_length=100)
     Content=models.CharField(max_length=200)
+
+# Banner
+class Banner(model.Models):
+    Title=models.CharField(max_length=100)
+    Description=models.CharField(max_length=200,null=True)
+    Type=models.CharField(max_length=200)
+    URL=models.URLField(max_length=200,null=True)
+    Image=models.ImageField(max_length=200)
+    Visible=models.BooleanField(default=False)
+
+
+
 
 
 
