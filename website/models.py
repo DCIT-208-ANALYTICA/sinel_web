@@ -59,6 +59,13 @@ class Services(model.Models):
     Image=models.ImageField(max_length=200)
     Visible=models.BooleanField(default=False)
 
+# client
+class Client(model.Models):
+    Story=models.CharField(max_length=500)
+    Description=models.CharField(max_length=200,null=True)
+    Image=models.ImageField(max_length=200)
+    Visible=models.BooleanField(default=False)
+
 
 
 
