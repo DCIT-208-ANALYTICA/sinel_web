@@ -62,10 +62,15 @@ class Services(model.Models):
 # client
 class Client(model.Models):
     Story=models.CharField(max_length=500)
-    Description=models.CharField(max_length=200,null=True)
+    Description=models.CharField(max_length=200)
     Image=models.ImageField(max_length=200)
     Visible=models.BooleanField(default=False)
 
+# Open hour
+class Client(model.Models):
+    DAYS=models.CharField(max_length=500)
+    tIME=models.CharField(max_length=200)
+    
 
 
 
