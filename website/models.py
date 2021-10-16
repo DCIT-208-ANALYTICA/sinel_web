@@ -78,6 +78,16 @@ class Team_Lead(model.Models):
     image=models.ImageField(max_length=200)
     Visible=models.BooleanField(default=False)
 
+# About
+class About(model.Models):
+    Overview=models.CharField(max_length=200)
+    Mission=models.CharField(max_length=500)
+    Vision=models.CharField(max_length=500)
+    Value=models.CharField(max_length=100)
+
+    
+
+
      
 
 
