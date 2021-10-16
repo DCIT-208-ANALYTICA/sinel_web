@@ -67,9 +67,9 @@ class Client(model.Models):
     Visible=models.BooleanField(default=False)
 
 # Open hour
-class Client(model.Models):
+class open_hour(model.Models):
     DAYS=models.CharField(max_length=500)
-    tIME=models.CharField(max_length=200)
+    time=models.CharField(max_length=100)
     
 
 
