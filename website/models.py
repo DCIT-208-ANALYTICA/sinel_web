@@ -34,7 +34,7 @@ class SocialMediaLink(model.Models):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-# Insurance Partner
+
 class InsurancePartner(model.Models):
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=200)
@@ -44,7 +44,7 @@ class InsurancePartner(model.Models):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-# Gallery
+
 class Gallery(model.Models):
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=200)
@@ -55,7 +55,7 @@ class Gallery(model.Models):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-# Healt-Tips
+
 class HealthTips(model.Models):
     title = models.CharField(max_length=100)
     slug = models.CharField(max_length=100)
@@ -98,7 +98,7 @@ class Client(model.Models):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-# Open hour
+
 class OpeningHour(model.Models):
     days = models.CharField(max_length=1, choices=DAYS_OF_WEEK)
     time = models.CharField(max_length=100)
@@ -106,7 +106,7 @@ class OpeningHour(model.Models):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-# Team_lead
+
 class TeamLead(model.Models):
     name = models.CharField(max_length=100)
     bio = models.CharField(max_length=500)
@@ -118,7 +118,7 @@ class TeamLead(model.Models):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-# About
+
 class About(model.Models):
     overview = models.CharField(max_length=200)
     mission = models.CharField(max_length=500)
