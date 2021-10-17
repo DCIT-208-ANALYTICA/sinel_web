@@ -15,13 +15,13 @@ DAYS_OF_WEEK = (
 #
 
 
-class ContactDataEntity(model.Models):
+class Contact(model.Models):
     gps = models.CharField(max_length=100)
     email = models.EmailField()
     address = models.CharField(max_length=100)
     telephone = models.CharField(max_length=20)
-    long = models.FloatField()
-    lat = models.FloatField()
+    lat_lng = models.FloatField()
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -34,7 +34,6 @@ class SocialMediaLink(model.Models):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-
 class InsurancePartner(model.Models):
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=200)
@@ -42,7 +41,6 @@ class InsurancePartner(model.Models):
     visible = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
 
 
 class Gallery(model.Models):
@@ -53,7 +51,6 @@ class Gallery(model.Models):
     visible = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
 
 
 class HealthTips(model.Models):
@@ -69,7 +66,7 @@ class Banner(model.Models):
     description = models.CharField(max_length=200, null=True)
     url = models.URLField(max_length=200, null=True)
     image = models.ImageField(
-        upload_to=None, height_field=None, width_field=None, max_length=100
+        upload_to="uploads/banners", height_field=None, width_field=None, max_length=100
     )
     visible = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -80,7 +77,10 @@ class Services(Model.Models):
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=200, null=True)
     image = models.ImageField(
-        upload_to=None, height_field=None, width_field=None, max_length=100
+        upload_to="uploads/services",
+        height_field=None,
+        width_field=None,
+        max_length=100,
     )
     visible = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -91,12 +91,11 @@ class Client(model.Models):
     title = models.CharField(max_length=30)
     story = models.TextField()
     image = models.ImageField(
-        upload_to=None, height_field=None, width_field=None, max_length=100
+        upload_to="uploads/clients", height_field=None, width_field=None, max_length=100
     )
     visible = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
 
 
 class OpeningHour(model.Models):
@@ -106,23 +105,24 @@ class OpeningHour(model.Models):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-
 class TeamLead(model.Models):
     name = models.CharField(max_length=100)
     bio = models.CharField(max_length=500)
     image = models.ImageField(
-        upload_to=None, height_field=None, width_field=None, max_length=100
+        upload_to="uploads/team_leads",
+        height_field=None,
+        width_field=None,
+        max_length=100,
     )
-    Visible = models.BooleanField(default=False)
+    visible = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
 
-
 class About(model.Models):
-    overview = models.CharField(max_length=200)
-    mission = models.CharField(max_length=500)
-    vision = models.CharField(max_length=500)
-    value = models.CharField(max_length=100)
+    overview = models.TextField(max_length=200)
+    mission = models.TextField(max_length=500)
+    vision = models.TextField(max_length=500)
+    value = models.TextField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
