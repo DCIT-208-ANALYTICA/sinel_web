@@ -97,22 +97,22 @@
 
           <div class="collapse navbar-collapse" id="navbarSupport">
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item active">
+              <li class="nav-item {% block home_active %}{% endblock %}">
                 <a class="nav-link" href="{% url 'website:index' %}">Home</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item {% block about_active %}{% endblock %}">
                 <a class="nav-link" href="{% url 'website:about' %}">About Us</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item {% block contact_active %}{% endblock %}">
                 <a class="nav-link" href="{% url 'website:contact' %}">Contact</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item {% block services_active %}{% endblock %}">
                 <a class="nav-link" href="{% url 'website:contact' %}">Services</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item {% block gallery_active %}{% endblock %}">
                 <a class="nav-link" href="{% url 'website:gallery' %}">Gallery</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item {% block blog_active %}{% endblock %}">
                 <a class="nav-link" href="{% url 'blog:posts' %}">Blog</a>
               </li>
             </ul>
