@@ -33,7 +33,7 @@ const firebaseConfig = {
 	appId: process.env.REACT_APP_APPID,
 	measurementId: process.env.REACT_APP_MEASUREMENTID,
 };
-  
+// start v0.1.0 release
 // init firebase backend
 initFirebaseBackend(firebaseConfig);
 
