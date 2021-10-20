@@ -20,7 +20,7 @@ import fakeBackend from './helpers/AuthType/fakeBackend';
 //Firebase helper
 import { initFirebaseBackend } from "./helpers/firebase_helper";
 
-// // Activating fake backend
+// Activating fake backend
 // fakeBackend();
 
 // const firebaseConfig = {
@@ -34,8 +34,9 @@ import { initFirebaseBackend } from "./helpers/firebase_helper";
 // 	measurementId: process.env.REACT_APP_MEASUREMENTID,
 // };
   
-// // init firebase backend
+// init firebase backend
 // initFirebaseBackend(firebaseConfig);
+
 
 class App extends Component {
 	constructor(props) {
