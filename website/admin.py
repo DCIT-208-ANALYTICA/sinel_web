@@ -1,3 +1,11 @@
 from django.contrib import admin
+from .models import Contact
 
-# Register your models here.
+# Create only one contact model that can be updated.
+contact = Contact.objects.first()
+if not contact:
+    Contact.objects.create(gps="None",
+                           email="info@sinelhospital.com",
+                           address="Accra",
+                           telephone="020000000",
+                           lat_lng="0.03,30.93")

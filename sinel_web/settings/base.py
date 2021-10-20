@@ -36,10 +36,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'corsheaders',  
+    'knox',        
+    'rest_framework',
+    'django_user_agents',
+
     # Custom Apps
     'dashboard.apps.DashboardConfig',
     'website.apps.WebsiteConfig',
     'blog.apps.BlogConfig',
+    'rest_api_v1.apps.RestApiV1Config',
 ]
 
 MIDDLEWARE = [
