@@ -13,6 +13,7 @@ import NonAuthLayout from "./components/NonAuthLayout";
 
 // Import scss
 import "./theme.scss";
+import { MyGlobalProvider } from "./store/globalState";
 
 
 class App extends Component {
@@ -45,29 +46,31 @@ class App extends Component {
 
 		return (
 			<React.Fragment>
-				<Router>
-					<Switch>
-						{publicRoutes.map((route, idx) => (
-							<AppRoute
-								path={route.path}
-								layout={NonAuthLayout}
-								component={route.component}
-								key={idx}
-								isAuthProtected={false}
-							/>
-						))}
+				<MyGlobalProvider>
+					<Router>
+						<Switch>
+							{publicRoutes.map((route, idx) => (
+								<AppRoute
+									path={route.path}
+									layout={NonAuthLayout}
+									component={route.component}
+									key={idx}
+									isAuthProtected={false}
+								/>
+							))}
 
-						{authProtectedRoutes.map((route, idx) => (
-							<AppRoute
-								path={route.path}
-								layout={Layout}
-								component={route.component}
-								key={idx}
-								isAuthProtected={true}
-							/>
-						))}
-					</Switch>
-				</Router>
+							{authProtectedRoutes.map((route, idx) => (
+								<AppRoute
+									path={route.path}
+									layout={Layout}
+									component={route.component}
+									key={idx}
+									isAuthProtected={true}
+								/>
+							))}
+						</Switch>
+					</Router>
+				</MyGlobalProvider>
 			</React.Fragment>
 		);
 	}
