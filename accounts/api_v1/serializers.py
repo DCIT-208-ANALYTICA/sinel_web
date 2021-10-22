@@ -58,3 +58,15 @@ class LoginSerializer(serializers.Serializer):
         if user and user.is_active:
             return user
         raise serializers.ValidationError("Incorrect Credentials")
+
+
+class ChangeAdministratorPasswordSerializer(serializers.Serializer):
+    email_address = serializers.EmailField()
+    old_password = serializers.CharField()
+    new_password = serializers.CharField()
+
+    def validate(self, data):
+        user = authenticate(**data)
+        if user and user.is_active:
+            return user
+        raise serializers.ValidationError("Incorrect Credentials")

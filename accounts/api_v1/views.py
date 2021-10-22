@@ -1,12 +1,14 @@
 from rest_framework import generics, permissions, status
 from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
-from accounts.api_v1.serializers import AdministratorSerializer, LoginSerializer, RegisterSerializer
+from accounts.api_v1.serializers import (AdministratorSerializer,
+                                         ChangeAdministratorPasswordSerializer,
+                                         LoginSerializer, RegisterSerializer)
 from accounts.forms import AdministratorForm
 from accounts.models import Administrator
 from rest_api_v1.utils import ResponseMessage
-from django.utils.html import strip_tags
 from knox.models import AuthToken
+from django.contrib.auth import authenticate
 
 
 class RegisterAdministrator(generics.GenericAPIView):
@@ -49,7 +51,7 @@ class RegisterAdministrator(generics.GenericAPIView):
 
 
 class LoginAdministratorApi(generics.GenericAPIView):
-    """An API end point to allow already registered users to login to ther mobile app."""
+    """An API end point to allow registered administrators to login"""
 
     permission_classes = [permissions.AllowAny]
     serializer_class = LoginSerializer
@@ -90,7 +92,7 @@ class AdministratorsApi(generics.GenericAPIView):
     """
     Returns the list of all administrators
     """
-    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = AdministratorSerializer
     form_class = AdministratorForm
 
@@ -108,13 +110,65 @@ class AdministratorApi(generics.GenericAPIView):
     """
     Returns the list of all administrators
     """
-    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = AdministratorSerializer
 
-    def get(self, request, admin_id, **kwargs):
-        administrator = generics.get_object_or_404(Administrator, id=admin_id)
+    def get(self, request, email_address, **kwargs):
+        administrator = generics.get_object_or_404(Administrator,
+                                                   email_address=email_address)
         data = self.serializer_class(administrator,
                                      context={
                                          "request": request
                                      }).data
         return Response({"administrator": data})
+
+
+class ChangeAdministratorPasswordApi(generics.GenericAPIView):
+    """
+    Change the password of an administrator.
+    """
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = ChangeAdministratorPasswordSerializer
+
+    def post(self, request, **kwargs):
+        old_password = request.data.get("old_password")
+        new_password = request.data.get("new_password")
+        email_address = request.data.get("email_address")
+
+        administrator = generics.get_object_or_404(Administrator,
+                                                   email_address=email_address)
+
+        if request.user.is_superuser:
+            administrator.set_password(new_password)
+            administrator.save()
+        elif request.user.email_address == email_address:
+            administrator = authenticate(email_address=email_address,
+                                         password=old_password)
+            if administrator:
+                administrator.set_password(new_password)
+                administrator.save()
+            else:
+                response_data = {
+                    "error_message": "Incorrect credentials.",
+                    "user": None,
+                    "token": None,
+                }
+                return Response({"response": response_data},
+                                status=status.HTTP_401_UNAUTHORIZED)
+
+        # Delete old tokens e.g., invalid all logged in accounts.
+        AuthToken.objects.filter(user=administrator).delete()
+        response_data = {
+            "error_message":
+            None,
+            "administrator":
+            AdministratorSerializer(
+                administrator,
+                context={
+                    "request": request
+                },
+            ).data,
+            "token":
+            AuthToken.objects.create(administrator)[1],
+        }
+        return Response({"response": response_data}, status=status.HTTP_200_OK)
