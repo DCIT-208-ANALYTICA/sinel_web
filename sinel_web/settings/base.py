@@ -26,6 +26,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = 'accounts.Administrator'
 # Application definition
 
 INSTALLED_APPS = [
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
     'django_user_agents',
 
     # Custom Apps
+    'accounts.apps.AccountsConfig',
     'dashboard.apps.DashboardConfig',
     'website.apps.WebsiteConfig',
     'blog.apps.BlogConfig',

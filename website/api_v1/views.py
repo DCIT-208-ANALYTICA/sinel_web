@@ -20,7 +20,7 @@ class ContactApi(generics.GenericAPIView):
         data = self.serializer_class(contact).data
         return Response({"contact": data})
 
-    def patch(self, request, **kwargs):
+    def put(self, request, **kwargs):
         contact = Contact.objects.first()
         form = self.form_class(request.data, instance=contact)
         if form.is_valid():
