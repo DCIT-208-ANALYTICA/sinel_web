@@ -12,7 +12,7 @@ const Footer = () => {
                         </Col>
                         <Col sm={6}>
                             <div className="text-sm-right d-none d-sm-block">
-                                made with <i className="mdi mdi-heart text-danger"></i> by team analytica.
+                                made with <i className="mdi mdi-heart text-danger"></i> by Team Analytica.
                             </div>
                         </Col>
                     </Row>
