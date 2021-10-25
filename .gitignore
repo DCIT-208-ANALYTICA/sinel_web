@@ -143,3 +143,4 @@ manual_test.py
 mobi_services2.py
 staticfiles
 compressed
+dashboard/react/yarn.lock
