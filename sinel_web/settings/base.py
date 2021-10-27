@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'dashboard.apps.DashboardConfig',
     'website.apps.WebsiteConfig',
     'blog.apps.BlogConfig',
+    'communications.apps.CommunicationsConfig',
 ]
 
 MIDDLEWARE = [
