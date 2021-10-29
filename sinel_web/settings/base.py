@@ -26,19 +26,28 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = 'accounts.Administrator'
 # Application definition
 
 INSTALLED_APPS = [
-    "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.sessions",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
+    'corsheaders',  
+    'knox',        
+    'rest_framework',
+    'django_user_agents',
+
     # Custom Apps
-    "dashboard.apps.DashboardConfig",
-    "website.apps.WebsiteConfig",
-    "blog.apps.BlogConfig",
+    'accounts.apps.AccountsConfig',
+    'dashboard.apps.DashboardConfig',
+    'website.apps.WebsiteConfig',
+    'blog.apps.BlogConfig',
+    'rest_api_v1.apps.RestApiV1Config',
     "communications.apps.CommunicationsConfig",
 ]
 

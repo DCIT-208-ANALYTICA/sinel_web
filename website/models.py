@@ -20,10 +20,12 @@ class Contact(models.Model):
     email = models.EmailField()
     address = models.CharField(max_length=100)
     telephone = models.CharField(max_length=20)
-    lat_lng = models.FloatField()
-
+    lat_lng = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self) -> str:
+        return self.address
 
 
 class SocialMediaLink(models.Model):
@@ -65,9 +67,7 @@ class Banner(models.Model):
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=200, null=True)
     url = models.URLField(max_length=200, null=True)
-    image = models.ImageField(
-        upload_to="uploads/banners"
-    )
+    image = models.ImageField(upload_to="uploads/banners")
     visible = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -90,9 +90,10 @@ class Services(models.Model):
 class Client(models.Model):
     title = models.CharField(max_length=30)
     story = models.TextField()
-    image = models.ImageField(
-        upload_to="uploads/clients", height_field=None, width_field=None, max_length=100
-    )
+    image = models.ImageField(upload_to="uploads/clients",
+                              height_field=None,
+                              width_field=None,
+                              max_length=100)
     visible = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
