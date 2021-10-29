@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="{% static 'vendor/animate/animate.css' %}" />
 
     <link rel="stylesheet" href="{% static 'css/theme.css' %}" />
+    {% block styleblock %}{% endblock %}
+
   </head>
   <body>
     <!-- Back to top button -->
@@ -34,22 +36,21 @@
             <div class="col-sm-8 text-sm">
               <div class="site-info">
                 <a href="#"
-                  ><span class="mai-call text-primary"></span> +00 123 4455
-                  6666</a
+                  ><span class="mai-call text-primary"></span> +233 24 773 2448</a
                 >
                 <span class="divider">|</span>
                 <a href="#"
                   ><span class="mai-mail text-primary"></span>
-                  mail@example.com</a
+                  info@sinelhospital.com</a
                 >
               </div>
             </div>
             <div class="col-sm-4 text-right text-sm">
               <div class="social-mini-button">
-                <a href="#"><span class="mai-logo-facebook-f"></span></a>
+                <a href="https://www.facebook.com/SINELHOSPITALTEMA/"><span class="mai-logo-facebook-f"></span></a>
                 <a href="#"><span class="mai-logo-twitter"></span></a>
                 <a href="#"><span class="mai-logo-dribbble"></span></a>
-                <a href="#"><span class="mai-logo-instagram"></span></a>
+                <a href="https://www.instagram.com/sinelhospital/"><span class="mai-logo-instagram"></span></a>
               </div>
             </div>
           </div>
@@ -96,23 +97,23 @@
 
           <div class="collapse navbar-collapse" id="navbarSupport">
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item active">
+              <li class="nav-item {% block home_active %}{% endblock %}">
                 <a class="nav-link" href="{% url 'website:index' %}">Home</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="about.html">About Us</a>
+              <li class="nav-item {% block about_active %}{% endblock %}">
+                <a class="nav-link" href="{% url 'website:about' %}">About Us</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="doctors.html">Doctors</a>
+              <li class="nav-item {% block contact_active %}{% endblock %}">
+                <a class="nav-link" href="{% url 'website:contact' %}">Contact</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="blog.html">News</a>
+              <li class="nav-item {% block services_active %}{% endblock %}">
+                <a class="nav-link" href="{% url 'website:contact' %}">Services</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="contact.html">Contact</a>
+              <li class="nav-item {% block gallery_active %}{% endblock %}">
+                <a class="nav-link" href="{% url 'website:gallery' %}">Gallery</a>
               </li>
-              <li class="nav-item">
-                <a class="btn btn-primary ml-lg-3" href="#">Login / Register</a>
+              <li class="nav-item {% block blog_active %}{% endblock %}">
+                <a class="nav-link" href="{% url 'blog:posts' %}">Blog</a>
               </li>
             </ul>
           </div>
@@ -155,7 +156,7 @@
           <div class="col-sm-6 col-lg-3 py-3">
             <h5>Company</h5>
             <ul class="footer-menu">
-              <li><a href="#">About Us</a></li>
+              <li><a href="/about">About Us</a></li>
               <li><a href="#">Career</a></li>
               <li><a href="#">Editorial Team</a></li>
               <li><a href="#">Protection</a></li>
@@ -171,22 +172,22 @@
             </ul>
           </div>
           <div class="col-sm-6 col-lg-3 py-3">
-            <h5>Our partner</h5>
+            <h5>Our partners</h5>
             <ul class="footer-menu">
-              <li><a href="#">One-Fitness</a></li>
+              <li><a href="#">One</a></li>
               <li><a href="#">One-Drugs</a></li>
               <li><a href="#">One-Live</a></li>
             </ul>
           </div>
           <div class="col-sm-6 col-lg-3 py-3">
             <h5>Contact</h5>
-            <p class="footer-link mt-2">351 Willow Street Franklin, MA 02038</p>
-            <a href="#" class="footer-link">701-573-7582</a>
-            <a href="#" class="footer-link">healthcare@temporary.net</a>
+            <p class="footer-link mt-2">Hospital Road, Accra</p>
+            <a href="#" class="footer-link">+233 24 773 2448</a>
+            <a href="#" class="footer-link">info@sinelhospital.com</a>
 
             <h5 class="mt-3">Social Media</h5>
             <div class="footer-sosmed mt-3">
-              <a href="#" target="_blank"
+              <a href="https://www.facebook.com/SINELHOSPITALTEMA/" target="_blank"
                 ><span class="mai-logo-facebook-f"></span
               ></a>
               <a href="#" target="_blank"
@@ -195,7 +196,7 @@
               <a href="#" target="_blank"
                 ><span class="mai-logo-google-plus-g"></span
               ></a>
-              <a href="#" target="_blank"
+              <a href="https://www.instagram.com/sinelhospital/" target="_blank"
                 ><span class="mai-logo-instagram"></span
               ></a>
               <a href="#" target="_blank"
@@ -224,5 +225,6 @@
     <script src="{% static 'vendor/wow/wow.min.js' %}"></script>
 
     <script src="{% static 'js/theme.js' %}"></script>
+    {% block scriptblock %}{% endblock %}
   </body>
 </html>
