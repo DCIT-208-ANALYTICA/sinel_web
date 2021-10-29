@@ -12,7 +12,7 @@ DAYS_OF_WEEK = (
     (5, "Saturday"),
     (6, "Sunday"),
 )
-#
+
 
 
 class Contact(models.Model):
