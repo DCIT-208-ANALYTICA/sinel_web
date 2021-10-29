@@ -26,6 +26,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = 'accounts.Administrator'
 # Application definition
 
 INSTALLED_APPS = [
@@ -36,10 +37,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'corsheaders',  
+    'knox',        
+    'rest_framework',
+    'django_user_agents',
+
     # Custom Apps
+    'accounts.apps.AccountsConfig',
     'dashboard.apps.DashboardConfig',
     'website.apps.WebsiteConfig',
     'blog.apps.BlogConfig',
+    'rest_api_v1.apps.RestApiV1Config',
 ]
 
 MIDDLEWARE = [
