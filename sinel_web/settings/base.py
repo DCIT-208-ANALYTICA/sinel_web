@@ -50,6 +50,26 @@ INSTALLED_APPS = [
     'rest_api_v1.apps.RestApiV1Config',
 ]
 
+
+REST_KNOX = {
+    'SECURE_HASH_ALGORITHM': 'cryptography.hazmat.primitives.hashes.SHA512',
+    'AUTH_TOKEN_CHARACTER_LENGTH': 64,
+    # 'TOKEN_TTL': None,
+    'USER_SERIALIZER': 'knox.serializers.UserSerializer',
+    'TOKEN_LIMIT_PER_USER': 1,
+    'AUTO_REFRESH': True,
+    'AUTH_HEADER_PREFIX': 'Token',
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES':
+    ('rest_framework.permissions.IsAuthenticatedOrReadOnly', ),
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'knox.auth.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication'
+    ]
+}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
