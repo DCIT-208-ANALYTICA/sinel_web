@@ -1,9 +1,9 @@
 from rest_framework import generics, permissions
 from rest_framework.response import Response
 from rest_api_v1.utils import ResponseMessage
-from website.forms import ContactForm, GalleryForm, ServiceForm
-from website.models import Contact, Gallery, Service
-from .serializers import ContactSerializer, GallerySerializer, ServiceSerializer
+from website.forms import ClientForm, ContactForm, GalleryForm, ServiceForm, TeamLeadForm
+from website.models import Client, Contact, Gallery, Service, TeamLead
+from .serializers import ClientSerializer, ContactSerializer, GallerySerializer, ServiceSerializer, TeamLeadSerializer
 from django.utils.html import strip_tags
 
 
@@ -115,3 +115,27 @@ class ServicesAPI(CreateUpdateDeleteModelMixin):
     model_class = Service
     response_keyword = "service"
     response_keyword_plural = "services"
+
+
+class TeamLeadsAPI(CreateUpdateDeleteModelMixin):
+    """
+    Returns the list of team leads.
+    """
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = TeamLeadSerializer
+    form_class = TeamLeadForm
+    model_class = TeamLead
+    response_keyword = "team_lead"
+    response_keyword_plural = "team_leads"
+
+
+class ClientsAPI(CreateUpdateDeleteModelMixin):
+    """
+    Returns the list of team clients and their stories.
+    """
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = ClientSerializer
+    form_class = ClientForm
+    model_class = Client
+    response_keyword = "client"
+    response_keyword_plural = "clients"

@@ -11,7 +11,8 @@ urlpatterns = [
     path("administrators/login/", account_api.LoginAdministratorApi.as_view()),
     path("administrators/change_password/", account_api.ChangeAdministratorPasswordApi.as_view()),
 
-
     path("gallery", website_api.GalleryAPI.as_view()),
     path("services", website_api.ServicesAPI.as_view()),
+    path("team_leads", website_api.TeamLeadsAPI.as_view()),
+    path("clients", website_api.ClientsAPI.as_view()),
 ]

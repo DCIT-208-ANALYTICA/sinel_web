@@ -97,7 +97,7 @@ class OpeningHour(models.Model):
 
 
 class TeamLead(models.Model):
-    name = models.CharField(max_length=100)
+    fullname = models.CharField(max_length=100)
     bio = models.CharField(max_length=500)
     image = models.ImageField(upload_to="uploads/services", )
     visible = models.BooleanField(default=False)

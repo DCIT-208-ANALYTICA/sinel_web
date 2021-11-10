@@ -1,5 +1,5 @@
 from django import forms
-from .models import Contact, Gallery, Service
+from .models import Client, Contact, Gallery, Service, TeamLead
 
 
 class ContactForm(forms.ModelForm):
@@ -25,6 +25,26 @@ class GalleryForm(forms.ModelForm):
 class ServiceForm(forms.ModelForm):
     class Meta:
         model = Service
+        exclude = [
+            "id",
+            "created_at",
+            "update_at",
+        ]
+
+
+class TeamLeadForm(forms.ModelForm):
+    class Meta:
+        model = TeamLead
+        exclude = [
+            "id",
+            "created_at",
+            "update_at",
+        ]
+
+
+class ClientForm(forms.ModelForm):
+    class Meta:
+        model = Client
         exclude = [
             "id",
             "created_at",
