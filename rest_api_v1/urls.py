@@ -4,6 +4,7 @@ from accounts.api_v1 import views as account_api
 
 urlpatterns = [
     path("contact", website_api.ContactApi.as_view()),
+    path("about", website_api.AboutAPI.as_view()),
     path("administrators", account_api.AdministratorsApi.as_view()),
     path("my_account", account_api.MyAccount.as_view()),
     path("administrators/<str:email_address>", account_api.RetrieveAdministrator.as_view()),

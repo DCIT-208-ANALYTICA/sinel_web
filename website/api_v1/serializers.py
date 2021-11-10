@@ -1,10 +1,16 @@
 from rest_framework import serializers
-from website.models import Client, Contact, Gallery, Service, TeamLead
+from website.models import About, Client, Contact, Gallery, Service, TeamLead
 
 
 class ContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contact
+        exclude = ["created_at", "updated_at"]
+
+
+class AboutSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = About
         exclude = ["created_at", "updated_at"]
 
 

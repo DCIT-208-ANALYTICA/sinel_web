@@ -1,9 +1,9 @@
 from rest_framework import generics, permissions
 from rest_framework.response import Response
 from rest_api_v1.utils import ResponseMessage
-from website.forms import ClientForm, ContactForm, GalleryForm, ServiceForm, TeamLeadForm
-from website.models import Client, Contact, Gallery, Service, TeamLead
-from .serializers import ClientSerializer, ContactSerializer, GallerySerializer, ServiceSerializer, TeamLeadSerializer
+from website.forms import AboutForm, ClientForm, ContactForm, GalleryForm, ServiceForm, TeamLeadForm
+from website.models import About, Client, Contact, Gallery, Service, TeamLead
+from .serializers import AboutSerializer, ClientSerializer, ContactSerializer, GallerySerializer, ServiceSerializer, TeamLeadSerializer
 from django.utils.html import strip_tags
 
 
@@ -27,6 +27,35 @@ class ContactApi(generics.GenericAPIView):
             form.save()
             data = self.serializer_class(contact).data
             return Response({"contact": data})
+        else:
+            # Return the first error.
+            message = []
+            for field, er in form.errors.items():
+                message.append(f"{field}: [{strip_tags(er)}]")
+            response = ResponseMessage(ResponseMessage.ERROR, str(message))
+            return Response({"response": response.to_json()}, status=400)
+
+
+class AboutAPI(generics.GenericAPIView):
+    """
+    Returns the about details.
+    """
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = AboutSerializer
+    form_class = AboutForm
+
+    def get(self, request, **kwargs):
+        contact = About.objects.first()
+        data = self.serializer_class(contact).data
+        return Response({"contact": data})
+
+    def put(self, request, **kwargs):
+        contact = About.objects.first()
+        form = self.form_class(request.data, instance=contact)
+        if form.is_valid():
+            contact = form.save()
+            data = self.serializer_class(contact).data
+            return Response({"about": data})
         else:
             # Return the first error.
             message = []

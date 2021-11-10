@@ -1,10 +1,20 @@
 from django import forms
-from .models import Client, Contact, Gallery, Service, TeamLead
+from .models import About, Client, Contact, Gallery, Service, TeamLead
 
 
 class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
+        exclude = [
+            "id",
+            "created_at",
+            "update_at",
+        ]
+
+
+class AboutForm(forms.ModelForm):
+    class Meta:
+        model = About
         exclude = [
             "id",
             "created_at",
