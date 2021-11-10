@@ -106,9 +106,9 @@ class AdministratorsApi(generics.GenericAPIView):
         return Response({"administrators": data})
 
 
-class AdministratorApi(generics.GenericAPIView):
+class RetrieveAdministrator(generics.GenericAPIView):
     """
-    Returns the list of all administrators
+    Returns the details of an administrator.
     """
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = AdministratorSerializer
@@ -117,6 +117,21 @@ class AdministratorApi(generics.GenericAPIView):
         administrator = generics.get_object_or_404(Administrator,
                                                    email_address=email_address)
         data = self.serializer_class(administrator,
+                                     context={
+                                         "request": request
+                                     }).data
+        return Response({"administrator": data})
+
+
+class MyAccount(generics.GenericAPIView):
+    """
+    Returns the details of an administrator.
+    """
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = AdministratorSerializer
+
+    def get(self, request, **kwargs):
+        data = self.serializer_class(request.user,
                                      context={
                                          "request": request
                                      }).data

@@ -1,5 +1,4 @@
 from django.db import models
-from django.db.models.base import Model
 
 # Create your models here.
 
@@ -47,9 +46,9 @@ class InsurancePartner(models.Model):
 
 class Gallery(models.Model):
     title = models.CharField(max_length=100)
-    description = models.CharField(max_length=200)
-    type = models.CharField(max_length=200)
-    url = models.URLField(max_length=200)
+    description = models.TextField()
+    file_type = models.CharField(max_length=20)
+    file = models.FileField(max_length=200)
     visible = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

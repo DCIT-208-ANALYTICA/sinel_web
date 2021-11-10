@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="{% static 'vendor/animate/animate.css' %}" />
 
     <link rel="stylesheet" href="{% static 'css/theme.css' %}" />
+    <link rel="shortcut icon" href="{% static 'img/logo_small.png' %}" type="image/x-icon">
+
     {% block styleblock %}{% endblock %}
 
   </head>
@@ -62,10 +64,10 @@
 
       <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
         <div class="container">
-          <a class="navbar-brand" href="#"
-            ><span class="text-primary">Sinel</a
-          >
-
+          <a class="navbar-brand" href="{% url 'website:index' %}"
+            >
+            <img src="{% static 'img/logo.png' %}" alt="sinel logo" height="30">
+            </a>
           <form action="#">
             <div class="input-group input-navbar">
               <div class="input-group-prepend">

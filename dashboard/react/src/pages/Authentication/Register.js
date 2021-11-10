@@ -12,7 +12,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 // import images
-import logodark from "../../assets/images/logo-dark.png";
+import logodark from "../../assets/images/sinellogo.png";
 
 class Register extends Component {
   constructor(props) {
