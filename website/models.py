@@ -13,7 +13,6 @@ DAYS_OF_WEEK = (
 )
 
 
-
 class Contact(models.Model):
     gps = models.CharField(max_length=100)
     email = models.EmailField()
@@ -72,15 +71,10 @@ class Banner(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-class Services(models.Model):
+class Service(models.Model):
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=200, null=True)
-    image = models.ImageField(
-        upload_to="uploads/services",
-        height_field=None,
-        width_field=None,
-        max_length=100,
-    )
+    image = models.ImageField(upload_to="uploads/services", )
     visible = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -89,10 +83,7 @@ class Services(models.Model):
 class Client(models.Model):
     title = models.CharField(max_length=30)
     story = models.TextField()
-    image = models.ImageField(upload_to="uploads/clients",
-                              height_field=None,
-                              width_field=None,
-                              max_length=100)
+    image = models.ImageField(upload_to="uploads/services", )
     visible = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -108,12 +99,7 @@ class OpeningHour(models.Model):
 class TeamLead(models.Model):
     name = models.CharField(max_length=100)
     bio = models.CharField(max_length=500)
-    image = models.ImageField(
-        upload_to="uploads/team_leads",
-        height_field=None,
-        width_field=None,
-        max_length=100,
-    )
+    image = models.ImageField(upload_to="uploads/services", )
     visible = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

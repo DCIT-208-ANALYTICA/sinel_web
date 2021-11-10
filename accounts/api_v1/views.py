@@ -6,7 +6,6 @@ from accounts.api_v1.serializers import (AdministratorSerializer,
                                          LoginSerializer, RegisterSerializer)
 from accounts.forms import AdministratorForm
 from accounts.models import Administrator
-from rest_api_v1.utils import ResponseMessage
 from knox.models import AuthToken
 from django.contrib.auth import authenticate
 

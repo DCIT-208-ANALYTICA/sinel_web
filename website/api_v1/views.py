@@ -1,9 +1,9 @@
 from rest_framework import generics, permissions
 from rest_framework.response import Response
 from rest_api_v1.utils import ResponseMessage
-from website.forms import ContactForm, GalleryForm
-from website.models import Contact, Gallery
-from .serializers import ContactSerializer, GallerySerializer
+from website.forms import ContactForm, GalleryForm, ServiceForm
+from website.models import Contact, Gallery, Service
+from .serializers import ContactSerializer, GallerySerializer, ServiceSerializer
 from django.utils.html import strip_tags
 
 
@@ -36,23 +36,17 @@ class ContactApi(generics.GenericAPIView):
             return Response({"response": response.to_json()}, status=400)
 
 
-class GalleryAPI(generics.GenericAPIView):
-    """
-    Returns the contact details.
-    """
+class CreateUpdateDeleteModelMixin(generics.GenericAPIView):
     permission_classes = [permissions.IsAuthenticated]
-    serializer_class = GallerySerializer
-    form_class = GalleryForm
 
     def get(self, request, **kwargs):
-        gallery = Gallery.objects.all().order_by("-created_at")
-
+        gallery = self.model_class.objects.all().order_by("-created_at")
         data = self.serializer_class(gallery,
                                      context={
                                          "request": request
                                      },
                                      many=True).data
-        return Response({"gallery": data})
+        return Response({self.response_keyword_plural: data})
 
     def post(self, request, **kwargs):
         form = self.form_class(request.data, request.FILES)
@@ -61,7 +55,7 @@ class GalleryAPI(generics.GenericAPIView):
             data = self.serializer_class(item, context={
                 "request": request
             }).data
-            return Response({"item": data})
+            return Response({self.response_keyword: data})
         else:
             # Return the first error.
             for field, er in form.errors.items():
@@ -71,14 +65,14 @@ class GalleryAPI(generics.GenericAPIView):
 
     def patch(self, request, **kwargs):
         id = request.data.get("id")
-        item  = generics.get_object_or_404(Gallery, id=id)
+        item = generics.get_object_or_404(self.model_class, id=id)
         form = self.form_class(request.data, request.FILES, instance=item)
         if form.is_valid():
             item = form.save()
             data = self.serializer_class(item, context={
                 "request": request
             }).data
-            return Response({"item": data})
+            return Response({self.response_keyword: data})
         else:
             # Return the first error.
             for field, er in form.errors.items():
@@ -88,7 +82,36 @@ class GalleryAPI(generics.GenericAPIView):
 
     def delete(self, request, **kwargs):
         id = request.data.get("id")
-        items = Gallery.objects.filter(id=id)
-        data = self.serializer_class(items.first(), context={"request": request}).data
+        items = self.model_class.objects.filter(id=id)
+        data = self.serializer_class(items.first(),
+                                     context={
+                                         "request": request
+                                     }).data
         items.delete()
-        return Response({"item": data})
+        return Response({self.response_keyword: data})
+
+
+class GalleryAPI(CreateUpdateDeleteModelMixin):
+    """
+    Returns the contact details.
+    """
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = GallerySerializer
+    form_class = GalleryForm
+    serializer_class = GallerySerializer
+    form_class = GalleryForm
+    model_class = Gallery
+    response_keyword = "item"
+    response_keyword_plural = "gallery"
+
+
+class ServicesAPI(CreateUpdateDeleteModelMixin):
+    """
+    Returns the contact details.
+    """
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = ServiceSerializer
+    form_class = ServiceForm
+    model_class = Service
+    response_keyword = "service"
+    response_keyword_plural = "services"

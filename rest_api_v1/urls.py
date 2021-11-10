@@ -13,5 +13,5 @@ urlpatterns = [
 
 
     path("gallery", website_api.GalleryAPI.as_view()),
-    
+    path("services", website_api.ServicesAPI.as_view()),
 ]
