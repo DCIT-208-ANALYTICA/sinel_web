@@ -8,6 +8,9 @@ RUN mkdir -p /home/sinel_web
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
+# create the app user
+RUN addgroup -S sinel_web && adduser -S sinel_web -G sinel_web
+
 # create the appropriate directories
 ENV HOME=/home/sinel_web
 ENV APP_HOME=/home/sinel_web/app
