@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from website.models import About, Client, Contact, Gallery, Service, TeamLead
+from website.forms import SocialMediaLinkForm
+from website.models import About, Client, Contact, Gallery, OpeningHour, Service, TeamLead
 
 
 class ContactSerializer(serializers.ModelSerializer):
@@ -11,6 +12,12 @@ class ContactSerializer(serializers.ModelSerializer):
 class AboutSerializer(serializers.ModelSerializer):
     class Meta:
         model = About
+        exclude = ["created_at", "updated_at"]
+
+
+class OpeningHourSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OpeningHour
         exclude = ["created_at", "updated_at"]
 
 
@@ -71,4 +78,19 @@ class ClientSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Client
+        exclude = ["created_at", "updated_at"]
+
+
+class SocialMediaLinkSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
+
+    def get_image(self, item):
+        request = self.context.get("request")
+        if item.image:
+            url = item.image.url
+            return request.build_absolute_uri(url)
+        return ""
+
+    class Meta:
+        model = SocialMediaLinkForm
         exclude = ["created_at", "updated_at"]

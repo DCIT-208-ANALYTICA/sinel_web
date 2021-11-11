@@ -1,5 +1,5 @@
 from django import forms
-from .models import About, Client, Contact, Gallery, Service, TeamLead
+from .models import About, Client, Contact, Gallery, OpeningHour, Service, SocialMediaLink, TeamLead
 
 
 class ContactForm(forms.ModelForm):
@@ -55,6 +55,26 @@ class TeamLeadForm(forms.ModelForm):
 class ClientForm(forms.ModelForm):
     class Meta:
         model = Client
+        exclude = [
+            "id",
+            "created_at",
+            "update_at",
+        ]
+
+
+class OpeningHourForm(forms.ModelForm):
+    class Meta:
+        model = OpeningHour
+        exclude = [
+            "id",
+            "created_at",
+            "update_at",
+        ]
+
+
+class SocialMediaLinkForm(forms.ModelForm):
+    class Meta:
+        model = SocialMediaLink
         exclude = [
             "id",
             "created_at",

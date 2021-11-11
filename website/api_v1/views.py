@@ -1,9 +1,9 @@
 from rest_framework import generics, permissions
 from rest_framework.response import Response
 from rest_api_v1.utils import ResponseMessage
-from website.forms import AboutForm, ClientForm, ContactForm, GalleryForm, ServiceForm, TeamLeadForm
-from website.models import About, Client, Contact, Gallery, Service, TeamLead
-from .serializers import AboutSerializer, ClientSerializer, ContactSerializer, GallerySerializer, ServiceSerializer, TeamLeadSerializer
+from website.forms import AboutForm, ClientForm, ContactForm, GalleryForm, OpeningHourForm, ServiceForm, SocialMediaLinkForm, TeamLeadForm
+from website.models import About, Client, Contact, Gallery, OpeningHour, Service, SocialMediaLink, TeamLead
+from .serializers import AboutSerializer, ClientSerializer, ContactSerializer, GallerySerializer, OpeningHourSerializer, ServiceSerializer, SocialMediaLinkSerializer, TeamLeadSerializer
 from django.utils.html import strip_tags
 
 
@@ -168,3 +168,27 @@ class ClientsAPI(CreateUpdateDeleteModelMixin):
     model_class = Client
     response_keyword = "client"
     response_keyword_plural = "clients"
+
+
+class OpeningHoursAPI(CreateUpdateDeleteModelMixin):
+    """
+    Returns a list opening and closing hours.
+    """
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = OpeningHourSerializer
+    form_class = OpeningHourForm
+    model_class = OpeningHour
+    response_keyword = "opening_hour"
+    response_keyword_plural = "opening_hours"
+
+
+class SocialMediaLinksAPI(CreateUpdateDeleteModelMixin):
+    """
+    Returns the list of social media links.
+    """
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = SocialMediaLinkSerializer
+    form_class = SocialMediaLinkForm
+    model_class = SocialMediaLink
+    response_keyword = "social_media_link"
+    response_keyword_plural = "social_media_links"

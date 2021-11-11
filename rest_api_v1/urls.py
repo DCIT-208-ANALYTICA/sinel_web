@@ -16,4 +16,6 @@ urlpatterns = [
     path("services", website_api.ServicesAPI.as_view()),
     path("team_leads", website_api.TeamLeadsAPI.as_view()),
     path("clients", website_api.ClientsAPI.as_view()),
+    path("opening_hours", website_api.OpeningHoursAPI.as_view()),
+    path("social_media_links", website_api.SocialMediaLinksAPI.as_view()),
 ]

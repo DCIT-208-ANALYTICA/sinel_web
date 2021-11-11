@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'knox',        
     'rest_framework',
     'django_user_agents',
+    'ckeditor',
 
     # Custom Apps
     'accounts.apps.AccountsConfig',

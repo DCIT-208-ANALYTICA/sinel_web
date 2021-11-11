@@ -1,6 +1,5 @@
 from django.db import models
-
-# Create your models here.
+from ckeditor.fields import RichTextField
 
 DAYS_OF_WEEK = (
     (0, "Monday"),
@@ -28,7 +27,7 @@ class Contact(models.Model):
 
 class SocialMediaLink(models.Model):
     name = models.CharField(max_length=100)
-    icon_url = models.URLField(max_length=200)
+    image = models.ImageField(upload_to="uploads/images")
     link = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -65,7 +64,7 @@ class Banner(models.Model):
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=200, null=True)
     url = models.URLField(max_length=200, null=True)
-    image = models.ImageField(upload_to="uploads/banners")
+    image = models.ImageField(upload_to="uploads/images")
     visible = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -74,7 +73,7 @@ class Banner(models.Model):
 class Service(models.Model):
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=200, null=True)
-    image = models.ImageField(upload_to="uploads/services", )
+    image = models.ImageField(upload_to="uploads/images", )
     visible = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -83,7 +82,7 @@ class Service(models.Model):
 class Client(models.Model):
     title = models.CharField(max_length=30)
     story = models.TextField()
-    image = models.ImageField(upload_to="uploads/services", )
+    image = models.ImageField(upload_to="uploads/images", )
     visible = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -99,16 +98,17 @@ class OpeningHour(models.Model):
 class TeamLead(models.Model):
     fullname = models.CharField(max_length=100)
     bio = models.CharField(max_length=500)
-    image = models.ImageField(upload_to="uploads/services", )
+    image = models.ImageField(upload_to="uploads/images", )
     visible = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
 
 class About(models.Model):
-    overview = models.TextField(max_length=200)
-    mission = models.TextField(max_length=500)
-    vision = models.TextField(max_length=500)
+    overview = RichTextField()
+    mission = RichTextField()
+    vision = RichTextField()
     value = models.TextField(max_length=100)
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
