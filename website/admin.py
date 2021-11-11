@@ -1,6 +1,5 @@
 from django.contrib import admin
 from .models import Contact
-from django.db.utils import OperationalError
 
 # Create only one contact model that can be updated.
 try:
@@ -11,5 +10,5 @@ try:
                                address="Accra",
                                telephone="020000000",
                                lat_lng="0.03,30.93")
-except OperationalError as e:
+except Exception as e:
     print(e)

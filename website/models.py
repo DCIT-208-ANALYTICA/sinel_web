@@ -1,5 +1,5 @@
 from django.db import models
-from ckeditor.fields import RichTextField
+from django_ckeditor_5.fields import CKEditor5Field
 
 DAYS_OF_WEEK = (
     (0, "Monday"),
@@ -105,10 +105,9 @@ class TeamLead(models.Model):
 
 
 class About(models.Model):
-    overview = RichTextField()
-    mission = RichTextField()
-    vision = RichTextField()
-    value = models.TextField(max_length=100)
-
+    overview = CKEditor5Field()
+    mission = CKEditor5Field()
+    vision = CKEditor5Field()
+    value = CKEditor5Field()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
