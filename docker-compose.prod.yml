@@ -27,7 +27,7 @@ services:
       - static_volume:/home/sinel_web/app/static
       - assets_volume:/home/sinel_web/app/assets
     ports:
-      - 1337:80
+      - 80:80
     depends_on:
       - web
 
