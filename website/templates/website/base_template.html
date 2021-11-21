@@ -18,10 +18,10 @@
   <link rel="stylesheet" href="{% static 'vendor/owl-carousel/css/owl.carousel.css' %}" />
 
   <link rel="stylesheet" href="{% static 'vendor/animate/animate.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/website_style.css' %}">
 
   <link rel="stylesheet" href="{% static 'css/theme.css' %}" />
   <link rel="shortcut icon" href="{% static 'img/logo_small.png' %}" type="image/x-icon">
-
   {% block styleblock %}{% endblock %}
 
 </head>
@@ -88,9 +88,17 @@
             <li class="nav-item {% block contact_active %}{% endblock %}">
               <a class="nav-link" href="{% url 'website:contact' %}">Contact</a>
             </li>
-            <li class="nav-item {% block services_active %}{% endblock %}">
-              <a class="nav-link" href="{% url 'website:services' %}">Services</a>
-            </li>
+            <div class="dropdown">
+              <li class="nav-item {% block services_active %}{% endblock %}">
+                <a class="nav-link" href="{% url 'website:services' %}">Services</a>
+                <div class="dropdown-content">
+                  <a href="#">Link 1</a>
+                  <a href="#">Link 1</a>
+                  <a href="#">Link 1</a>
+                  <a href="#">Link 1</a>
+                </div>
+              </li>
+            </div>
             <li class="nav-item {% block gallery_active %}{% endblock %}">
               <a class="nav-link" href="{% url 'website:gallery' %}">Gallery</a>
             </li>
