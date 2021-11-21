@@ -1,30 +1,20 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
-import { logoutUser } from '../../store/actions';
+const Logout = () => {
+    const history = useHistory();
+    useEffect(() => {
+        localStorage.removeItem("authUser");
+        history.push("/login");
+    }, [])
 
-class Logout extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {  };
-    }
-
-    componentDidMount() {
-     
-        // Fire Action for Remove all Item from localstorage and redirect to login page
-        this.props.logoutUser(this.props.history);
-    }
-
-    render() {
-        return (
-            <React.Fragment>
-               <h1>&nbsp;</h1>
-            </React.Fragment>
-        );
-    }
+    return (
+        <React.Fragment>
+            <h1>&nbsp;</h1>
+        </React.Fragment>
+    );
 }
 
-export default withRouter(connect(null,{ logoutUser })(Logout));
+export default Logout
 

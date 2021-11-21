@@ -103,10 +103,15 @@ import ForgetPwd1 from "../pages/AuthenticationInner/ForgetPassword";
 //Kanban Board
 import KanbanBoard from "../pages/KanbanBoard/index";
 
+// Actual
+import Contact from "../pages/Actual/Contact";
+
 const authProtectedRoutes = [
+	// new
+	{ path: "/contact", component: Contact },
 
 	//Kanban Board
-	{ path: "/apps-kanban-board", component : KanbanBoard },
+	{ path: "/apps-kanban-board", component: KanbanBoard },
 
 	// Tables
 	{ path: "/tables-basic", component: BasicTables },
@@ -134,7 +139,7 @@ const authProtectedRoutes = [
 	{ path: "/ui-rating", component: UiRating },
 	{ path: "/ui-rangeslider", component: UiRangeSlider },
 	{ path: "/ui-notifications", component: UiNotifications },
-	{ path : "/ui-roundslider", component : UIRoundSlider },
+	{ path: "/ui-roundslider", component: UIRoundSlider },
 
 	// Forms
 	{ path: "/form-elements", component: FormElements },
@@ -189,7 +194,7 @@ const authProtectedRoutes = [
 	{ path: "/calendar", component: Calendar },
 
 	{ path: "/dashboard", component: Dashboard },
-	
+
 	// this route should be at the end of all other routes
 	{ path: "/", exact: true, component: () => <Redirect to="/dashboard" /> }
 ];
