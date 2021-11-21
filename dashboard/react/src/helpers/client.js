@@ -22,6 +22,7 @@ class APIClient {
         return res;
     }
 
+    // contacts
     async getContact() {
         const token = JSON.parse(localStorage.getItem("authUser")).token;
         const res = await this.instance.request({
@@ -52,6 +53,40 @@ class APIClient {
 
         return res;
     }
+
+    // about
+    async readAbout() {
+        const token = JSON.parse(localStorage.getItem("authUser")).token;
+        const res = await this.instance.request({
+            url: "api/v1/about",
+            headers: { 'Content-Type': 'application/json' },
+            method: "get",
+            headers: {
+                "Authorization": "Token " + token
+            }
+
+        });
+
+        return res;
+    }
+
+    async updateAbout(data) {
+        const token = JSON.parse(localStorage.getItem("authUser")).token;
+        const res = await this.instance.request({
+            url: "api/v1/about",
+            headers: { 'Content-Type': 'application/json' },
+            method: "put",
+            headers: {
+                "Authorization": "Token " + token,
+                "Content-Type": "application/json"
+            },
+            data: data
+        });
+
+        return res;
+    }
+
+
 }
 
 export default APIClient;
