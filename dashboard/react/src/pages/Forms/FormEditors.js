@@ -39,11 +39,7 @@ class FormEditors extends Component {
                     </CardSubtitle>
 
                     <Form method="post">
-                      <Editor
-                        toolbarClassName="toolbarClassName"
-                        wrapperClassName="wrapperClassName"
-                        editorClassName="editorClassName"
-                      />
+                      
                     </Form>
 
                   </CardBody>

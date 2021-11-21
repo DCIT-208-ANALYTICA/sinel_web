@@ -105,10 +105,12 @@ import KanbanBoard from "../pages/KanbanBoard/index";
 
 // Actual
 import Contact from "../pages/Actual/Contact";
+import About from "../pages/Actual/About";
 
 const authProtectedRoutes = [
 	// new
 	{ path: "/contact", component: Contact },
+	{ path: "/about", component: About },
 
 	//Kanban Board
 	{ path: "/apps-kanban-board", component: KanbanBoard },
