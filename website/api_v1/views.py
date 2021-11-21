@@ -47,7 +47,7 @@ class AboutAPI(generics.GenericAPIView):
     def get(self, request, **kwargs):
         contact = About.objects.first()
         data = self.serializer_class(contact).data
-        return Response({"contact": data})
+        return Response({"about": data})
 
     def put(self, request, **kwargs):
         contact = About.objects.first()
