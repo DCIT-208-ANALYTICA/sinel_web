@@ -24,10 +24,7 @@ node_modules
 **/migrations/**
 **/migrations
 **/node_modules
-**/public
 **/uploads
-public
-src
 web/media
 web/static/CACHE
 stats
