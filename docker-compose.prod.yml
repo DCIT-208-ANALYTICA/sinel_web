@@ -42,4 +42,4 @@ volumes:
   postgres_data:
   static_volume:
   assets_volume:
-  dashboard_build:
+  # dashboard_build:
