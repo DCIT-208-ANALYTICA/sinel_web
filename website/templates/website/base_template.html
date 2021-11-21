@@ -22,6 +22,7 @@
 
   <link rel="stylesheet" href="{% static 'css/theme.css' %}" />
   <link rel="shortcut icon" href="{% static 'img/logo_small.png' %}" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   {% block styleblock %}{% endblock %}
 
 </head>
@@ -90,7 +91,8 @@
             </li>
             <div class="dropdown">
               <li class="nav-item {% block services_active %}{% endblock %}">
-                <a class="nav-link" href="{% url 'website:services' %}">Services</a>
+                <a class="nav-link" href="{% url 'website:services' %}">Services<i class="fa fa-caret-down"></i></a>
+
                 <div class="dropdown-content">
                   <a href="#">Link 1</a>
                   <a href="#">Link 1</a>
