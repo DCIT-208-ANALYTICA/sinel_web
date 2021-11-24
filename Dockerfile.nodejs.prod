@@ -1,0 +1,30 @@
+FROM node:12-alpine
+
+RUN mkdir -p /home/sinel_web/app/dashboard/react
+WORKDIR /home/sinel_web/app/dashboard/react
+
+# # add `/dashboard/react/node_modules/.bin` to $PATH
+ENV PATH /dashboard/react/node_modules/.bin:$PATH
+
+
+# install app dependencies
+COPY ./dashboard/react/package.json .
+
+COPY ./dashboard/react/yarn.lock .
+
+RUN apk add git
+
+RUN apk --no-cache --virtual build-dependencies add \
+    gcc python3-dev musl-dev
+# # # rebuild node-sass
+# RUN yarn add node-sass
+
+RUN yarn install
+
+# add app
+COPY ./dashboard/react/ .
+
+RUN yarn build
+
+
+RUN apk del build-dependencies

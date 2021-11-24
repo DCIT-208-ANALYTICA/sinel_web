@@ -1,45 +1,45 @@
 version: "3.8"
 
 services:
-  # dashboard:
-  #   build:
-  #     context: ./
-  #     dockerfile: Dockerfile.nodejs.prod
-  #   volumes:
-  #     - dashboard_build:/home/sinel_app/app/dashboard/react/build
-
-  web:
+  dashboard:
     build:
       context: ./
-      dockerfile: ./Dockerfile.prod
-    command: gunicorn sinel_web.wsgi:application --bind 0.0.0.0:8000
+      dockerfile: Dockerfile.nodejs.prod
     volumes:
-      - static_volume:/home/sinel_web/app/static
-      - assets_volume:/home/sinel_web/app/assets
-    expose:
-      - 8000
-    env_file:
-      - ./.env.prod
-    depends_on:
-      - db
-  db:
-    image: postgres:13.0-alpine
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
-    env_file:
-      - ./.env.prod.db
-  nginx:
-    build: ./nginx
-    volumes:
-      - static_volume:/home/sinel_web/app/static
-      - assets_volume:/home/sinel_web/app/assets
-    ports:
-      - 80:80
-    depends_on:
-      - web
+      - dashboard_build:/home/sinel_app/app/dashboard/react/build
+
+  # web:
+  #   build:
+  #     context: ./
+  #     dockerfile: ./Dockerfile.prod
+  #   command: gunicorn sinel_web.wsgi:application --bind 0.0.0.0:8000
+  #   volumes:
+  #     - static_volume:/home/sinel_web/app/static
+  #     - assets_volume:/home/sinel_web/app/assets
+  #   expose:
+  #     - 8000
+  #   env_file:
+  #     - ./.env.prod
+  #   depends_on:
+  #     - db
+  # db:
+  #   image: postgres:13.0-alpine
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data/
+  #   env_file:
+  #     - ./.env.prod.db
+  # nginx:
+  #   build: ./nginx
+  #   volumes:
+  #     - static_volume:/home/sinel_web/app/static
+  #     - assets_volume:/home/sinel_web/app/assets
+  #   ports:
+  #     - 80:80
+  #   depends_on:
+  #     - web
 
 volumes:
-  postgres_data:
-  static_volume:
-  assets_volume:
-  # dashboard_build:
+  # postgres_data:
+  # static_volume:
+  # assets_volume:
+  dashboard_build:
