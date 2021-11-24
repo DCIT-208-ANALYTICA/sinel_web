@@ -1,5 +1,15 @@
 from django.contrib import admin
-from .models import Contact
+from .models import *
+
+admin.site.register(Contact)
+admin.site.register(SocialMediaLink)
+admin.site.register(InsurancePartner)
+admin.site.register(HealthTips)
+admin.site.register(Service)
+admin.site.register(Client)
+admin.site.register(OpeningHour)
+admin.site.register(TeamLead)
+admin.site.register(About)
 
 # Create only one contact model that can be updated.
 try:
