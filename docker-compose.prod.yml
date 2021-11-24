@@ -1,12 +1,12 @@
 version: "3.8"
 
 services:
-  dashboard:
-    build:
-      context: ./
-      dockerfile: Dockerfile.nodejs.prod
-    volumes:
-      - dashboard_build:/home/sinel_app/app/dashboard/react/build
+  # dashboard:
+  #   build:
+  #     context: ./
+  #     dockerfile: Dockerfile.nodejs.prod
+  #   volumes:
+  #     - dashboard_build:/home/sinel_app/app/dashboard/react/build
 
   web:
     build:
@@ -42,4 +42,4 @@ volumes:
   postgres_data:
   static_volume:
   assets_volume:
-  dashboard_build:
+  # dashboard_build:
