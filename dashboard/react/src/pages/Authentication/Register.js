@@ -1,4 +1,6 @@
-import React, { Component } from "react";
+import React, { Component,useState } from "react";
+import { useHistory } from 'react-router-dom';
+import axios from "axios";
 import { Row, Col, Button, Alert, Container, Label, FormGroup } from "reactstrap";
 
 // availity-reactstrap-validation
@@ -14,30 +16,51 @@ import { Link } from "react-router-dom";
 // import images
 import logodark from "../../assets/images/logo-dark.png";
 
-class Register extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-        email: "",
-        username: "",
-        password: ""
-    }
-    this.handleSubmit = this.handleSubmit.bind(this);
-}
-
-handleSubmit(event, values) {
-    this.props.registerUser(values)
-}
-
-  componentDidMount()
-  {
-    this.props.registerUserFailed("");
-    this.props.apiError("");
-    document.body.classList.add("auth-body-bg");
-  }
+const Register =()=>{
+  const history = useHistory();
+  const  [email, setEmail]= useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername]= useState("");
+  const [register, setRegister] = useState(false)
 
 
-  render() {
+  const handleUserInput = (event) => {
+    setUsername(event.target.value);
+  };
+
+  const handleEmailInput = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const handlePasswordInput = (event) => {
+    setPassword(event.target.value);
+  };
+
+ 
+ const handleSubmit = (event) =>{
+     event.preventDefault()
+     const newUser ={
+         email:email,
+         password:password,
+         username:username,
+     }
+     console.log(newUser)
+     console.log("try again");
+    axios.post("http://127.0.0.1:8000/api/v1/administrators/register/" , newUser)
+    .then((res)=>{
+        console.log("success");
+        if (res.status === 200) {
+            localStorage.setItem("register", true);
+            history.push("/login");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+    })
+ }
+
+
+  
     return (
       <React.Fragment>
         <div className="home-btn d-none d-sm-block">
@@ -61,34 +84,31 @@ handleSubmit(event, values) {
                                                 <p className="text-muted">Get your free Nazox account now.</p>
                                             </div>
 
-                                            {this.props.user && <Alert color="success">Registration Done Successfully.</Alert>}
-
-                                            {this.props.registrationError && <Alert color="danger">{this.props.registrationError}</Alert>}
-
+                                           
                                             <div className="p-2 mt-5">
-                                                <AvForm onValidSubmit={this.handleSubmit} className="form-horizontal" >
+                                                <AvForm onSubmit={handleSubmit} className="form-horizontal" >
 
                                                     <FormGroup className="auth-form-group-custom mb-4">
                                                         <i className="ri-mail-line auti-custom-input-icon"></i>
                                                         <Label htmlFor="useremail">Email</Label>
-                                                        <AvField name="email"  value={this.state.email} validate={{email: true, required: true}} type="email" className="form-control" id="useremail" placeholder="Enter email"/>
+                                                        <AvField name="email"  value={email} validate={{email: true, required: true}} onChange={handleEmailInput} type="email" className="form-control" id="useremail" placeholder="Enter email"/>
                                                     </FormGroup>
                     
                                                     <FormGroup className="auth-form-group-custom mb-4">
                                                         <i className="ri-user-2-line auti-custom-input-icon"></i>
                                                         <Label htmlFor="username">Username</Label>
-                                                        <AvField name="username"  value={this.state.username} type="text" className="form-control" id="username" placeholder="Enter username"/>
+                                                        <AvField name="username"  value={username} type="text" onChange={handleUserInput} className="form-control" id="username" placeholder="Enter username"/>
                                                     </FormGroup>
                             
                                                     <FormGroup className="auth-form-group-custom mb-4">
                                                         <i className="ri-lock-2-line auti-custom-input-icon"></i>
                                                         <Label htmlFor="userpassword">Password</Label>
-                                                        <AvField name="password"  value={this.state.password} type="password" className="form-control" id="userpassword" placeholder="Enter password"/>
+                                                        <AvField name="password"  value={password} type="password" onChange={handlePasswordInput} className="form-control" id="userpassword" placeholder="Enter password"/>
                                                     </FormGroup>
                             
 
                                                     <div className="text-center">
-                                                        <Button color="primary" className="w-md waves-effect waves-light" type="submit">{this.props.loading ? "Loading ..." : "Register"}</Button>
+                                                        <Button color="primary" className="w-md waves-effect waves-light" type="submit">Register</Button>
                                                     </div>
 
                                                     <div className="mt-4 text-center">
@@ -119,13 +139,10 @@ handleSubmit(event, values) {
 
       </React.Fragment>
     );
-  }
+  
 }
 
-const mapStatetoProps = state => {
 
-  const { user, registrationError, loading } = state.Account;
-  return { user, registrationError, loading };
-}
 
-export default connect(mapStatetoProps, { registerUser, apiError, registerUserFailed })(Register);
+
+export default Register;
