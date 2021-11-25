@@ -47,30 +47,16 @@
                     <div class="main-card mb-3 p-4 card">
                         <h1>Overview</h1>
                         <form method="POST">
-                            <textarea name="overview-content" id="editor">
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
-            
-                                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-            
-                                <p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
-            
-                                <p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
-            
-                                <p>In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.</p>
-            
-                                <p>Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</p>
-            
-                                <p>Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>
-            
-                                <p>Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.</p>
-            
-                                <p>Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.</p>
+                            {% csrf_token %}
+                            <textarea name="overview-content">
+                               {{about.overview}}
                             </textarea>
-                            <button type="submit">submit</button>
+                            <div class="form-group">
+                                <button class="btn btn-primary mt-4" type="submit">Update</button>
+                            </div>
                         <form>
                     </div>
                 </div>
-
             </div>
         </div>
 
@@ -80,31 +66,16 @@
                     <div class="main-card mb-3 p-4 card">
                         <h1>Mission</h1>
                         <form method="POST">
-                            <textarea name="mission-content" id="editor">
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
-            
-                                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-            
-                                <p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
-            
-                                <p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
-            
-                                <p>In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.</p>
-            
-                                <p>Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</p>
-            
-                                <p>Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>
-            
-                                <p>Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.</p>
-            
-                                <p>Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.</p>
+                            {% csrf_token %}
+                            <textarea name="mission-content">
+                               {{about.mission}}
                             </textarea>
-                            <button type="submit">submit</button>
-                            <form>
-
+                            <div class="form-group">
+                                <button class="btn btn-primary mt-4" type="submit">Update</button>
+                            </div>
+                        <form>
                     </div>
                 </div>
-
             </div>
         </div>
 
@@ -114,31 +85,16 @@
                     <div class="main-card mb-3 p-4 card">
                         <h1>Vision</h1>
                         <form method="POST">
-                            <textarea name="content" id="editor">
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
-            
-                                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-            
-                                <p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
-            
-                                <p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
-            
-                                <p>In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.</p>
-            
-                                <p>Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</p>
-            
-                                <p>Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>
-            
-                                <p>Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.</p>
-            
-                                <p>Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.</p>
+                            {% csrf_token %}
+                            <textarea name="vission-content" >
+                                {{about.vision}}
                             </textarea>
-                            <button type="submit">submit</button>
-                            <form>
-
+                            <div class="form-group">
+                                <button class="btn btn-primary mt-4" type="submit">Update</button>
+                            </div>
+                        <form>
                     </div>
                 </div>
-
             </div>
         </div>
 
@@ -148,34 +104,18 @@
                     <div class="main-card mb-3 p-4 card">
                         <h1>Value</h1>
                         <form method="POST">
-                            <textarea name="content" id="editor">
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
-            
-                                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-            
-                                <p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
-            
-                                <p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
-            
-                                <p>In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.</p>
-            
-                                <p>Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</p>
-            
-                                <p>Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>
-            
-                                <p>Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.</p>
-            
-                                <p>Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.</p>
+                            {% csrf_token %}
+                            <textarea name="value-content">
+                               {{about.value}}
                             </textarea>
-                            <button type="submit">submit</button>
-                            <form>
-
+                            <div class="form-group">
+                                <button class="btn btn-primary mt-4" type="submit">Update</button>
+                            </div>
+                        <form>
                     </div>
                 </div>
-
             </div>
         </div>
-
     </div>
 </div>
 {% endblock %}
@@ -184,5 +124,7 @@
 <script>
     CKEDITOR.replace('overview-content');
     CKEDITOR.replace('mission-content');
+    CKEDITOR.replace('vission-content');
+    CKEDITOR.replace('value-content');
 </script>
 {% endblock %}
