@@ -3,28 +3,28 @@ from django.views.generic import View
 from django.utils.decorators import method_decorator
 from sinel_web.utils.decorators import staff_only
 from website.models import About
+from accounts.models import Administrator
 
 
 class IndexView(View):
     template_name = "dashboard/index.html"
 
-    @method_decorator(staff_only("accounts:login"))
+    @method_decorator(staff_only())
     def get(self, request, *args, **kwargs):
         context = {}
 
         return render(request, self.template_name, context)
 
+
 class AboutView(View):
     template_name = "dashboard/about.html"
 
-    @method_decorator(staff_only("accounts:login"))
+    @method_decorator(staff_only())
     def get(self, request, *argd, **kwargs):
-        context = {
-            "about":About.objects.first()
-        }
+        context = {"about": About.objects.first()}
         return render(request, self.template_name, context)
 
-    @method_decorator(staff_only("accounts:login"))
+    @method_decorator(staff_only())
     def post(self, request, *argd, **kwargs):
         overview = request.POST.get("overview-content")
         mission = request.POST.get("mission-content")
@@ -44,10 +44,28 @@ class AboutView(View):
         return redirect(request.META.get('HTTP_REFERER'))
 
 
+class AdministratorInfoView(View):
+    template_name = "dashboard/administrators.html"
+
+    @method_decorator(staff_only())
+    def get(self, request, *args, **kwargs):
+        context = {"administrators": Administrator.objects.all()}
+        return render(request, self.template_name, context)
+
+
+class AdministratorsView(View):
+    template_name = "dashboard/administrators.html"
+
+    @method_decorator(staff_only())
+    def get(self, request, *args, **kwargs):
+        context = {"administrators": Administrator.objects.all()}
+        return render(request, self.template_name, context)
+
+
 class ContactView(View):
     template_name = "dashboard/contact.html"
 
-    @method_decorator(staff_only("accounts:login"))
+    @method_decorator(staff_only())
     def get(self, request, *argd, **kwargs):
         context = {}
 
@@ -57,7 +75,7 @@ class ContactView(View):
 class GalleryView(View):
     template_name = "dashboard/gallery.html"
 
-    @method_decorator(staff_only("accounts:login"))
+    @method_decorator(staff_only())
     def get(self, request, *argd, **kwargs):
         context = {}
 
@@ -67,7 +85,7 @@ class GalleryView(View):
 class ServicesView(View):
     template_name = "dashboard/services.html"
 
-    @method_decorator(staff_only("accounts:login"))
+    @method_decorator(staff_only())
     def get(self, request, *argd, **kwargs):
         context = {}
 
@@ -77,7 +95,7 @@ class ServicesView(View):
 class TeamLeadsView(View):
     template_name = "dashboard/teamleads.html"
 
-    @method_decorator(staff_only("accounts:login"))
+    @method_decorator(staff_only())
     def get(self, request, *argd, **kwargs):
         context = {}
 
@@ -87,7 +105,7 @@ class TeamLeadsView(View):
 class BannersView(View):
     template_name = "dashboard/banners.html"
 
-    @method_decorator(staff_only("accounts:login"))
+    @method_decorator(staff_only())
     def get(self, request, *argd, **kwargs):
         context = {}
 
@@ -97,7 +115,7 @@ class BannersView(View):
 class ClientsView(View):
     template_name = "dashboard/clients.html"
 
-    @method_decorator(staff_only("accounts:login"))
+    @method_decorator(staff_only())
     def get(self, request, *argd, **kwargs):
         context = {}
 
@@ -107,7 +125,7 @@ class ClientsView(View):
 class BlogView(View):
     template_name = "dashboard/blog.html"
 
-    @method_decorator(staff_only("accounts:login"))
+    @method_decorator(staff_only())
     def get(self, request, *argd, **kwargs):
         context = {}
 

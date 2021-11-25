@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.utils import timezone
 
 
-class Login(View):
+class LoginView(View):
     template_name = "accounts/login.html"
 
     def get(self, request, *args, **kwargs):
@@ -22,7 +22,7 @@ class Login(View):
             login(request, user)
             if remember_me:
                 request.session.set_expiry(86400 * 30)
-            user.last_login_date = timezone.now()
+            user.last_login_at = timezone.now()
             user.save()
             redirect_url = request.GET.get("next") or "dashboard:index"
             return redirect(redirect_url)
@@ -30,3 +30,8 @@ class Login(View):
             messages.add_message(request, messages.ERROR, "Invalid credentials")
             return render(request, self.template_name)
         
+
+class LogoutView(View):
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        return redirect("website:index")

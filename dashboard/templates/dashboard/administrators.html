@@ -1,0 +1,84 @@
+{% extends 'dashboard/base_template.html' %} 
+{% block administrators-page-active %}mm-active{% endblock %} 
+{% block pagetitle %}Administrators{% endblock %}
+
+{% load static %}
+
+{%block content %}
+<div class="app-main__inner">
+  <div class="app-page-title">
+    <div class="page-title-wrapper">
+      <div class="page-title-heading">
+        <div class="page-title-icon">
+          <i class="pe-7s-medal icon-gradient bg-tempting-azure"></i>
+        </div>
+        <div>
+          Administrators
+          <div class="page-title-subheading">
+            Here is a list of users with administratrive privileges.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main-card mb-3 card">
+    <div class="card-body">
+      <table
+        style="width: 100%"
+        id="example"
+        class="table table-hover table-striped table-bordered"
+      >
+        <thead>
+          <tr>
+            <th>Photo</th>
+            <th>Full Name</th>
+            <th>Title</th>
+            <th>Email</th>
+            <th>Last Login</th>
+            <th>Date Joined</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for administrator in administrators %}
+                <tr>
+                    <td>
+                        {% if administrator.photo %}
+                        <img width="42" class="rounded-circle" src="{{administrator.photo.url}}" alt="{{administrator}}">
+                        {% else %}
+                        <img width="42" class="rounded-circle" src="{% static 'img/logo_small.png' %}" alt="">
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="">
+                            {{administrator}}
+                        </a>
+                    </td>
+                    <td>
+                        {{administrator.title}}
+                    </td>
+                    <td>
+                        {{administrator.email_address}}
+                    </td>
+                    <td>
+                        {{administrator.last_login_at}}
+                    </td>
+                    <td>
+                        {{administrator.created_at}}
+                    </td>
+                    <td>
+                       {% if administrator.is_active %}
+                       <p class="text text-success">Active</p>
+                       {% else %}
+                       <p class="text text-success">Inactive</p>
+                       {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

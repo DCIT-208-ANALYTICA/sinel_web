@@ -92,7 +92,9 @@
                                                                     <div class="widget-subheading opacity-8">A short profile description</div>
                                                                 </div>
                                                                 <div class="widget-content-right mr-2">
-                                                                    <button class="btn-pill btn-shadow btn-shine btn btn-focus">Logout</button>
+                                                                    <a href="{% url 'accounts:logout' %}">
+                                                                        <button class="btn-pill btn-shadow btn-shine btn btn-focus">Logout</button>
+                                                                    </a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -172,7 +174,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{widgets-chart-boxes-2.html}" class="{% block administrators-page-active %}{% endblock %}">
+                                <a href="{% url 'dashboard:administrators'%}" class="{% block administrators-page-active %}{% endblock %}">
                                     <i class="metismenu-icon bi bi-people"></i> Administrators
                                 </a>
                             </li>
