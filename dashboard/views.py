@@ -13,7 +13,6 @@ class Index(View):
 
         return render(request, self.template_name, context)
 
-
 class About(View):
     template_name = "dashboard/about.html"
 
