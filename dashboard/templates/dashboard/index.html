@@ -1,10 +1,4 @@
-{% extends 'dashboard/base_template.html' %}
-
-{% block dashboard-page-active %}mm-active{% endblock %}
-{% block pagetitle %}Dashboard{% endblock %}
-
-
-{% block content %}
+{% extends 'dashboard/base_template.html' %} {% block dashboard-page-active %}mm-active{% endblock %} {% block pagetitle %}Dashboard{% endblock %} {% block content %}
 
 <div class="app-main__inner">
     <div class="app-page-title">
@@ -18,8 +12,7 @@
                 </div>
             </div>
             <div class="page-title-actions">
-                <button type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom"
-                    class="btn-shadow mr-3 btn btn-dark">
+                <button type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom" class="btn-shadow mr-3 btn btn-dark">
                     <i class="fa fa-star"></i>
                 </button>
                 <div class="d-inline-block dropdown">
@@ -60,9 +53,10 @@
                         </ul>
                     </div>
                 </div>
-            </div>    </div>
-    </div>       
-     <div class="main-card mb-3 card">
+            </div>
+        </div>
+    </div>
+    <div class="main-card mb-3 card">
         <div class="card-body">
             <h5 class="card-title">Basic</h5>
             <form method="POST">
@@ -84,9 +78,9 @@
                     <p>Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.</p>
 
                     <p>Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.</p>
-            </textarea>
-            <button type="submit">submit</button>
-        <form>
+                </textarea>
+                <button type="submit">submit</button>
+                <form>
         </div>
     </div>
-{% endblock %}
+    {% endblock %}

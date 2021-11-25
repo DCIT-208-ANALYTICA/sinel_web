@@ -22,7 +22,7 @@ def staff_only(redirect_url="accounts:login"):
     """Allow only super administrator to access this view."""
     def decorator(function):
         def wrapper(request, *args, **kwargs):
-            if (request.user.is_authenticated and request.user.is_staff):
+            if (request.user.is_authenticated):
                 return function(request, *args, **kwargs)
 
             request.session['error_message'] = "Please login as as admin."
