@@ -1,0 +1,153 @@
+{% extends 'dashboard/base_template.html' %}
+{% block contact-page-active %}mm-active{% endblock %}
+
+{% block pagetitle %}Contact{% endblock %} {% block content %}
+
+
+<div class="app-main__inner">
+    <div class="app-page-title">
+        <div class="page-title-wrapper">
+            <div class="page-title-heading">
+                <div class="page-title-icon">
+                    <i class="lnr-map text-info"></i>
+                </div>
+                <div>Contact
+                    <div class="page-title-subheading">Easily create beautiful form multi step wizards!
+                    </div>
+                </div>
+            </div>
+            <div class="page-title-actions">
+
+                <div class="d-inline-block dropdown">
+
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link">
+                                    <i class="nav-link-icon lnr-inbox"></i>
+                                    <span> Inbox</span>
+                                    <div class="ml-auto badge badge-pill badge-secondary">86</div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link">
+                                    <i class="nav-link-icon lnr-book"></i>
+                                    <span> Book</span>
+                                    <div class="ml-auto badge badge-pill badge-danger">5</div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link">
+                                    <i class="nav-link-icon lnr-picture"></i>
+                                    <span> Picture</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a disabled class="nav-link disabled">
+                                    <i class="nav-link-icon lnr-file-empty"></i>
+                                    <span> File Disabled</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-content">
+        <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
+            <div class="row">
+                <div class="col-lg-8 col-md-12">
+                    <div class="main-card mb-3 card">
+                        <div class="card-body">
+                            <div id="smartwizard">
+                                <ul class="forms-wizard">
+
+                                    <div class="form-wizard-content">
+                                        <div id="step-1">
+                                            <div class="form-row">
+                                                <div class="col-md-6">
+                                                    <div class="position-relative form-group">
+                                                        <label for="exampleEmail55">Email</label>
+                                                        <input name="email" id="exampleEmail55"
+                                                            placeholder="someone@example.com" type="email"
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="position-relative form-group">
+                                                        <label for="exampleGPS">GPS</label>
+                                                        <input name="gps" id="exampleGPS" placeholder="" type="text"
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="position-relative form-group">
+                                                <label for="exampleAddress">Address</label>
+                                                <input name="address" id="exampleAddress" placeholder="1234 Main St"
+                                                    type="text" class="form-control">
+                                            </div>
+
+                                            <div class="position-relative form-group">
+                                                <label for="exampleTelephone">Telephone</label>
+                                                <input name="telephone" id="exampleTelephone" placeholder="123434567"
+                                                    type="text" class="form-control">
+                                            </div>
+
+                                            <div class="position-relative form-group">
+                                                <label for="exampleAddress">Latitude/Longitude</label>
+                                                <input name="lat_lng" id="exampleAddress" placeholder="1234 Main St"
+                                                    type="text" class="form-control">
+                                            </div>
+
+                                            <div class="form-row">
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="app-wrapper-footer">
+    <div class="app-footer">
+        <div class="app-footer__inner">
+
+
+        </div>
+    </div>
+
+    <div class="app-drawer-wrapper">
+        <div class="drawer-nav-btn">
+            <button type="button" class="hamburger hamburger--elastic is-active">
+                <span class="hamburger-box"><span class="hamburger-inner"></span></span>
+            </button>
+        </div>
+
+
+
+
+
+
+
+        <div class="app-drawer-overlay d-none animated fadeIn"></div>
+        <script type="text/javascript" src="./assets/scripts/main.d810cf0ae7f39f28f336.js"></script>
+        </body>
+
+        </html>
+
+        {%endblock%}
