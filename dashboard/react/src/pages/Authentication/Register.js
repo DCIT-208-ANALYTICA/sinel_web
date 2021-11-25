@@ -1,4 +1,4 @@
-import React, { Component,useState } from "react";
+import React, { Component,useState, useContext } from "react";
 import { useHistory } from 'react-router-dom';
 import axios from "axios";
 import { Row, Col, Button, Alert, Container, Label, FormGroup } from "reactstrap";
@@ -9,54 +9,42 @@ import { AvForm, AvField } from "availity-reactstrap-validation";
 // action
 import {  registerUser, registerUserFailed, apiError } from '../../store/actions';
 
+// dispatch functions
+import {register} from "../../store/auth/register/reducer";
+
 // Redux
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import {GlobalContext} from "../../store/globalState"
 
 // import images
 import logodark from "../../assets/images/logo-dark.png";
 
-const Register =()=>{
-  const history = useHistory();
-  const  [email, setEmail]= useState("");
-  const [password, setPassword] = useState("");
-  const [username, setUsername]= useState("");
-  const [register, setRegister] = useState(false)
+const Register = ({register}) => {
+const history = useHistory();
+const [accountCreated, setAccountCreated] = useState(false);
+const [username, setUsername] = useState("");
+const [email, setEmail] = useState("");
+const [password, setPassword] = useState("");
 
+const {globalState, setGlobalState} = useContext(GlobalContext);
 
-  const handleUserInput = (event) => {
-    setUsername(event.target.value);
-  };
-
-  const handleEmailInput = (event) => {
-    setEmail(event.target.value);
-  };
-
-  const handlePasswordInput = (event) => {
-    setPassword(event.target.value);
-  };
-
- 
- const handleSubmit = (event) =>{
+const handleSubmit = (event) =>{
      event.preventDefault()
-     const newUser ={
-         email:email,
-         password:password,
-         username:username,
-     }
-     console.log(newUser)
-     console.log("try again");
-    axios.post("http://127.0.0.1:8000/api/v1/administrators/register/" , newUser)
-    .then((res)=>{
-        console.log("success");
-        if (res.status === 200) {
-            localStorage.setItem("register", true);
-            history.push("/login");
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-    })
+     console.log("FormData:", {username, email, password})
+     register({username, email, password})
+     .then(history.push("/login"))
+    // axios.post("http://127.0.0.1:8000/api/v1/administrators/register/" , {username, email, password})
+    // .then((res)=>{
+    //     console.log("success");
+    //     if (res.status === 200) {
+    //         localStorage.setItem("register", true);
+    //         history.push("/login");
+    //       }
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    // })
  }
 
 
@@ -91,19 +79,19 @@ const Register =()=>{
                                                     <FormGroup className="auth-form-group-custom mb-4">
                                                         <i className="ri-mail-line auti-custom-input-icon"></i>
                                                         <Label htmlFor="useremail">Email</Label>
-                                                        <AvField name="email"  value={email} validate={{email: true, required: true}} onChange={handleEmailInput} type="email" className="form-control" id="useremail" placeholder="Enter email"/>
+                                                        <AvField name="email"  value={email} validate={{email: true, required: true}} onChange={e=> setEmail(e.target.value)} type="email" className="form-control" id="useremail" placeholder="Enter email"/>
                                                     </FormGroup>
                     
                                                     <FormGroup className="auth-form-group-custom mb-4">
                                                         <i className="ri-user-2-line auti-custom-input-icon"></i>
                                                         <Label htmlFor="username">Username</Label>
-                                                        <AvField name="username"  value={username} type="text" onChange={handleUserInput} className="form-control" id="username" placeholder="Enter username"/>
+                                                        <AvField name="username"  value={username} type="text" onChange={e=> setUsername(e.target.value)} className="form-control" id="username" placeholder="Enter username"/>
                                                     </FormGroup>
                             
                                                     <FormGroup className="auth-form-group-custom mb-4">
                                                         <i className="ri-lock-2-line auti-custom-input-icon"></i>
                                                         <Label htmlFor="userpassword">Password</Label>
-                                                        <AvField name="password"  value={password} type="password" onChange={handlePasswordInput} className="form-control" id="userpassword" placeholder="Enter password"/>
+                                                        <AvField name="password"  value={password} type="password" onChange={e=> setPassword(e.target.value)} className="form-control" id="userpassword" placeholder="Enter password"/>
                                                     </FormGroup>
                             
 
@@ -143,6 +131,12 @@ const Register =()=>{
 }
 
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        register: (data) => dispatch(register(data))
+    }
+}
 
 
-export default Register;
+export default connect(null, mapDispatchToProps)(Register);
+

@@ -1,13 +1,19 @@
+import axios from "axios";
+
 import { REGISTER_USER, REGISTER_USER_SUCCESSFUL, REGISTER_USER_FAILED } from './actionTypes';
 
 const initialState = {
-    registrationError: null, message: null, loading: null
+    access: localStorage.getItem('access'),
+    refresh: localStorage.getItem('refresh'),
+    isAuthenticated: null,
+    user: null
 }
 
 const account = (state = initialState, action) => {
-    switch (action.type) {
+    const { type, payload } = action;
+    switch (type) {
         case REGISTER_USER:
-            state = {
+            return {
                 ...state,
                 user: null,
                 loading: true,
@@ -16,25 +22,44 @@ const account = (state = initialState, action) => {
             break;
        
         case REGISTER_USER_SUCCESSFUL:
-            state = {
+            return {
                 ...state,
-                user: action.payload,
+                isAuthenticated: true,
                 loading: false,
-                registrationError: null
             }
             break;
-        case REGISTER_USER_FAILED:
-            state = {
+        case REGISTER_USER_FAILED: {
+            return {
                 ...state,
+                user: null,
                 loading: false,
-                registrationError: action.payload
+                registrationError: payload
             }
-            break;
-        default:
-            state = { ...state };
-            break;
+        }
+          
     }
     return state;
 }
 
 export default account;
+
+
+
+export const register = (data) => {
+    return (dispatch) => {
+        axios.post("http://127.0.0.1:8000/api/v1/administrators/register/" , data)
+        .then((res)=>{
+            console.log("success");
+            if (res.status === 200) {
+                // localStorage.setItem("register", true);
+                dispatch({
+                    type: REGISTER_USER_SUCCESSFUL,
+                })
+                // history.push("/login");
+            }
+            })
+            .catch((err) => {
+            console.log(err);
+        })
+    }
+}
