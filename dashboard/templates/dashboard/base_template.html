@@ -95,9 +95,14 @@
                                                                         src="{% static 'img/logo_small.png' %}" alt="">
                                                                 </div>
                                                                 <div class="widget-content-left">
+<<<<<<< HEAD
                                                                     <div class="widget-heading">Alina Mcloughlin</div>
                                                                     <div class="widget-subheading opacity-8">A short
                                                                         profile description</div>
+=======
+                                                                    <div class="widget-heading">{{request.user}}</div>
+                                                                    <div class="widget-subheading opacity-8">A short profile description</div>
+>>>>>>> e37361c84da9eacb90568a9368e5a72bae1f206b
                                                                 </div>
                                                                 <div class="widget-content-right mr-2">
                                                                     <button
@@ -128,8 +133,8 @@
                                     </div>
                                 </div>
                                 <div class="widget-content-left  ml-3 header-user-info">
-                                    <div class="widget-heading"> Alina Mclourd </div>
-                                    <div class="widget-subheading"> VP People Manager </div>
+                                    <div class="widget-heading">{{request.user}}</div>
+                                    <div class="widget-subheading"> {{request.user.title}} </div>
                                 </div>
                             </div>
                         </div>
