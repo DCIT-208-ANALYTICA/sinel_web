@@ -26,3 +26,20 @@
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+table td th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+table tr:hover {
+  background-color: #ddd;
+}
+
+table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04aa6d;
+  color: white;
+}
+

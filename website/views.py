@@ -45,3 +45,12 @@ class ServicesView(View):
         context = {}
 
         return render(request, self.template_name, context)
+
+
+class DetailsView(View):
+    template_name = "website/details.html"
+
+    def get(self, request, *args, **kwargs):
+        context = {}
+
+        return render(request, self.template_name, context)
