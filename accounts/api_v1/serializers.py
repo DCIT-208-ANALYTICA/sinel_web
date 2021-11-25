@@ -15,7 +15,6 @@ class AdministratorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Administrator
         exclude = [
-            "id",
             "created_at",
             "password",
             "is_staff",
