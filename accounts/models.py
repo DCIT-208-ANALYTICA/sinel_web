@@ -5,6 +5,7 @@ from .managers import AdministratorManager
 
 class Administrator(AbstractBaseUser, PermissionsMixin):
     fullname = models.CharField(max_length=200)
+    title = models.CharField(max_length=200)
     email_address = models.EmailField(unique=True)
     photo = models.ImageField(upload_to="uploads/users", blank=True, null=True)
     last_login_at = models.DateTimeField(blank=True, null=True)
@@ -22,4 +23,4 @@ class Administrator(AbstractBaseUser, PermissionsMixin):
         db_table = "users"
 
     def __str__(self):
-        return self.fullname
+        return self.fullname or self.email_address

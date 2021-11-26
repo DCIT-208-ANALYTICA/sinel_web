@@ -36,3 +36,21 @@ class GalleryView(View):
         context = {}
 
         return render(request, self.template_name, context)
+
+
+class ServicesView(View):
+    template_name = "website/services.html"
+
+    def get(self, request, *args, **kwargs):
+        context = {}
+
+        return render(request, self.template_name, context)
+
+
+class DetailsView(View):
+    template_name = "website/details.html"
+
+    def get(self, request, *args, **kwargs):
+        context = {}
+
+        return render(request, self.template_name, context)

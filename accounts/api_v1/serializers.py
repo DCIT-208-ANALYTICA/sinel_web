@@ -8,13 +8,13 @@ class AdministratorSerializer(serializers.ModelSerializer):
 
     def get_photo(self, administrator):
         request = self.context.get("request")
-        url = administrator.photo.url
-        return request.build_absolute_uri(url)
+        if  administrator.photo:
+            url = administrator.photo.url
+            return request.build_absolute_uri(url)
 
     class Meta:
         model = Administrator
         exclude = [
-            "id",
             "created_at",
             "password",
             "is_staff",
