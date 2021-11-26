@@ -53,7 +53,7 @@ class ServiceDetailsView(View):
 
     def get(self, request, *args, **kwargs):
         context = {
-            "service": Service.objects.filter(title="Service 1").first()
+            "service": Service.objects.filter().last()
         }
 
         return render(request, self.template_name, context)
