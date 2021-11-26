@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import View
+from .models import Service
 
 
 class IndexView(View):
@@ -47,10 +48,12 @@ class ServicesView(View):
         return render(request, self.template_name, context)
 
 
-class DetailsView(View):
-    template_name = "website/details.html"
+class ServiceDetailsView(View):
+    template_name = "website/service_details.html"
 
     def get(self, request, *args, **kwargs):
-        context = {}
+        context = {
+            "service": Service.objects.filter(title="Service 1").first()
+        }
 
         return render(request, self.template_name, context)
