@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import View
 from django.utils.decorators import method_decorator
 from sinel_web.utils.decorators import staff_only
@@ -44,12 +44,12 @@ class AboutView(View):
         return redirect(request.META.get('HTTP_REFERER'))
 
 
-class AdministratorInfoView(View):
-    template_name = "dashboard/administrators.html"
+class AdministratorDetailsView(View):
+    template_name = "dashboard/administrator_details.html"
 
     @method_decorator(staff_only())
-    def get(self, request, *args, **kwargs):
-        context = {"administrators": Administrator.objects.all()}
+    def get(self, request, admin_id, *args, **kwargs):
+        context = {"administrator": get_object_or_404(Administrator, id=admin_id)}
         return render(request, self.template_name, context)
 
 

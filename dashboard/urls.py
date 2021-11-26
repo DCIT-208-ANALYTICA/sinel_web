@@ -7,6 +7,7 @@ urlpatterns = [
     path("", views.IndexView.as_view(), name="index"),
     path("about", views.AboutView.as_view(), name="about"),
     path("administrators", views.AdministratorsView.as_view(), name="administrators"),
+    path("administrator_details/<int:admin_id>", views.AdministratorDetailsView.as_view(), name="administrator_details"),
     path("gallery", views.GalleryView.as_view(), name="gallery"),
     path("services", views.ServicesView.as_view(), name="services"),
     path("teamleads", views.TeamLeadsView.as_view(), name="teamleads"),
