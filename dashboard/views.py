@@ -3,8 +3,9 @@ from django.views.generic import View
 from django.utils.decorators import method_decorator
 from communications.models import Appointment
 from sinel_web.utils.decorators import staff_only
-from website.models import About
+from website.models import About, Service
 from accounts.models import Administrator
+from django.contrib import messages
 
 
 class IndexView(View):
@@ -53,12 +54,15 @@ class AdministratorsView(View):
         context = {"administrators": Administrator.objects.all()}
         return render(request, self.template_name, context)
 
+
 class AdministratorDetailsView(View):
     template_name = "dashboard/administrator_details.html"
 
     @method_decorator(staff_only())
     def get(self, request, admin_id, *args, **kwargs):
-        context = {"administrator": get_object_or_404(Administrator, id=admin_id)}
+        context = {
+            "administrator": get_object_or_404(Administrator, id=admin_id)
+        }
         return render(request, self.template_name, context)
 
     def post(self, request, admin_id, *args, **kwargs):
@@ -75,6 +79,7 @@ class AdministratorDetailsView(View):
         admin.is_active = "on" in is_active
         admin.save()
         return redirect(request.META.get("HTTP_REFERER"))
+
 
 class ContactView(View):
     template_name = "dashboard/contact.html"
@@ -101,9 +106,45 @@ class ServicesView(View):
 
     @method_decorator(staff_only())
     def get(self, request, *argd, **kwargs):
-        context = {}
-
+        context = {"services": Service.objects.all()}
         return render(request, self.template_name, context)
+
+
+class CreateUpdateService(View):
+    template_name = "dashboard/create_update_service.html"
+
+    @method_decorator(staff_only())
+    def get(self, request, *argd, **kwargs):
+        service_id = request.GET.get("service_id", -1)
+        context = {"service": Service.objects.filter(id=service_id).first()}
+        return render(request, self.template_name, context)
+
+    @method_decorator(staff_only())
+    def post(self, request, *argd, **kwargs):
+        service_id = request.POST.get("service_id") or None
+        title = request.POST.get("title")
+        description = request.POST.get("service_description")
+        visible = "on" in request.POST.get("visible", "")
+        image = request.FILES.get("image")
+
+        service = Service.objects.filter(id=service_id).first()
+        if service:
+            # Update
+            service.title = title
+            service.description = description
+            service.visible = visible
+            service.image = image
+            service.save()
+            messages.add_message(request, messages.SUCCESS,
+                                 "Updated successfully.")
+        else:
+            Service.objects.create(title=title,
+                                   description=description,
+                                   visible=visible,
+                                   image=image)
+            messages.add_message(request, messages.SUCCESS,
+                                 "New service created successfully.")
+        return redirect("dashboard:services")
 
 
 class TeamLeadsView(View):
@@ -150,8 +191,6 @@ class AppointmentView(View):
     template_name = "dashboard/appointments.html"
 
     def get(self, request, *argd, **kwargs):
-        context = {
-            "appointments": Appointment.objects.filter()
-        }
+        context = {"appointments": Appointment.objects.filter()}
 
         return render(request, self.template_name, context)

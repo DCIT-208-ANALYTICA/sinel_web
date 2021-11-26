@@ -11,6 +11,7 @@ urlpatterns = [
     path("administrator_details/<int:admin_id>", views.AdministratorDetailsView.as_view(), name="administrator_details"),
     path("gallery", views.GalleryView.as_view(), name="gallery"),
     path("services", views.ServicesView.as_view(), name="services"),
+    path("create_update_service", views.CreateUpdateService.as_view(), name="create_update_service"),
     path("teamleads", views.TeamLeadsView.as_view(), name="teamleads"),
     path("contact", views.ContactView.as_view(), name="contact"),
     path("clients", views.ClientsView.as_view(), name="clients"),

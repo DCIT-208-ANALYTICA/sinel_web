@@ -1,16 +1,6 @@
 from django.db import models
 from django_ckeditor_5.fields import CKEditor5Field
 
-DAYS_OF_WEEK = (
-    (0, "Monday"),
-    (1, "Tuesday"),
-    (2, "Wednesday"),
-    (3, "Thursday"),
-    (4, "Friday"),
-    (5, "Saturday"),
-    (6, "Sunday"),
-)
-
 
 class Contact(models.Model):
     gps = models.CharField(max_length=100)
@@ -72,7 +62,7 @@ class Banner(models.Model):
 
 class Service(models.Model):
     title = models.CharField(max_length=100)
-    description = models.CharField(max_length=200, null=True)
+    description = CKEditor5Field()
     image = models.ImageField(upload_to="uploads/images", )
     visible = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -89,7 +79,7 @@ class Client(models.Model):
 
 
 class OpeningHour(models.Model):
-    days = models.CharField(max_length=1, choices=DAYS_OF_WEEK)
+    days = models.CharField(max_length=100)
     time = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
