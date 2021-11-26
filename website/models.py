@@ -32,14 +32,30 @@ class InsurancePartner(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-class Gallery(models.Model):
-    title = models.CharField(max_length=100)
+class Album(models.Model):
+    name = models.CharField(max_length=200)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self) -> str:
+        return self.name
+
+    def get_size(self):
+        return self.children.count()
+
+
+class Media(models.Model):
+    name = models.CharField(max_length=100)
     description = models.TextField()
-    file_type = models.CharField(max_length=20)
-    file = models.FileField(max_length=200)
+    album = models.ForeignKey(Album, related_name="children", on_delete=models.CASCADE)
+    media_type = models.CharField(max_length=20, default="image")
+    file = models.FileField(max_length=200, upload_to="images")
     visible = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self) -> str:
+        return self.name
 
 
 class HealthTips(models.Model):

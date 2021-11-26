@@ -9,7 +9,12 @@ urlpatterns = [
     path("appointments", views.AppointmentView.as_view(), name="appointments"),
     path("administrators", views.AdministratorsView.as_view(), name="administrators"),
     path("administrator_details/<int:admin_id>", views.AdministratorDetailsView.as_view(), name="administrator_details"),
+    
     path("gallery", views.GalleryView.as_view(), name="gallery"),
+    path("album/<str:album_id>", views.AlbumView.as_view(), name="album"),
+    path("create_update_album", views.CreateUpdateAlbum.as_view(), name="create_update_album"),
+    path("create_update_media", views.CreateUpdateMedia.as_view(), name="create_update_media"),
+
     path("services", views.ServicesView.as_view(), name="services"),
     path("create_update_service", views.CreateUpdateService.as_view(), name="create_update_service"),
     path("teamleads", views.TeamLeadsView.as_view(), name="teamleads"),

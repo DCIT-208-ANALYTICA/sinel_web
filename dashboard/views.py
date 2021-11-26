@@ -3,7 +3,7 @@ from django.views.generic import View
 from django.utils.decorators import method_decorator
 from communications.models import Appointment
 from sinel_web.utils.decorators import staff_only
-from website.models import About, Service
+from website.models import About, Album, Media, Service
 from accounts.models import Administrator
 from django.contrib import messages
 
@@ -96,9 +96,82 @@ class GalleryView(View):
 
     @method_decorator(staff_only())
     def get(self, request, *argd, **kwargs):
-        context = {}
-
+        context = {"albumns": Album.objects.all()}
         return render(request, self.template_name, context)
+
+
+class AlbumView(View):
+    template_name = "dashboard/album_items.html"
+
+    @method_decorator(staff_only())
+    def get(self, request, album_id, *argd, **kwargs):
+        album = get_object_or_404(Album, id=album_id)
+        context = {"album": album}
+        return render(request, self.template_name, context)
+
+
+class CreateUpdateAlbum(View):
+    template_name = "dashboard/create_update_album.html"
+
+    @method_decorator(staff_only())
+    def get(self, request, *argd, **kwargs):
+        album_id = request.GET.get("album_id", -1)
+        context = {"album": Album.objects.filter(id=album_id).first()}
+        return render(request, self.template_name, context)
+
+    @method_decorator(staff_only())
+    def post(self, request, *argd, **kwargs):
+        album_id = request.POST.get("album_id") or None
+        name = request.POST.get("name")
+        service = Album.objects.filter(id=album_id).first()
+        if service:
+            # Update
+            service.name = name
+            service.save()
+        else:
+            Album.objects.create(name=name)
+        return redirect("dashboard:gallery")
+
+
+class CreateUpdateMedia(View):
+    template_name = "dashboard/create_update_media.html"
+
+    @method_decorator(staff_only())
+    def get(self, request, *argd, **kwargs):
+        media_id = request.GET.get("media_id", -1) or None
+        context = {
+            "albums": Album.objects.all(),
+            "media": Media.objects.filter(id=media_id).first(),
+        }
+        return render(request, self.template_name, context)
+
+    @method_decorator(staff_only())
+    def post(self, request, *argd, **kwargs):
+        media_id = request.POST.get("media_id") or None
+        name = request.POST.get("name")
+        description = request.POST.get("description")
+        visible = "on" in request.POST.get("visible", "")
+        file = request.FILES.get("file")
+
+        album = get_object_or_404(Album, id=request.POST.get("album"))
+
+        media = Media.objects.filter(id=media_id).first()
+        if media:
+            # Update
+            media.name = name
+            media.description = description
+            media.visible = visible
+            media.album = album
+            if file:
+                media.file = file
+            media.save()
+        else:
+            Media.objects.create(name=name,
+                                 description=description,
+                                 visible=visible,
+                                 album=album,
+                                 file=file)
+        return redirect("dashboard:album", album_id=media.album.id)
 
 
 class ServicesView(View):
@@ -133,10 +206,9 @@ class CreateUpdateService(View):
             service.title = title
             service.description = description
             service.visible = visible
-            service.image = image
+            if image:
+                service.image = image
             service.save()
-            messages.add_message(request, messages.SUCCESS,
-                                 "Updated successfully.")
         else:
             Service.objects.create(title=title,
                                    description=description,
@@ -163,7 +235,6 @@ class BannersView(View):
     @method_decorator(staff_only())
     def get(self, request, *argd, **kwargs):
         context = {}
-
         return render(request, self.template_name, context)
 
 

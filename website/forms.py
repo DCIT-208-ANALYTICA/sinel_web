@@ -1,5 +1,5 @@
 from django import forms
-from .models import About, Client, Contact, Gallery, OpeningHour, Service, SocialMediaLink, TeamLead
+from .models import About, Client, Contact, Media, OpeningHour, Service, SocialMediaLink, TeamLead
 
 
 class ContactForm(forms.ModelForm):
@@ -22,9 +22,9 @@ class AboutForm(forms.ModelForm):
         ]
 
 
-class GalleryForm(forms.ModelForm):
+class MediaForm(forms.ModelForm):
     class Meta:
-        model = Gallery
+        model = Media
         exclude = [
             "id",
             "created_at",

@@ -1,9 +1,9 @@
 from rest_framework import generics, permissions
 from rest_framework.response import Response
 from rest_api_v1.utils import ResponseMessage
-from website.forms import AboutForm, ClientForm, ContactForm, GalleryForm, OpeningHourForm, ServiceForm, SocialMediaLinkForm, TeamLeadForm
-from website.models import About, Client, Contact, Gallery, OpeningHour, Service, SocialMediaLink, TeamLead
-from .serializers import AboutSerializer, ClientSerializer, ContactSerializer, GallerySerializer, OpeningHourSerializer, ServiceSerializer, SocialMediaLinkSerializer, TeamLeadSerializer
+from website.forms import AboutForm, ClientForm, ContactForm, MediaForm, OpeningHourForm, ServiceForm, SocialMediaLinkForm, TeamLeadForm
+from website.models import About, Client, Contact, Media, OpeningHour, Service, SocialMediaLink, TeamLead
+from .serializers import AboutSerializer, ClientSerializer, ContactSerializer, MediaSerializer, OpeningHourSerializer, ServiceSerializer, SocialMediaLinkSerializer, TeamLeadSerializer
 from django.utils.html import strip_tags
 
 
@@ -120,16 +120,16 @@ class CreateUpdateDeleteModelMixin(generics.GenericAPIView):
         return Response({self.response_keyword: data})
 
 
-class GalleryAPI(CreateUpdateDeleteModelMixin):
+class MediaAPI(CreateUpdateDeleteModelMixin):
     """
     Returns the contact details.
     """
     permission_classes = [permissions.IsAuthenticated]
-    serializer_class = GallerySerializer
-    form_class = GalleryForm
-    serializer_class = GallerySerializer
-    form_class = GalleryForm
-    model_class = Gallery
+    serializer_class = MediaSerializer
+    form_class = MediaForm
+    serializer_class = MediaSerializer
+    form_class = MediaForm
+    model_class = Media
     response_keyword = "item"
     response_keyword_plural = "gallery"
 
