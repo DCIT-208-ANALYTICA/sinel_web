@@ -1,5 +1,4 @@
 asgiref==3.3.4
-asyncio==3.4.3
 Django==3.2
 django-cors-headers==3.7.0
 django-rest-knox==4.1.0
