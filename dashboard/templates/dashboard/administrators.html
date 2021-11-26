@@ -44,9 +44,9 @@
                 <tr>
                     <td>
                         {% if administrator.photo %}
-                        <img width="42" class="rounded-circle" src="{{administrator.photo.url}}" alt="{{administrator}}">
+                        <img width="50" height="50" class="rounded-circle" src="{{administrator.photo.url}}" alt="{{administrator}}" style="border: 1px solid rgba(11, 221, 204, 0.616);">
                         {% else %}
-                        <img width="42" class="rounded-circle" src="{% static 'img/logo_small.png' %}" alt="">
+                        <img width="50" height="50" class="rounded-circle" src="{% static 'img/logo_small.png' %}" alt="">
                         {% endif %}
                     </td>
                     <td>
@@ -70,7 +70,7 @@
                        {% if administrator.is_active %}
                        <p class="text text-success">Active</p>
                        {% else %}
-                       <p class="text text-success">Inactive</p>
+                       <p class="text text-danger">Inactive</p>
                        {% endif %}
                     </td>
                 </tr>

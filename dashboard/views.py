@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import View
 from django.utils.decorators import method_decorator
+from communications.models import Appointment
 from sinel_web.utils.decorators import staff_only
 from website.models import About
 from accounts.models import Administrator
@@ -44,15 +45,6 @@ class AboutView(View):
         return redirect(request.META.get("HTTP_REFERER"))
 
 
-class AdministratorDetailsView(View):
-    template_name = "dashboard/administrator_details.html"
-
-    @method_decorator(staff_only())
-    def get(self, request, admin_id, *args, **kwargs):
-        context = {"administrator": get_object_or_404(Administrator, id=admin_id)}
-        return render(request, self.template_name, context)
-
-
 class AdministratorsView(View):
     template_name = "dashboard/administrators.html"
 
@@ -61,6 +53,28 @@ class AdministratorsView(View):
         context = {"administrators": Administrator.objects.all()}
         return render(request, self.template_name, context)
 
+class AdministratorDetailsView(View):
+    template_name = "dashboard/administrator_details.html"
+
+    @method_decorator(staff_only())
+    def get(self, request, admin_id, *args, **kwargs):
+        context = {"administrator": get_object_or_404(Administrator, id=admin_id)}
+        return render(request, self.template_name, context)
+
+    def post(self, request, admin_id, *args, **kwargs):
+        admin = get_object_or_404(Administrator, id=admin_id)
+        photo = request.FILES.get("photo")
+        fullname = request.POST.get("fullname")
+        title = request.POST.get("title")
+        is_active = request.POST.get("is_active", "")
+
+        if photo:
+            admin.photo = photo
+        admin.fullname = fullname
+        admin.title = title
+        admin.is_active = "on" in is_active
+        admin.save()
+        return redirect(request.META.get("HTTP_REFERER"))
 
 class ContactView(View):
     template_name = "dashboard/contact.html"
@@ -136,6 +150,8 @@ class AppointmentView(View):
     template_name = "dashboard/appointments.html"
 
     def get(self, request, *argd, **kwargs):
-        context = {}
+        context = {
+            "appointments": Appointment.objects.filter()
+        }
 
         return render(request, self.template_name, context)

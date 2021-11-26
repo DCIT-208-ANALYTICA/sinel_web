@@ -260,12 +260,10 @@
     <div class="app-drawer-overlay d-none animated fadeIn"></div>
 
     <script type="text/javascript" src="{% static 'scripts/dashboard_template_script.js' %}"></script>
-    {% block scriptfiles %}{% endblock %}
 
     <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
-    <script>
-        CKEDITOR.replace('content');
-    </script>
+
+    {% block scriptfiles %}{% endblock %}
 
 </body>
 

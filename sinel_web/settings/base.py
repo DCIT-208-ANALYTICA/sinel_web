@@ -172,8 +172,6 @@ MEDIA_ROOT = BASE_DIR / "assets/uploads"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-
-
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
     50: 'critical',
