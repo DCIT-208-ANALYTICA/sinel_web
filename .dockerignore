@@ -32,6 +32,10 @@ Dockerfile
 Dockerfile.prod
 docker*
 Docker*
+*.sh
+*.txt
+nginx
+README.md
 db.sqlite3
 
 uploads
