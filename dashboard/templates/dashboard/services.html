@@ -52,7 +52,7 @@
                 <tr>
                     <td>
                         {% if service.image %}
-                        <img height="50" src="{{service.image.url}}" alt="{{service}}" style="border: 1px solid rgba(11, 221, 204, 0.616);">
+                        <img height="50" src="{{service.image.url}}" alt="{{service.title}}" style="border: 1px solid rgba(11, 221, 204, 0.616);">
                         {% else %}
                         <img height="50" src="{% static 'img/logo_small.png' %}" alt="">
                         {% endif %}
