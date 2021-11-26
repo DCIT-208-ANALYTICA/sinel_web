@@ -1,5 +1,4 @@
 from django.db import models
-from django.db.models.fields import DateField, EmailField
 
 # Create your models here.
 class Appointment(models.Model):
