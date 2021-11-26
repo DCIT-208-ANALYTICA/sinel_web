@@ -101,7 +101,8 @@
                                                                 </div>
                                                                 <div class="widget-content-right mr-2">
                                                                     <a href="{% url 'accounts:logout' %}">
-                                                                        <button class="btn-pill btn-shadow btn-shine btn btn-focus">Logout</button>
+                                                                        <button
+                                                                            class="btn-pill btn-shadow btn-shine btn btn-focus">Logout</button>
                                                                     </a>
                                                                 </div>
                                                             </div>
@@ -184,12 +185,13 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{% url 'dashboard:administrators'%}" class="{% block administrators-page-active %}{% endblock %}">
+                                <a href="{% url 'dashboard:administrators'%}"
+                                    class="{% block administrators-page-active %}{% endblock %}">
                                     <i class="metismenu-icon bi bi-people"></i> Administrators
                                 </a>
                             </li>
                             <li>
-                                <a href="widgets-chart-boxes-3.html"
+                                <a href="{% url 'dashboard:appointments'%}"
                                     class="{% block appointments-page-active %}{% endblock %}">
                                     <i class="metismenu-icon bi bi-list-task"></i> Appointments
                                 </a>
