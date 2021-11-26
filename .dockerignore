@@ -32,7 +32,6 @@ Dockerfile
 Dockerfile.prod
 docker*
 Docker*
-*.sh
 nginx
 README.md
 db.sqlite3
