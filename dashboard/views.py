@@ -41,7 +41,7 @@ class AboutView(View):
         if value:
             about.value = value
         about.save()
-        return redirect(request.META.get('HTTP_REFERER'))
+        return redirect(request.META.get("HTTP_REFERER"))
 
 
 class AdministratorInfoView(View):
@@ -126,6 +126,15 @@ class BlogView(View):
     template_name = "dashboard/blog.html"
 
     @method_decorator(staff_only())
+    def get(self, request, *argd, **kwargs):
+        context = {}
+
+        return render(request, self.template_name, context)
+
+
+class AppointmentView(View):
+    template_name = "dashboard/appointments.html"
+
     def get(self, request, *argd, **kwargs):
         context = {}
 
