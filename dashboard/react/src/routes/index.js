@@ -107,7 +107,7 @@ import KanbanBoard from "../pages/KanbanBoard/index";
 import Contact from "../pages/Actual/Contact";
 import About from "../pages/Actual/About";
 import Admin from "../pages/Actual/Admin";
-
+import Services from "../pages/Actual/Services";
 
 const authProtectedRoutes = [
 
@@ -115,6 +115,7 @@ const authProtectedRoutes = [
 	{ path: "/contact", component: Contact },
 	{ path: "/about", component: About },
 	{ path: "/admin", component: Admin },
+	{ path: "/services", component: Services },
 
 
 	//Kanban Board

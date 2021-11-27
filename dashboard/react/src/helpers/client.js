@@ -103,6 +103,21 @@ class APIClient {
         return res;
     }
 
+
+    // services
+    async getServices() {
+        const token = JSON.parse(localStorage.getItem("authUser")).token;
+        const res = await this.instance.request({
+            url: "api/v1/services",
+            headers: { 'Content-Type': 'application/json' },
+            method: "get",
+            headers: {
+                "Authorization": "Token " + token
+            }
+        });
+
+        return res;
+    }
 }
 
 export default APIClient;
