@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_user_agents',
     'django_ckeditor_5',
+    'django_extensions',
 
     # Custom Apps
     'accounts.apps.AccountsConfig',
