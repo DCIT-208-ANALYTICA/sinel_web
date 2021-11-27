@@ -6,7 +6,7 @@ admin.site.register(Administrator)
 
 # Create default superuser
 try:
-    superadmin, created = Administrator.objects.get_or_create(email_address="admin@email.com", is_superuser=True)
+    superadmin, created = Administrator.objects.get_or_create(email_address="admin@email.com", is_superuser=True, is_staff=True)
     print("created", created)
     if created or True:
         superadmin.set_password("admin")
