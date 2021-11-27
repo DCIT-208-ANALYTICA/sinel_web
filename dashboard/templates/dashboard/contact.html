@@ -16,42 +16,6 @@
                     </div>
                 </div>
             </div>
-            <div class="page-title-actions">
-
-                <div class="d-inline-block dropdown">
-
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link">
-                                    <i class="nav-link-icon lnr-inbox"></i>
-                                    <span> Inbox</span>
-                                    <div class="ml-auto badge badge-pill badge-secondary">86</div>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link">
-                                    <i class="nav-link-icon lnr-book"></i>
-                                    <span> Book</span>
-                                    <div class="ml-auto badge badge-pill badge-danger">5</div>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link">
-                                    <i class="nav-link-icon lnr-picture"></i>
-                                    <span> Picture</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a disabled class="nav-link disabled">
-                                    <i class="nav-link-icon lnr-file-empty"></i>
-                                    <span> File Disabled</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -61,68 +25,55 @@
                 <div class="col-lg-8 col-md-12">
                     <div class="main-card mb-3 card">
                         <div class="card-body">
-                            <div id="smartwizard">
-                                <ul class="forms-wizard">
-
-                                    <div class="form-wizard-content">
-                                        <div id="step-1">
-                                            <div class="form-row">
-                                                <div class="col-md-6">
-                                                    <div class="position-relative form-group">
-                                                        <label for="exampleEmail55">Email</label>
-                                                        <input name="email" id="exampleEmail55"
-                                                            placeholder="someone@example.com" type="email"
-                                                            class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="position-relative form-group">
-                                                        <label for="exampleGPS">GPS</label>
-                                                        <input name="gps" id="exampleGPS" placeholder="" type="text"
-                                                            class="form-control">
-                                                    </div>
+                            <form method="POST">
+                                <div class="form-wizard-content">
+                                    <div id="step-1">
+                                        <div class="form-row">
+                                            <div class="col-md-6">
+                                                <div class="position-relative form-group">
+                                                    <label for="exampleEmail55">Email</label>
+                                                    <input name="email-content" value={{contact.email}} type="email"
+                                                        class="form-control">
                                                 </div>
                                             </div>
-                                            <div class="position-relative form-group">
-                                                <label for="exampleAddress">Address</label>
-                                                <input name="address" id="exampleAddress" placeholder="" type="text"
-                                                    class="form-control">
+                                            <div class="col-md-6">
+                                                <div class="position-relative form-group">
+
+                                                    <label>GPS</label>
+                                                    <input name="gps-content" value="{{contact.gps}}" type="text"
+                                                        class="form-control">
+                                                </div>
                                             </div>
+                                        </div>
+                                        <div class="position-relative form-group">
 
-                                            <div class="position-relative form-group">
-                                                <label for="exampleTelephone">Telephone</label>
-                                                <input name="telephone" id="exampleTelephone" placeholder="" type="text"
-                                                    class="form-control">
-                                            </div>
-
-                                            <div class="position-relative form-group">
-                                                <label for="exampleAddress">Latitude/Longitude</label>
-                                                <input name="lat_lng" id="exampleAddress" placeholder="" type="text"
-                                                    class="form-control">
-                                            </div>
-
-                                            <div class="form-row">
-
-                                            </div>
-
-
+                                            <label for="exampleAddress">Address</label>
+                                            <input name="address-content" id="exampleAddress" placeholder="" type="text"
+                                                class="form-control" value={{contact.address}}>
+                                        </div>
+                                        <div class="position-relative form-group">
+                                            <label for="exampleTelephone">Telephone</label>
+                                            <input name="telephone-content" id="exampleTelephone" placeholder=""
+                                                type="text" class="form-control" value={{contact.telephone}}>
+                                        </div>
+                                        <div class="position-relative form-group">
+                                            <label for="exampleAddress">Latitude/Longitude</label>
+                                            <input name="lat_lng-content" id="exampleAddress" type="text"
+                                                class="form-control" value={{contact.lat_lng}}>
                                         </div>
                                     </div>
-
-                            </div>
-                            <div class="clearfix">
-                                <button type="button" id="next-btn"
-                                    class="btn-shadow btn-wide float-right btn-pill btn-hover-shine btn btn-primary">Save</button>
-                            </div>
+                                </div>
+                                <button type="button" class=" btn-primary" type="submit">
+                                    Save
+                                </button>
+                            </form>
                         </div>
                     </div>
-
                 </div>
             </div>
 
         </div>
     </div>
-
 </div>
 
 
@@ -142,16 +93,10 @@
             </button>
         </div>
 
-
-
-
-
-
-
         <div class="app-drawer-overlay d-none animated fadeIn"></div>
         <script type="text/javascript" src="./assets/scripts/main.d810cf0ae7f39f28f336.js"></script>
-        </body>
 
-        </html>
 
-        {%endblock%}
+    </div>
+</div>
+{%endblock%}

@@ -1,8 +1,9 @@
+from django.http import request
 from django.shortcuts import redirect, render
 from django.views.generic import View
 from django.utils.decorators import method_decorator
 from sinel_web.utils.decorators import staff_only
-from website.models import About
+from website.models import About, Contact
 from accounts.models import Administrator
 
 
@@ -41,7 +42,7 @@ class AboutView(View):
         if value:
             about.value = value
         about.save()
-        return redirect(request.META.get('HTTP_REFERER'))
+        return redirect(request.META.get("HTTP_REFERER"))
 
 
 class AdministratorInfoView(View):
@@ -67,9 +68,31 @@ class ContactView(View):
 
     @method_decorator(staff_only())
     def get(self, request, *argd, **kwargs):
-        context = {}
-
+        context = {"contact": Contact.objects.first()}
         return render(request, self.template_name, context)
+
+    @method_decorator(staff_only())
+    def post(self, request, *args, **kwargs):
+        email = request.POST.get("email-content")
+        gps = request.POST.get("gps-content")
+        address = request.POST.get("address-content")
+        telephone = request.POST.get("telephone-content")
+        lat_lng = request.POST.get("lat_lng-content")
+
+        contact = Contact.objects.first()
+
+        if email:
+            contact.email = email
+        if gps:
+            contact.gps = gps
+        if gps:
+            contact.address = address
+        if gps:
+            contact.telephone = telephone
+        if gps:
+            contact.lat_lng = lat_lng
+        contact.save()
+        return redirect(request.META.get("HTTP_REFERER"))
 
 
 class GalleryView(View):
