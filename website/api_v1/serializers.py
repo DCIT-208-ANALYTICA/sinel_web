@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from website.forms import SocialMediaLinkForm
-from website.models import About, Client, Contact, Gallery, OpeningHour, Service, TeamLead
+from website.models import About, Client, Contact, Media, OpeningHour, Service, TeamLead
 
 
 class ContactSerializer(serializers.ModelSerializer):
@@ -21,7 +21,7 @@ class OpeningHourSerializer(serializers.ModelSerializer):
         exclude = ["created_at", "updated_at"]
 
 
-class GallerySerializer(serializers.ModelSerializer):
+class MediaSerializer(serializers.ModelSerializer):
     file = serializers.SerializerMethodField()
 
     def get_file(self, item):
@@ -32,7 +32,7 @@ class GallerySerializer(serializers.ModelSerializer):
         return ""
 
     class Meta:
-        model = Gallery
+        model = Media
         exclude = ["created_at", "updated_at"]
 
 

@@ -30,6 +30,10 @@ web/static/CACHE
 stats
 Dockerfile
 Dockerfile.prod
+docker*
+Docker*
+nginx
+README.md
 db.sqlite3
 
 uploads

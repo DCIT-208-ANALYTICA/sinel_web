@@ -10,6 +10,7 @@ admin.site.register(Client)
 admin.site.register(OpeningHour)
 admin.site.register(TeamLead)
 admin.site.register(About)
+admin.site.register(Media)
 
 # Create only one contact model that can be updated.
 try:
