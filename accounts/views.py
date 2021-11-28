@@ -60,7 +60,7 @@ class AdministratorDetailsView(View):
         photo = request.FILES.get("photo")
         fullname = request.POST.get("fullname")
         title = request.POST.get("title")
-        is_active = request.POST.get("is_active", "")
+        is_active = request.POST.get("is_active", "on")
 
         if photo:
             admin.photo = photo
