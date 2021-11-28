@@ -208,6 +208,13 @@ class CreateUpdateService(View):
         return redirect("dashboard:services")
 
 
+class DeleteServiceView(View):
+    @method_decorator(staff_only())
+    def post(self, request, *argd, **kwargs):
+        service_id = request.POST.get("service_id")
+        Service.objects.filter(id=service_id).delete()
+        return redirect(request.META.get("HTTP_REFERER"))
+
 class TeamLeadsView(View):
     template_name = "dashboard/teamleads.html"
 

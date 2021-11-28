@@ -25,6 +25,7 @@ urlpatterns = [
         views.CreateUpdateService.as_view(),
         name="create_update_service",
     ),
+    path("delete_service", views.DeleteServiceView.as_view(), name="delete_service"),
     path("teamleads", views.TeamLeadsView.as_view(), name="teamleads"),
     path("contact", views.ContactView.as_view(), name="contact"),
     path("clients", views.ClientsView.as_view(), name="clients"),
