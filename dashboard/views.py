@@ -309,7 +309,11 @@ class UpdateBlogPost(View):
             blog.save()
         else:
             Blog.objects.create(
-                title=title, content=content, visible=visible, image=image
+                title=title,
+                content=content,
+                visible=visible,
+                image=image,
+                by=request.user,
             )
             messages.add_message(
                 request, messages.SUCCESS, "New blog has been created!."
