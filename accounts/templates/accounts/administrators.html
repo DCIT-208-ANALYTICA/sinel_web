@@ -19,6 +19,16 @@
           </div>
         </div>
       </div>
+      <div class="page-title-actions">
+        <a href="{% url 'accounts:create_administrator' %}">
+            <button type="button" aria-haspopup="true" aria-expanded="false" class="btn-shadow btn btn-info">
+                <span class="btn-icon-wrapper pr-2 opacity-7">
+                    <i class="fa  bi bi-plus fa-w-20"></i>
+                </span>
+                New administrator
+            </button>
+        </a>
+      </div>
     </div>
   </div>
   <div class="main-card mb-3 card">
@@ -50,7 +60,7 @@
                         {% endif %}
                     </td>
                     <td>
-                        <a href="{% url 'dashboard:administrator_details' administrator.id %}">
+                        <a href="{% url 'accounts:administrator_details' administrator.id %}">
                             {{administrator}}
                         </a>
                     </td>

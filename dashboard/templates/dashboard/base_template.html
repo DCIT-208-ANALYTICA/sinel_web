@@ -184,12 +184,14 @@
                                     <i class="metismenu-icon bi bi-speedometer2"></i> Dashboard
                                 </a>
                             </li>
+                            {% if request.user.is_superuser %}
                             <li>
-                                <a href="{% url 'dashboard:administrators'%}"
+                                <a href="{% url 'accounts:administrators'%}"
                                     class="{% block administrators-page-active %}{% endblock %}">
                                     <i class="metismenu-icon bi bi-people"></i> Administrators
                                 </a>
                             </li>
+                            {% endif %}
                             <li>
                                 <a href="{% url 'dashboard:appointments'%}"
                                     class="{% block appointments-page-active %}{% endblock %}">
