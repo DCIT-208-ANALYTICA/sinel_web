@@ -40,7 +40,7 @@ class AdministratorsView(View):
 
     @method_decorator(superuser_only())
     def get(self, request, *args, **kwargs):
-        context = {"administrators": Administrator.objects.all()}
+        context = {"administrators": Administrator.objects.all().order_by("-id")}
         return render(request, self.template_name, context)
 
 

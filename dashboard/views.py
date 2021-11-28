@@ -2,10 +2,9 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import View
 from django.utils.decorators import method_decorator
 from communications.models import Appointment
-from sinel_web.utils.decorators import staff_only,superuser_only
+from sinel_web.utils.decorators import staff_only
 from website.models import About, Album, Contact, Media, Service
 from blog.models import Blog
-from accounts.models import Administrator
 from django.contrib import messages
 
 
@@ -288,6 +287,6 @@ class AppointmentView(View):
     template_name = "dashboard/appointments.html"
 
     def get(self, request, *argd, **kwargs):
-        context = {"appointments": Appointment.objects.filter()}
+        context = {"appointments": Appointment.objects.filter().order_by("-id")}
 
         return render(request, self.template_name, context)
