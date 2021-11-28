@@ -1,0 +1,80 @@
+{% extends 'dashboard/base_template.html' %}
+{% block blog-page-active %}mm-active{% endblock %}
+{% block pagetitle %}Blog{% endblock %}
+
+{% load static %}
+
+{%block content %}
+<div class="app-main__inner">
+    <div class="app-page-title">
+        <div class="page-title-wrapper">
+            <div class="page-title-heading">
+                <div class="page-title-icon">
+                    <i class="pe-7s-medal icon-gradient bg-tempting-azure"></i>
+                </div>
+                <div>
+                    Blogs
+                    <div class="page-title-subheading">
+                        List of blogs published by Sinel Specialist Hospital.
+                    </div>
+                </div>
+            </div>
+            <div class="page-title-actions">
+
+                <a href="{% url 'dashboard:update_blog' %}">
+                    <button type="button" aria-haspopup="true" aria-expanded="false" class="btn-shadow btn btn-info">
+                        <span class="btn-icon-wrapper pr-2 opacity-7">
+                            <i class="fa  bi bi-plus fa-w-20"></i>
+                        </span>
+                        New Blog
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="main-card mb-3 card">
+        <div class="card-body">
+            <table style="width: 100%" id="example" class="table table-hover table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Title</th>
+                        <th>Updated At</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for blog in blogs %}
+                    <tr>
+                        <td>
+                            {% if blog.image %}
+                            <img height="50" src="{{blog.image.url}}" alt="{{blog.title}}"
+                                style="border: 1px solid rgba(11, 221, 204, 0.616);">
+                            {% else %}
+                            <img height="50" src="{% static 'img/logo_small.png' %}" alt="">
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{% url 'dashboard:update_blog'%}?blog_id={{blog.id}}">
+                                {{blog.title}}
+                            </a>
+                        </td>
+                        <td>
+                            {{blog.created_at}}
+                        </td>
+                        <td>
+                            {% if blog.visible %}
+                            <p class="text text-success">Visible</p>
+                            {% else %}
+                            <p class="text text-danger">Not Visble</p>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

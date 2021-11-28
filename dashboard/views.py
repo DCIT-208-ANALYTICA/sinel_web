@@ -3,7 +3,7 @@ from django.views.generic import View
 from django.utils.decorators import method_decorator
 from communications.models import Appointment
 from sinel_web.utils.decorators import staff_only
-from website.models import About, Album,Contact, Media, Service
+from website.models import About, Album, Blog, Contact, Media, Service
 from accounts.models import Administrator
 from django.contrib import messages
 
@@ -60,9 +60,7 @@ class AdministratorDetailsView(View):
 
     @method_decorator(staff_only())
     def get(self, request, admin_id, *args, **kwargs):
-        context = {
-            "administrator": get_object_or_404(Administrator, id=admin_id)
-        }
+        context = {"administrator": get_object_or_404(Administrator, id=admin_id)}
         return render(request, self.template_name, context)
 
     def post(self, request, admin_id, *args, **kwargs):
@@ -188,11 +186,13 @@ class CreateUpdateMedia(View):
                 media.file = file
             media.save()
         else:
-            Media.objects.create(name=name,
-                                 description=description,
-                                 visible=visible,
-                                 album=album,
-                                 file=file)
+            Media.objects.create(
+                name=name,
+                description=description,
+                visible=visible,
+                album=album,
+                file=file,
+            )
         return redirect("dashboard:album", album_id=media.album.id)
 
 
@@ -232,12 +232,12 @@ class CreateUpdateService(View):
                 service.image = image
             service.save()
         else:
-            Service.objects.create(title=title,
-                                   description=description,
-                                   visible=visible,
-                                   image=image)
-            messages.add_message(request, messages.SUCCESS,
-                                 "New service created successfully.")
+            Service.objects.create(
+                title=title, description=description, visible=visible, image=image
+            )
+            messages.add_message(
+                request, messages.SUCCESS, "New service created successfully."
+            )
         return redirect("dashboard:services")
 
 
@@ -275,9 +275,45 @@ class BlogView(View):
 
     @method_decorator(staff_only())
     def get(self, request, *argd, **kwargs):
-        context = {}
+        context = {"blogs": Blog.objects.all()}
 
         return render(request, self.template_name, context)
+
+
+class UpdateBlogPost(View):
+    template_name = "dashboard/update_blog.html"
+
+    @method_decorator(staff_only())
+    def get(self, request, *argd, **kwargs):
+        blog_id = request.GET.get("blog_id", -1)
+        context = {"blog": Blog.objects.filter(id=blog_id).first()}
+        return render(request, self.template_name, context)
+
+    @method_decorator(staff_only())
+    def post(self, request, *argd, **kwargs):
+        blog_id = request.POST.get("blog_id") or None
+        title = request.POST.get("title")
+        description = request.POST.get("blog_description")
+        visible = "on" in request.POST.get("visible", "")
+        image = request.FILES.get("image")
+
+        blog = Blog.objects.filter(id=blog_id).first()
+        if blog:
+            # Update
+            blog.title = title
+            blog.description = description
+            blog.visible = visible
+            if image:
+                blog.image = image
+            blog.save()
+        else:
+            Blog.objects.create(
+                title=title, description=description, visible=visible, image=image
+            )
+            messages.add_message(
+                request, messages.SUCCESS, "New blog has been created!."
+            )
+        return redirect("dashboard:blog")
 
 
 class AppointmentView(View):
