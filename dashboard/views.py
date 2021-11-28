@@ -3,7 +3,8 @@ from django.views.generic import View
 from django.utils.decorators import method_decorator
 from communications.models import Appointment
 from sinel_web.utils.decorators import staff_only
-from website.models import About, Album, Blog, Contact, Media, Service
+from website.models import About, Album, Contact, Media, Service
+from blog.models import Blog
 from accounts.models import Administrator
 from django.contrib import messages
 
@@ -293,7 +294,7 @@ class UpdateBlogPost(View):
     def post(self, request, *argd, **kwargs):
         blog_id = request.POST.get("blog_id") or None
         title = request.POST.get("title")
-        description = request.POST.get("blog_description")
+        content = request.POST.get("blog_description")
         visible = "on" in request.POST.get("visible", "")
         image = request.FILES.get("image")
 
@@ -301,14 +302,14 @@ class UpdateBlogPost(View):
         if blog:
             # Update
             blog.title = title
-            blog.description = description
+            blog.description = content
             blog.visible = visible
             if image:
                 blog.image = image
             blog.save()
         else:
             Blog.objects.create(
-                title=title, description=description, visible=visible, image=image
+                title=title, content=content, visible=visible, image=image
             )
             messages.add_message(
                 request, messages.SUCCESS, "New blog has been created!."

@@ -124,13 +124,3 @@ class About(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-
-class Blog(models.Model):
-    title = models.CharField(max_length=100)
-    description = CKEditor5Field()
-    image = models.ImageField(
-        upload_to="uploads/images",
-    )
-    visible = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
