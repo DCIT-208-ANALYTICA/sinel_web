@@ -51,10 +51,23 @@
             {% for album in albumns %}
                 <tr>
                     <td>
-                        <a href="{% url 'dashboard:create_update_album'%}?album_id={{album.id}}">
+                      <div class="d-flex">
+                        <form action="{% url 'dashboard:delete_album' %}" method="POST" class="confirm-action" data-message="Sure you want to delete?">
+                          {% csrf_token %}
+                          <input value={{album.id}} name="album_id" type="hidden">
+                          <button class="btn-link btn">
+                            <span class="text text-danger">
+                              <i class="bi bi-trash btn-icon-wrapper"> </i>Danger
+                            </span>
+                          </button>                            
+                        </form>
+                        <button class="btn-link btn">
+                          <a href="{% url 'dashboard:create_update_album'%}?album_id={{album.id}}">
                             <i class="bi bi-pencil"></i>
                             Edit
-                        </a>
+                          </a>
+                        </button>
+                    </div>
                     </td>
                     <td>
                         <a href="{% url 'dashboard:album' album.id %}">

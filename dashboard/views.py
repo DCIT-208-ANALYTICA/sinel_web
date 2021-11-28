@@ -120,6 +120,14 @@ class CreateUpdateAlbum(View):
         return redirect("dashboard:gallery")
 
 
+class DeleteAlbumView(View):
+    @method_decorator(staff_only())
+    def post(self, request, *argd, **kwargs):
+        album_id = request.POST.get("album_id")
+        Album.objects.filter(id=album_id).delete()
+        return redirect(request.META.get("HTTP_REFERER"))
+
+
 class CreateUpdateMedia(View):
     template_name = "dashboard/create_update_media.html"
 
@@ -215,6 +223,7 @@ class DeleteServiceView(View):
         Service.objects.filter(id=service_id).delete()
         return redirect(request.META.get("HTTP_REFERER"))
 
+
 class TeamLeadsView(View):
     template_name = "dashboard/teamleads.html"
 
@@ -294,6 +303,8 @@ class AppointmentView(View):
     template_name = "dashboard/appointments.html"
 
     def get(self, request, *argd, **kwargs):
-        context = {"appointments": Appointment.objects.filter().order_by("-id")}
+        context = {
+            "appointments": Appointment.objects.filter().order_by("-id")
+        }
 
         return render(request, self.template_name, context)

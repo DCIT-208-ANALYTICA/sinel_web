@@ -14,6 +14,7 @@ urlpatterns = [
         views.CreateUpdateAlbum.as_view(),
         name="create_update_album",
     ),
+    path("delete_album", views.DeleteAlbumView.as_view(), name="delete_album"),
     path(
         "create_update_media",
         views.CreateUpdateMedia.as_view(),
