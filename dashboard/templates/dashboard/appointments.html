@@ -29,9 +29,10 @@
                         <th>Full Name</th>
                         <th>Email</th>
                         <th>Number</th>
-                        <th>Date</th>
                         <th>Service</th>
                         <th>Message</th>
+                        <th>Date</th>
+                        <th>Booked At</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,13 +48,13 @@
                             {{appointment.number}}
                         </td>
                         <td>
-                            {{appointment.date}}
+                            {{appointment.service}}
                         </td>
                         <td>
                             {{appointment.message}}
                         </td>
                         <td>
-                            {{appointment.service}}
+                            {{appointment.date}}
                         </td>
                         <td>
                             {{administrator.created_at}}
