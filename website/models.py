@@ -47,7 +47,9 @@ class Album(models.Model):
 class Media(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
-    album = models.ForeignKey(Album, related_name="children", on_delete=models.CASCADE)
+    album = models.ForeignKey(Album,
+                              related_name="children",
+                              on_delete=models.CASCADE)
     media_type = models.CharField(max_length=20, default="image")
     file = models.FileField(max_length=200, upload_to="images")
     visible = models.BooleanField(default=False)
@@ -79,9 +81,7 @@ class Banner(models.Model):
 class Service(models.Model):
     title = models.CharField(max_length=100)
     description = CKEditor5Field()
-    image = models.ImageField(
-        upload_to="uploads/images",
-    )
+    image = models.ImageField(upload_to="uploads/images", )
     visible = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -90,9 +90,7 @@ class Service(models.Model):
 class Client(models.Model):
     title = models.CharField(max_length=30)
     story = models.TextField()
-    image = models.ImageField(
-        upload_to="uploads/images",
-    )
+    image = models.ImageField(upload_to="uploads/images", )
     visible = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -108,9 +106,7 @@ class OpeningHour(models.Model):
 class TeamLead(models.Model):
     fullname = models.CharField(max_length=100)
     bio = models.CharField(max_length=500)
-    image = models.ImageField(
-        upload_to="uploads/images",
-    )
+    image = models.ImageField(upload_to="uploads/images", )
     visible = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -123,4 +119,3 @@ class About(models.Model):
     value = CKEditor5Field()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-

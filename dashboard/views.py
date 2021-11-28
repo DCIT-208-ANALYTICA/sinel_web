@@ -168,7 +168,15 @@ class CreateUpdateMedia(View):
                 album=album,
                 file=file,
             )
-        return redirect("dashboard:album", album_id=media.album.id)
+        return redirect("dashboard:album", album_id=album.id)
+
+
+class DeleteMediaView(View):
+    @method_decorator(staff_only())
+    def post(self, request, *argd, **kwargs):
+        media_id = request.POST.get("media_id")
+        Media.objects.filter(id=media_id).delete()
+        return redirect(request.META.get("HTTP_REFERER"))
 
 
 class ServicesView(View):
