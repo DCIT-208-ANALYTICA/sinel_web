@@ -25,7 +25,8 @@
                 <div class="col-lg-8 col-md-12">
                     <div class="main-card mb-3 card">
                         <div class="card-body">
-                            <form action="">
+                            <form action="" method="post">
+                                {% csrf_token %}
                                 <div class="form-wizard-content">
                                     <div id="step-1">
                                         <div class="form-row">
