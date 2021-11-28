@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import View
 from django.utils.decorators import method_decorator
 from communications.models import Appointment
-from sinel_web.utils.decorators import staff_only
+from sinel_web.utils.decorators import staff_only,superuser_only
 from website.models import About, Album, Contact, Media, Service
 from blog.models import Blog
 from accounts.models import Administrator
@@ -61,9 +61,35 @@ class AdministratorDetailsView(View):
 
     @method_decorator(staff_only())
     def get(self, request, admin_id, *args, **kwargs):
-        context = {"administrator": get_object_or_404(Administrator, id=admin_id)}
+        context = {
+            "administrator": get_object_or_404(Administrator, id=admin_id)
+        }
         return render(request, self.template_name, context)
 
+    def post(self, request, admin_id, *args, **kwargs):
+        admin = get_object_or_404(Administrator, id=admin_id)
+        photo = request.FILES.get("photo")
+        fullname = request.POST.get("fullname")
+        title = request.POST.get("title")
+        is_active = request.POST.get("is_active", "")
+
+        if photo:
+            admin.photo = photo
+        admin.fullname = fullname
+        admin.title = title
+        admin.is_active = "on" in is_active
+        admin.save()
+        return redirect(request.META.get("HTTP_REFERER"))
+
+
+class CreateAdministrator(View):
+    template_name = "dashboard/create_administrator.html"
+
+    @method_decorator(superuser_only())
+    def get(self, request, admin_id, *args, **kwargs):
+        return render(request, self.template_name)
+
+    @method_decorator(superuser_only())
     def post(self, request, admin_id, *args, **kwargs):
         admin = get_object_or_404(Administrator, id=admin_id)
         photo = request.FILES.get("photo")
@@ -233,12 +259,12 @@ class CreateUpdateService(View):
                 service.image = image
             service.save()
         else:
-            Service.objects.create(
-                title=title, description=description, visible=visible, image=image
-            )
-            messages.add_message(
-                request, messages.SUCCESS, "New service created successfully."
-            )
+            Service.objects.create(title=title,
+                                   description=description,
+                                   visible=visible,
+                                   image=image)
+            messages.add_message(request, messages.SUCCESS,
+                                 "New service created successfully.")
         return redirect("dashboard:services")
 
 
@@ -308,12 +334,12 @@ class UpdateBlogPost(View):
                 blog.image = image
             blog.save()
         else:
-            Blog.objects.create(
-                title=title, content=content, visible=visible, image=image
-            )
-            messages.add_message(
-                request, messages.SUCCESS, "New blog has been created!."
-            )
+            Blog.objects.create(title=title,
+                                content=content,
+                                visible=visible,
+                                image=image)
+            messages.add_message(request, messages.SUCCESS,
+                                 "New blog has been created!.")
         return redirect("dashboard:blog")
 
 
