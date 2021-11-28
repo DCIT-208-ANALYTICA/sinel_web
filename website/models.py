@@ -51,7 +51,7 @@ class Media(models.Model):
                               related_name="children",
                               on_delete=models.CASCADE)
     media_type = models.CharField(max_length=20, default="image")
-    file = models.FileField(max_length=200, upload_to="images")
+    file = models.FileField(max_length=200, upload_to="uploads/images")
     visible = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
