@@ -1,5 +1,5 @@
-{% extends 'dashboard/base_template.html' %} 
-{% block gallery-page-active %}mm-active{% endblock %} 
+{% extends 'dashboard/base_template.html' %}
+{% block gallery-page-active %}mm-active{% endblock %}
 {% block pagetitle %}Album{% endblock %}
 
 {% load static %}
@@ -29,12 +29,13 @@
 
         <div class="form-group">
           <label for="name">What's the name of the album?</label>
-         <input class="form-control" type="text" name="name" id="name" value="{{album.name}}" placeholder="Name" style="padding: 1.2em; border:none;background-color: rgba(197, 197, 197, 0.2); font-size: 2em;" required>
+          <input class="form-control" type="text" name="name" id="name" value="{{album.name}}" placeholder="Name"
+            style="padding: 1.2em; border:none;background-color: rgba(197, 197, 197, 0.2); font-size: 2em;" required>
         </div>
         <div class="form-group">
-            <button class="btn btn-primary mt-4" type="submit">Submit</button>
+          <button class="btn btn-primary mt-4" type="submit">Submit</button>
         </div>
-      <form>
+        <form>
     </div>
   </div>
 </div>

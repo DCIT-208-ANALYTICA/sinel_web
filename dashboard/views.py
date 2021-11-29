@@ -3,9 +3,11 @@ from django.views.generic import View
 from django.utils.decorators import method_decorator
 from communications.models import Appointment
 from sinel_web.utils.decorators import staff_only
-from website.models import About, Album, Contact, Media, Service
+from website.models import About, Album, Contact, Media, Service, TeamLead
 from blog.models import Blog
 from django.contrib import messages
+from website.forms import MediaForm, ServiceForm, TeamLeadForm
+from django.utils.html import strip_tags
 
 
 class IndexView(View):
@@ -56,11 +58,11 @@ class ContactView(View):
 
     @method_decorator(staff_only())
     def post(self, request, *args, **kwargs):
-        email = request.POST.get("email-content")
-        gps = request.POST.get("gps-content")
-        address = request.POST.get("address-content")
-        telephone = request.POST.get("telephone-content")
-        lat_lng = request.POST.get("lat_lng-content")
+        email = request.POST.get("email")
+        gps = request.POST.get("gps")
+        address = request.POST.get("address")
+        telephone = request.POST.get("telephone")
+        lat_lng = request.POST.get("lat_lng")
 
         contact = Contact.objects.first()
 
@@ -130,6 +132,9 @@ class DeleteAlbumView(View):
 
 class CreateUpdateMedia(View):
     template_name = "dashboard/create_update_media.html"
+    form_class = MediaForm
+    model_class = Media
+    object_id_field = "media_id"
 
     @method_decorator(staff_only())
     def get(self, request, *argd, **kwargs):
@@ -142,33 +147,21 @@ class CreateUpdateMedia(View):
 
     @method_decorator(staff_only())
     def post(self, request, *argd, **kwargs):
-        media_id = request.POST.get("media_id") or None
-        name = request.POST.get("name")
-        description = request.POST.get("description")
-        visible = "on" in request.POST.get("visible", "")
-        file = request.FILES.get("file")
-
-        album = get_object_or_404(Album, id=request.POST.get("album"))
-
-        media = Media.objects.filter(id=media_id).first()
-        if media:
-            # Update
-            media.name = name
-            media.description = description
-            media.visible = visible
-            media.album = album
-            if file:
-                media.file = file
-            media.save()
+        object_id = request.POST.get(self.object_id_field) or None
+        instance = None
+        if object_id:
+            instance = get_object_or_404(self.model_class, id=object_id)
+        form = self.form_class(request.POST,
+                               request.FILES or None,
+                               instance=instance)
+        if form.is_valid():
+            media = form.save()
         else:
-            Media.objects.create(
-                name=name,
-                description=description,
-                visible=visible,
-                album=album,
-                file=file,
-            )
-        return redirect("dashboard:album", album_id=album.id)
+            for field, er in form.errors.items():
+                message = f"{field.title()}: {strip_tags(er)}"
+                messages.add_message(request, messages.ERROR, message)
+            return redirect(request.META.get("HTTP_REFERER"))
+        return redirect(to="dashboard:album", album_id=media.album.id)
 
 
 class DeleteMediaView(View):
@@ -190,6 +183,9 @@ class ServicesView(View):
 
 class CreateUpdateService(View):
     template_name = "dashboard/create_update_service.html"
+    form_class = ServiceForm
+    model_class = Service
+    object_id_field = "service_id"
 
     @method_decorator(staff_only())
     def get(self, request, *argd, **kwargs):
@@ -199,28 +195,20 @@ class CreateUpdateService(View):
 
     @method_decorator(staff_only())
     def post(self, request, *argd, **kwargs):
-        service_id = request.POST.get("service_id") or None
-        title = request.POST.get("title")
-        description = request.POST.get("service_description")
-        visible = "on" in request.POST.get("visible", "")
-        image = request.FILES.get("image")
-
-        service = Service.objects.filter(id=service_id).first()
-        if service:
-            # Update
-            service.title = title
-            service.description = description
-            service.visible = visible
-            if image:
-                service.image = image
-            service.save()
+        object_id = request.POST.get(self.object_id_field) or None
+        instance = None
+        if object_id:
+            instance = get_object_or_404(self.model_class, id=object_id)
+        form = self.form_class(request.POST,
+                               request.FILES or None,
+                               instance=instance)
+        if form.is_valid():
+            form.save()
         else:
-            Service.objects.create(title=title,
-                                   description=description,
-                                   visible=visible,
-                                   image=image)
-            messages.add_message(request, messages.SUCCESS,
-                                 "New service created successfully.")
+            for field, er in form.errors.items():
+                message = f"{field.title()}: {strip_tags(er)}"
+                messages.add_message(request, messages.ERROR, message)
+            return redirect(request.META.get("HTTP_REFERER"))
         return redirect("dashboard:services")
 
 
@@ -233,13 +221,53 @@ class DeleteServiceView(View):
 
 
 class TeamLeadsView(View):
-    template_name = "dashboard/teamleads.html"
+    template_name = "dashboard/team_leads.html"
 
     @method_decorator(staff_only())
     def get(self, request, *argd, **kwargs):
-        context = {}
-
+        context = {"team_leads": TeamLead.objects.all().order_by("-id")}
         return render(request, self.template_name, context)
+
+
+class CreateUpdateTeamLead(View):
+    template_name = "dashboard/create_update_team_lead.html"
+    form_class = TeamLeadForm
+    model_class = TeamLead
+    object_id_field = "team_lead_id"
+
+    @method_decorator(staff_only())
+    def get(self, request, *argd, **kwargs):
+        team_lead_id = request.GET.get("team_lead_id", -1)
+        context = {
+            "team_lead": TeamLead.objects.filter(id=team_lead_id).first()
+        }
+        return render(request, self.template_name, context)
+
+    @method_decorator(staff_only())
+    def post(self, request, *argd, **kwargs):
+        object_id = request.POST.get(self.object_id_field) or None
+        instance = None
+        if object_id:
+            instance = get_object_or_404(self.model_class, id=object_id)
+        form = self.form_class(request.POST,
+                               request.FILES or None,
+                               instance=instance)
+        if form.is_valid():
+            form.save()
+        else:
+            for field, er in form.errors.items():
+                message = f"{field.title()}: {strip_tags(er)}"
+                messages.add_message(request, messages.ERROR, message)
+            return redirect(request.META.get("HTTP_REFERER"))
+        return redirect("dashboard:team_leads")
+
+
+class DeleteTeamLeadView(View):
+    @method_decorator(staff_only())
+    def post(self, request, *argd, **kwargs):
+        team_lead_id = request.POST.get("team_lead_id")
+        TeamLead.objects.filter(id=team_lead_id).delete()
+        return redirect(request.META.get("HTTP_REFERER"))
 
 
 class BannersView(View):

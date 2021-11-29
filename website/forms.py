@@ -27,6 +27,7 @@ class MediaForm(forms.ModelForm):
         model = Media
         exclude = [
             "id",
+            "media_type",
             "created_at",
             "update_at",
         ]

@@ -105,8 +105,10 @@ class OpeningHour(models.Model):
 
 class TeamLead(models.Model):
     fullname = models.CharField(max_length=100)
-    bio = models.CharField(max_length=500)
-    image = models.ImageField(upload_to="uploads/images", )
+    bio = models.TextField()
+    linkedin = models.URLField()
+    title = models.CharField(max_length=500)
+    photo = models.ImageField(upload_to="uploads/images", )
     visible = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
