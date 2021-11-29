@@ -81,10 +81,9 @@
                 <a class="nav-link" href="{% url 'website:services' %}">Services<i class="fa fa-caret-down"></i></a>
 
                 <div class="dropdown-content">
-                  <a class="nav-link" href="{% url 'website:details' %}">Orthopedic</a>
-                  <a class="nav-link" href="{% url 'website:details' %}">Maternity</a>
-                  <a class="nav-link" href="{% url 'website:details' %}">Gynecology</a>
-                  <a class="nav-link" href="{% url 'website:details' %}">Physiotherapy</a>
+                  {% for service in request.services %}
+                  <a class="nav-link" href="{% url 'website:service_details' service.id %}">{{service.title}}</a>
+                  {% endfor %}
                 </div>
               </li>
             </div>

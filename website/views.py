@@ -45,15 +45,13 @@ class ServicesView(View):
     template_name = "website/services.html"
 
     def get(self, request, *args, **kwargs):
-        context = {}
-
+        context = {"services": Service.objects.filter(visible=True)}
         return render(request, self.template_name, context)
 
 
 class ServiceDetailsView(View):
     template_name = "website/service_details.html"
 
-    def get(self, request, *args, **kwargs):
-        context = {"service": Service.objects.filter().last()}
-
+    def get(self, request, service_id, *args, **kwargs):
+        context = {"service": Service.objects.filter(id=service_id).first()}
         return render(request, self.template_name, context)

@@ -1,4 +1,4 @@
-from website.models import Contact
+from website.models import Contact, Service
 
 
 class CustomMiddleWares(object):
@@ -7,4 +7,5 @@ class CustomMiddleWares(object):
 
     def __call__(self, request):
         request.contact = Contact.objects.first()
+        request.services = Service.objects.filter(visible=True)
         return self.get_response(request)
