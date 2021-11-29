@@ -1,13 +1,17 @@
 from django.shortcuts import render
 from django.views.generic import View
 from .models import About, Media, Service, TeamLead
+from blog.models import Post
 
 
 class IndexView(View):
     template_name = "website/index.html"
 
     def get(self, request, *args, **kwargs):
-        context = {"team": TeamLead.objects.filter(visible=True)}
+        context = {
+            "team": TeamLead.objects.filter(visible=True),
+            "posts": Post.objects.filter(visible=True).order_by("-id")[:5],
+        }
         return render(request, self.template_name, context)
 
 
