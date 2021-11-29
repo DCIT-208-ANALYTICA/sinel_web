@@ -34,10 +34,9 @@
         <div class="row">
           <div class="col-sm-8 text-sm">
             <div class="site-info">
-              <a href="#"><span class="mai-call text-primary"></span> +233 24 773 2448</a>
+              <a href="#"><span class="mai-call text-primary"></span> {{request.contact.telephone}}</a>
               <span class="divider">|</span>
-              <a href="#"><span class="mai-mail text-primary"></span>
-                info@sinelhospital.com</a>
+              <a href="#"><span class="mai-mail text-primary"></span>{{request.contact.email}}</a>
             </div>
           </div>
           <div class="col-sm-4 text-right text-sm">
@@ -157,18 +156,16 @@
         </div>
         <div class="col-sm-6 col-lg-3 py-3">
           <h5>Contact</h5>
-          <p class="footer-link mt-2">Hospital Road, Accra</p>
-          <a href="#" class="footer-link">+233 24 773 2448</a>
-          <a href="#" class="footer-link">info@sinelhospital.com</a>
+          <p class="footer-link mt-2">{{request.contact.address}}</p>
+          <a href="#" class="footer-link">{{request.contact.telephone}}</a>
+          <a href="#" class="footer-link">{{request.contact.email}}</a>
 
           <h5 class="mt-3">Social Media</h5>
           <div class="footer-sosmed mt-3">
-            <a href="https://www.facebook.com/SINELHOSPITALTEMA/" target="_blank"><span
-                class="mai-logo-facebook-f"></span></a>
+            <a href="" target="_blank"><span class="mai-logo-facebook-f"></span></a>
             <a href="#" target="_blank"><span class="mai-logo-twitter"></span></a>
             <a href="#" target="_blank"><span class="mai-logo-google-plus-g"></span></a>
-            <a href="https://www.instagram.com/sinelhospital/" target="_blank"><span
-                class="mai-logo-instagram"></span></a>
+            <a href="" target="_blank"><span class="mai-logo-instagram"></span></a>
             <a href="#" target="_blank"><span class="mai-logo-linkedin"></span></a>
           </div>
         </div>

@@ -229,7 +229,7 @@
                                     <i class="metismenu-icon bi bi-bricks"></i> Team Leads
                                 </a>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <a href="{% url 'dashboard:clients'%}"
                                     class="{% block our-clients-page-active %}{% endblock %}">
                                     <i class="metismenu-icon bi bi-building"></i> Our Clients
@@ -241,7 +241,7 @@
                                     class="{% block banners-page-active %}{% endblock %}">
                                     <i class="metismenu-icon bi bi-body-text"></i> Banners
                                 </a>
-                            </li>
+                            </li> -->
 
                             <li class="app-sidebar__heading">Apps</li>
                             <li>
@@ -255,11 +255,19 @@
             </div>
             <div class="app-main__outer">
                 {% block content %}{% endblock %}
+                <div class="app-wrapper-footer">
+                    <div class="app-footer">
+                        <div class="app-footer__inner">
+                            <div class="app-footer-left">
+                                <p class="text text-muted">All rights reversed &copy; 2021 Sinel Hospital</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
-
-    <div class="app-drawer-overlay d-none animated fadeIn"></div>
 
     <script type="text/javascript" src="{% static 'scripts/dashboard_template_script.js' %}"></script>
     <script type="text/javascript" src="{% static 'scripts/dasboard_custom_script.js' %}"></script>

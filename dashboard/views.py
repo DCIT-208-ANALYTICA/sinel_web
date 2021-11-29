@@ -9,6 +9,7 @@ from blog.models import Post
 from django.contrib import messages
 from website.forms import MediaForm, ServiceForm, TeamLeadForm
 from django.utils.html import strip_tags
+from accounts.models import Administrator
 
 
 class IndexView(View):
@@ -16,8 +17,12 @@ class IndexView(View):
 
     @method_decorator(staff_only())
     def get(self, request, *args, **kwargs):
-        context = {}
-
+        context = {
+            "posts": Post.objects.all(),
+            "administrators": Administrator.objects.all(),
+            "services": Service.objects.all(),
+            "about": About.objects.first()
+        }
         return render(request, self.template_name, context)
 
 
@@ -71,11 +76,11 @@ class ContactView(View):
             contact.email = email
         if gps:
             contact.gps = gps
-        if gps:
+        if address:
             contact.address = address
-        if gps:
+        if telephone:
             contact.telephone = telephone
-        if gps:
+        if lat_lng:
             contact.lat_lng = lat_lng
         contact.save()
         return redirect(request.META.get("HTTP_REFERER"))
