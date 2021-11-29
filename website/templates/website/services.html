@@ -23,15 +23,16 @@
             <div class="col-lg-10 mt-5">
                 <div class="row justify-content-center">
                     {% for service in services %}
-
                     <div class="col-md-6 col-lg-4 wow zoomIn">
                         <div class="card-doctor">
-                            <div class="header">
-                                <img src="{{service.image.url}}" alt="{{service.title}}">
-                            </div>
-                            <div class="body">
-                                <p class="text-xl mb-0">{{service.title}}</p>
-                            </div>
+                            <a href="{% url 'website:service_details' service.id %}" style="color:#05b4e1">
+                                <div class="header">
+                                    <img src="{{service.image.url}}" alt="{{service.title}}">
+                                </div>
+                                <div class="body">
+                                    <p class="text-xl mb-0">{{service.title}}</p>
+                                </div>
+                            </a>
                         </div>
                     </div>
                     {% endfor %}
