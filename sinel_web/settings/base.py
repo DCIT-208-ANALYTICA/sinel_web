@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django_user_agents',
     'django_ckeditor_5',
     'django_extensions',
+    'tawkto',
 
     # Custom Apps
     'accounts.apps.AccountsConfig',

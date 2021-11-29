@@ -13,3 +13,4 @@ django-user-agents==0.4.0
 django-ckeditor-5==0.0.14
 psycopg2==2.8.6
 django-extensions==3.1.5
+django-tawkto==0.3
