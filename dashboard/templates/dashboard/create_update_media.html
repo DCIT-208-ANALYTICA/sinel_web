@@ -23,7 +23,7 @@
   </div>
   <div class="main-card mb-3 card">
     <div class="card-body">
-      
+
       {% if messages %}
       <div id="message-container" class="col-md-12 mx-auto">
         {% for message in messages %}
@@ -62,7 +62,7 @@
           <select class="form-control" name="album" id="album" required>
             <option value="">Choose album</option>
             {% for album in albums %}
-            <option value="{{album.id}}" {% if album == media.album %}selected{% endif %}>{{album.name}}</option>
+            <option value="{{album.id}}" {% if album==media.album %}selected{% endif %}>{{album.name}}</option>
             {% endfor %}
           </select>
         </div>

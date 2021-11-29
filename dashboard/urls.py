@@ -41,7 +41,10 @@ urlpatterns = [
          name="delete_team_lead"),
     path("contact", views.ContactView.as_view(), name="contact"),
     path("clients", views.ClientsView.as_view(), name="clients"),
-    path("blog", views.BlogView.as_view(), name="blog"),
+    path("posts", views.PostsView.as_view(), name="posts"),
     path("banners", views.BannersView.as_view(), name="banners"),
-    path("update_blog", views.UpdateBlogPost.as_view(), name="update_blog"),
+    path("create_update_post",
+         views.CreateUpdatePostView.as_view(),
+         name="create_update_post"),
+    path("delete_post", views.DeletePostView.as_view(), name="delete_post"),
 ]

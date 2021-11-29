@@ -1,6 +1,6 @@
-{% extends 'dashboard/base_template.html' %} 
-{% block gallery-page-active %}mm-active{% endblock %} 
-{% block pagetitle %}Gallery{% endblock %} 
+{% extends 'dashboard/base_template.html' %}
+{% block gallery-page-active %}mm-active{% endblock %}
+{% block pagetitle %}Gallery{% endblock %}
 
 {% load static %} {%block content %}
 <div class="app-main__inner">
@@ -19,12 +19,7 @@
       </div>
       <div class="page-title-actions">
         <a href="{% url 'dashboard:create_update_media' %}">
-          <button
-            type="button"
-            aria-haspopup="true"
-            aria-expanded="false"
-            class="btn-shadow btn btn-info"
-          >
+          <button type="button" aria-haspopup="true" aria-expanded="false" class="btn-shadow btn btn-info">
             <span class="btn-icon-wrapper pr-2 opacity-7">
               <i class="fa bi bi-plus fa-w-20"></i>
             </span>
@@ -40,26 +35,22 @@
     {% for media in album.children.all %}
     <div class="col-md-3">
       <div class="card">
-        <img
-          src="{{media.file.url}}"
-          class="card-img-top"
-          alt="{{media.name}}"
-          style="max-height: 250px;"
-        />
+        <img src="{{media.file.url}}" class="card-img-top" alt="{{media.name}}" style="max-height: 250px;" />
         <div class="card-body">
           <h5 class="card-title">{{media.name}}</h5>
           <p class="card-text">
-           {{media.description}}
+            {{media.description}}
           </p>
           <div class="d-flex">
-            <form action="{% url 'dashboard:delete_media' %}" method="POST" class="confirm-action" data-message="Sure you want to delete?">
+            <form action="{% url 'dashboard:delete_media' %}" method="POST" class="confirm-action"
+              data-message="Sure you want to delete?">
               {% csrf_token %}
               <input value={{media.id}} name="media_id" type="hidden">
               <button class="btn-link btn">
                 <span class="text text-danger">
                   <i class="bi bi-trash btn-icon-wrapper"> </i>Danger
                 </span>
-              </button>                            
+              </button>
             </form>
             <a href="{% url 'dashboard:create_update_media' %}?media_id={{media.id}}" class="btn btn-primary">Edit</a>
           </div>

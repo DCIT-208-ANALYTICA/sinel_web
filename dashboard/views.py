@@ -1,10 +1,11 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import View
 from django.utils.decorators import method_decorator
+from blog.forms import PostForm
 from communications.models import Appointment
 from sinel_web.utils.decorators import staff_only
 from website.models import About, Album, Contact, Media, Service, TeamLead
-from blog.models import Blog
+from blog.models import Post
 from django.contrib import messages
 from website.forms import MediaForm, ServiceForm, TeamLeadForm
 from django.utils.html import strip_tags
@@ -289,50 +290,54 @@ class ClientsView(View):
         return render(request, self.template_name, context)
 
 
-class BlogView(View):
-    template_name = "dashboard/blog.html"
+class PostsView(View):
+    template_name = "dashboard/posts.html"
 
     @method_decorator(staff_only())
     def get(self, request, *argd, **kwargs):
-        context = {"blogs": Blog.objects.all()}
-
+        context = {"posts": Post.objects.all()}
         return render(request, self.template_name, context)
 
 
-class UpdateBlogPost(View):
-    template_name = "dashboard/update_blog.html"
+class CreateUpdatePostView(View):
+    template_name = "dashboard/create_update_post.html"
+    form_class = PostForm
+    model_class = Post
+    object_id_field = "blog_id"
 
     @method_decorator(staff_only())
     def get(self, request, *argd, **kwargs):
-        blog_id = request.GET.get("blog_id", -1)
-        context = {"blog": Blog.objects.filter(id=blog_id).first()}
+        post_id = request.GET.get("post_id", -1)
+        context = {"post": self.model_class.objects.filter(id=post_id).first()}
         return render(request, self.template_name, context)
 
     @method_decorator(staff_only())
     def post(self, request, *argd, **kwargs):
-        blog_id = request.POST.get("blog_id") or None
-        title = request.POST.get("title")
-        content = request.POST.get("blog_description")
-        visible = "on" in request.POST.get("visible", "")
-        image = request.FILES.get("image")
-
-        blog = Blog.objects.filter(id=blog_id).first()
-        if blog:
-            # Update
-            blog.title = title
-            blog.description = content
-            blog.visible = visible
-            if image:
-                blog.image = image
-            blog.save()
+        object_id = request.POST.get(self.object_id_field) or None
+        instance = None
+        if object_id:
+            instance = get_object_or_404(self.model_class, id=object_id)
+        form = self.form_class(request.POST,
+                               request.FILES or None,
+                               instance=instance)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.by = request.user
+            post.save()
         else:
-            Blog.objects.create(title=title,
-                                content=content,
-                                visible=visible,
-                                image=image)
-            messages.add_message(request, messages.SUCCESS,
-                                 "New blog has been created!.")
-        return redirect("dashboard:blog")
+            for field, er in form.errors.items():
+                message = f"{field.title()}: {strip_tags(er)}"
+                messages.add_message(request, messages.ERROR, message)
+            return redirect(request.META.get("HTTP_REFERER"))
+        return redirect("dashboard:posts")
+
+
+class DeletePostView(View):
+    @method_decorator(staff_only())
+    def post(self, request, *argd, **kwargs):
+        post_id = request.POST.get("post_id")
+        Post.objects.filter(id=post_id).delete()
+        return redirect(request.META.get("HTTP_REFERER"))
 
 
 class AppointmentView(View):
