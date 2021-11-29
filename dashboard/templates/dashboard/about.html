@@ -48,9 +48,7 @@
             <h1>Overview</h1>
             <form method="POST">
               {% csrf_token %}
-              <textarea name="overview-content" required>
-                               {{about.overview}}
-                            </textarea>
+              <textarea name="overview-content" required>{{about.overview}}</textarea>
               <div class="form-group">
                 <button class="btn btn-primary mt-4" type="submit">Update</button>
               </div>
@@ -67,9 +65,7 @@
             <h1>Mission</h1>
             <form method="POST">
               {% csrf_token %}
-              <textarea name="mission-content" required>
-                               {{about.mission}}
-                            </textarea>
+              <textarea name="mission-content" required>{{about.mission}}</textarea>
               <div class="form-group">
                 <button class="btn btn-primary mt-4" type="submit">Update</button>
               </div>
@@ -86,9 +82,7 @@
             <h1>Vision</h1>
             <form method="POST">
               {% csrf_token %}
-              <textarea name="vission-content" required>
-                                {{about.vision}}
-                            </textarea>
+              <textarea name="vission-content" required>{{about.vision}}</textarea>
               <div class="form-group">
                 <button class="btn btn-primary mt-4" type="submit">Update</button>
               </div>
@@ -105,9 +99,7 @@
             <h1>Value</h1>
             <form method="POST">
               {% csrf_token %}
-              <textarea name="value-content" required>
-                               {{about.value}}
-                            </textarea>
+              <textarea name="value-content" required>{{about.value}}</textarea>
               <div class="form-group">
                 <button class="btn btn-primary mt-4" type="submit">Update</button>
               </div>
