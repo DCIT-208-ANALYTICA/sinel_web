@@ -78,7 +78,7 @@
             </li>
             <div class="dropdown">
               <li class="nav-item {% block services_active %}{% endblock %}">
-                <a class="nav-link" href="{% url 'website:services' %}">Services<i class="fa fa-caret-down"></i></a>
+                <a class="nav-link" href="{% url 'website:services' %}">Services</a>
 
                 <div class="dropdown-content">
                   {% for service in request.services %}
