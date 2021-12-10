@@ -1,6 +1,6 @@
 {% extends 'dashboard/base_template.html' %}
 {% block team-leads-page-active%}mm-active{% endblock %}
-{% block pagetitle %}Administrators{% endblock %}
+{% block pagetitle %}Team Leads{% endblock %}
 
 {% load static %}
 
@@ -13,16 +13,16 @@
                     <i class="pe-7s-medal icon-gradient bg-tempting-azure"></i>
                 </div>
                 <div>
-                    New administrator
+                    New Team Lead
                     <div class="page-title-subheading">
-                        Add a new administrator that can access this dashboard.
+                        Add a new team lead that can access this dashboard.
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="main-card mb-3 col-md-8 mx-auto card">
-        <div class="card-body">
+    <div class="main-card mb-3 col-md-12 mx-auto card">
+        <div class="card-body col-md-8 mx-auto">
             {% if messages %}
             <div id="message-container" class="col-md-12 mx-auto">
                 {% for message in messages %}
