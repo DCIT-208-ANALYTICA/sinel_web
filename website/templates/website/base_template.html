@@ -20,6 +20,9 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
   <meta name="referrer" content="no-referrer-when-downgrade">
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css">
+
   {% block styleblock %}{% endblock %}
 
 </head>
@@ -103,20 +106,67 @@
 
   {% block content %} {% endblock %}
 
-  <div class="page-section banner-home bg-image" style="background-image: url(../assets/img/banner-pattern.svg)">
-    <div class="container py-5 py-lg-0">
-      <div class="row align-items-center">
-        <div class="col-lg-4 wow zoomIn">
-          <div class="img-banner d-none d-lg-block">
-            <img src="{% static 'img/mobile_app.png' %}" alt="" />
-          </div>
+  <div class="p-3" style="background-color:rgb(31, 169, 219);">
+    <h1 class="text text-light text-center" style="text-decoration: underline;">What they say about us</h1>
+    <div class="owl-carousel owl-theme mt-5">
+      <div class="owl-item">
+        <div class="card">
+          <div class="img-card"> <img
+              src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+              alt=""> </div>
+          <div class="testimonial mt-4 mb-2"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus
+            expedita dicta doloremque odit saepe quo natus aut accusantium alias blanditiis. </div>
+          <div class="name"> Denis Richie </div>
         </div>
-        <div class="col-lg-8 wow fadeInRight">
-          <h1 class="font-weight-normal mb-3">
-            Get easy access of all features using Sinel Application
-          </h1>
-          <a href="#"><img src="{% static 'img/google_play.svg' %}" alt="" /></a>
-          <a href="#" class="ml-2"><img src="{% static 'img/app_store.svg' %}" alt="" /></a>
+      </div>
+      <div class="owl-item">
+        <div class="card">
+          <div class="img-card"> <img
+              src="https://images.pexels.com/photos/1024311/pexels-photo-1024311.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+              alt=""> </div>
+          <div class="testimonial mt-4 mb-2"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus
+            expedita dicta doloremque odit saepe quo natus aut accusantium alias blanditiis. </div>
+          <div class="name"> Lisa Sthalekar </div>
+        </div>
+      </div>
+      <div class="owl-item">
+        <div class="card">
+          <div class="img-card"> <img
+              src="https://images.pexels.com/photos/1036622/pexels-photo-1036622.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+              alt=""> </div>
+          <div class="testimonial mt-4 mb-2"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus
+            expedita dicta doloremque odit saepe quo natus aut accusantium alias blanditiis. </div>
+          <div class="name"> Elizabith Richie </div>
+        </div>
+      </div>
+      <div class="owl-item">
+        <div class="card">
+          <div class="img-card"> <img
+              src="https://images.pexels.com/photos/1212984/pexels-photo-1212984.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+              alt=""> </div>
+          <div class="testimonial mt-4 mb-2"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus
+            expedita dicta doloremque odit saepe quo natus aut accusantium alias blanditiis. </div>
+          <div class="name"> Daniel Xavier </div>
+        </div>
+      </div>
+      <div class="owl-item">
+        <div class="card">
+          <div class="img-card"> <img
+              src="https://images.pexels.com/photos/1832959/pexels-photo-1832959.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+              alt=""> </div>
+          <div class="testimonial mt-4 mb-2"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus
+            expedita dicta doloremque odit saepe quo natus aut accusantium alias blanditiis. </div>
+          <div class="name"> Emma Watson </div>
+        </div>
+      </div>
+      <div class="owl-item">
+        <div class="card">
+          <div class="img-card"> <img
+              src="https://images.pexels.com/photos/718261/pexels-photo-718261.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+              alt=""> </div>
+          <div class="testimonial mt-4 mb-2"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus
+            expedita dicta doloremque odit saepe quo natus aut accusantium alias blanditiis. </div>
+          <div class="name"> Mohammad Imran </div>
         </div>
       </div>
     </div>
@@ -179,6 +229,14 @@
     </div>
   </footer>
 
+
+  <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/owl-carousel/js/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'vendor/wow/wow.min.js' %}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.js"></script>
+  <script src="{% static 'js/theme.js' %}"></script>
+
   <!--Start of Tawk.to Script-->
   <script type="text/javascript">
     var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
@@ -190,14 +248,32 @@
       s1.setAttribute('crossorigin', '*');
       s0.parentNode.insertBefore(s1, s0);
     })();
+
+    $(document).ready(function () {
+      var silder = $(".owl-carousel");
+      silder.owlCarousel({
+        autoplay: true,
+        autoplayTimeout: 3000,
+        autoplayHoverPause: false,
+        items: 1,
+        stagePadding: 20,
+        center: true,
+        nav: false,
+        margin: 50,
+        dots: true,
+        loop: true,
+        responsive: {
+          0: { items: 1 },
+          480: { items: 2 },
+          575: { items: 2 },
+          768: { items: 2 },
+          991: { items: 3 },
+          1200: { items: 4 }
+        }
+      });
+    });
   </script>
   <!--End of Tawk.to Script-->
-
-  <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
-  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-  <script src="{% static 'vendor/owl-carousel/js/owl.carousel.min.js' %}"></script>
-  <script src="{% static 'vendor/wow/wow.min.js' %}"></script>
-  <script src="{% static 'js/theme.js' %}"></script>
 
   {% block scriptblock %}{% endblock %}
 </body>
