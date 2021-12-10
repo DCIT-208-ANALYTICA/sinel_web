@@ -47,4 +47,16 @@ urlpatterns = [
          views.CreateUpdatePostView.as_view(),
          name="create_update_post"),
     path("delete_post", views.DeletePostView.as_view(), name="delete_post"),
+
+    # Testimonials
+    path("testimonials", views.TestimonialsView.as_view(),
+         name="testimonials"),
+    path(
+        "create_update_testimonial",
+        views.CreateUpdateTestimonial.as_view(),
+        name="create_update_testimonial",
+    ),
+    path("delete_testimonial",
+         views.DeleteTestimonialView.as_view(),
+         name="delete_testimonial"),
 ]

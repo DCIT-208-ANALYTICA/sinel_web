@@ -4,10 +4,10 @@ from django.utils.decorators import method_decorator
 from blog.forms import PostForm
 from communications.models import Appointment
 from sinel_web.utils.decorators import staff_only
-from website.models import About, Album, Contact, Media, Service, TeamLead
+from website.models import About, Album, Contact, Media, Service, TeamLead, Testimonial
 from blog.models import Post
 from django.contrib import messages
-from website.forms import MediaForm, ServiceForm, TeamLeadForm
+from website.forms import MediaForm, ServiceForm, TeamLeadForm, TestimonialForm
 from django.utils.html import strip_tags
 from accounts.models import Administrator
 
@@ -354,3 +354,59 @@ class AppointmentView(View):
         }
 
         return render(request, self.template_name, context)
+
+
+class TestimonialsView(View):
+    template_name = "dashboard/testimonials.html"
+
+    @method_decorator(staff_only())
+    def get(self, request, *argd, **kwargs):
+        testimonials = Testimonial.objects.all()
+        context = {"testimonials": testimonials}
+        return render(request, self.template_name, context)
+
+
+class CreateUpdateTestimonial(View):
+    template_name = "dashboard/create_update_testimonial.html"
+    form_class = TestimonialForm
+    model_class = Testimonial
+    object_id_field = "testimonial_id"
+
+    @method_decorator(staff_only())
+    def get(self, request, *argd, **kwargs):
+        testimonial_id = request.GET.get("testimonial_id", -1)
+        context = {
+            "services": Service.objects.filter(visible=True),
+            "doctors": TeamLead.objects.filter(visible=True),
+            "testimonial":
+            Testimonial.objects.filter(id=testimonial_id).first()
+        }
+        return render(request, self.template_name, context)
+
+    @method_decorator(staff_only())
+    def post(self, request, *argd, **kwargs):
+        object_id = request.POST.get(self.object_id_field) or None
+        instance = None
+        if object_id:
+            instance = get_object_or_404(self.model_class, id=object_id)
+        form = self.form_class(request.POST,
+                               request.FILES or None,
+                               instance=instance)
+        if form.is_valid():
+            testimonial = form.save(commit=False)
+            testimonial.added_by = request.user
+            testimonial.save()
+        else:
+            for field, er in form.errors.items():
+                message = f"{field.title()}: {strip_tags(er)}"
+                messages.add_message(request, messages.ERROR, message)
+            return redirect(request.META.get("HTTP_REFERER"))
+        return redirect("dashboard:testimonials")
+
+
+class DeleteTestimonialView(View):
+    @method_decorator(staff_only())
+    def post(self, request, *argd, **kwargs):
+        testimonial_id = request.POST.get("testimonial_id")
+        Testimonial.objects.filter(id=testimonial_id).delete()
+        return redirect(request.META.get("HTTP_REFERER"))

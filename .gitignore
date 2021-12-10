@@ -133,9 +133,7 @@ dmypy.json
 .vscode/
 virtualenv/**
 localvirtualenv/**
-**/migrations/**
 **/settings/prod.py
-migrations
 uploads
 assets
 .DS_Store

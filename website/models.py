@@ -1,4 +1,5 @@
 from django.db import models
+from accounts.models import Administrator
 from django_ckeditor_5.fields import CKEditor5Field
 
 
@@ -121,3 +122,27 @@ class About(models.Model):
     value = CKEditor5Field()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+
+class Testimonial(models.Model):
+    username = models.CharField(max_length=100)
+    message = models.TextField()
+    photo = models.ImageField(upload_to="uploads/images")
+    added_by = models.ForeignKey(Administrator,
+                                 null=True,
+                                 blank=True,
+                                 on_delete=models.SET_NULL)
+    service = models.ForeignKey(Service,
+                                null=True,
+                                blank=True,
+                                on_delete=models.SET_NULL)
+    doctor = models.ForeignKey(TeamLead,
+                               null=True,
+                               blank=True,
+                               on_delete=models.SET_NULL)
+    visible = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self) -> str:
+        return self.username
