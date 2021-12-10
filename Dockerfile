@@ -30,7 +30,7 @@ RUN apk update \
 RUN pip install --upgrade pip
 
 COPY ./requirements.txt $APP_HOME
-RUN pip install -r requirements.txt
+RUN pip --default-timeout=1000 install -r requirements.txt
 
 # Delet temp build dir.
 # RUN apk del build-deps
