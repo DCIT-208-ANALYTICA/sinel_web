@@ -21,8 +21,6 @@ docs
 logs
 node_modules
 **node_modules
-**/migrations/**
-**/migrations
 **/node_modules
 **/uploads
 web/media
