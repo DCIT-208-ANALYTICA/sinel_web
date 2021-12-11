@@ -20,7 +20,7 @@
   </div> <!-- .banner-section -->
 </div> <!-- .page-banner -->
 
-<div class="page-section">
+<div class="page-section p-3">
   <div class="container">
     <h1 class="text-center wow fadeInUp">Get in Touch</h1>
     <div class="row justify-content-center">
@@ -51,38 +51,37 @@
 
   <div class="py-4 row fadeInUp row" style="background-color: #e4e4e4a6; justify-content: space-between;">
     <div class="col-md-3 p-3">
-      <div class="pl-3">
-        <h4 class="text font-weight-bold">CONTACT</h4>
-        <p> <i class="text-sinel bi bi-phone"></i> Phone: <a
-            href="tel:{{request.contact.telephone}}">{{request.contact.telephone}}</a></p>
-        <p> <i class="text-sinel bi bi-envelope"></i> Email: <a
-            href="mailto:{{request.contact.email}}">{{request.contact.email}}</a></p>
-      </div>
+      <h4 class="text font-weight-bold">CONTACT</h4>
+      <p> <i class="text-sinel bi bi-phone"></i> Phone: <a
+          href="tel:{{request.contact.telephone}}">{{request.contact.telephone}}</a></p>
+      <p> <i class="text-sinel bi bi-envelope"></i> Email: <a
+          href="mailto:{{request.contact.email}}">{{request.contact.email}}</a></p>
       <hr>
     </div>
     <div class="col-md-3 p-3">
       <h4 class="text font-weight-bold">Location</h4>
       <p><i class="text-sinel bi bi-geo-alt"></i> {{request.contact.address}}</p>
     </div>
-    <div class="col-md-6">
-      <div class="mapouter d-flex justify-content-end pr-2" style="width: 100%;">
-        <div class="gmap_canvas"><iframe width="800" height="300" id="gmap_canvas"
+    <div class="col-md-6 m-0 p-0">
+      <div class="mapouter d-flex justify-content-end" style="width: 100%;">
+        <div class="gmap_canvas col-12 m-0 p-0">
+          <iframe height="300" id="gmap_canvas" class="col-12"
             src="https://maps.google.com/maps?q=Sinel%20Hospital&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"
-            scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://123movies-org.net"></a><br>
+            scrolling="no" marginheight="0" marginwidth="0"></iframe>
+
           <style>
             .mapouter {
               position: relative;
               text-align: right;
               height: 300px;
-              width: 800px;
+              max-width: 800px;
             }
-          </style><a href="https://www.embedgooglemap.net">interactive google maps for website</a>
-          <style>
+
             .gmap_canvas {
               overflow: hidden;
               background: none !important;
               height: 300px;
-              width: 800px;
+              max-width: 800px;
             }
           </style>
         </div>
