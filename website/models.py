@@ -127,7 +127,9 @@ class About(models.Model):
 class Testimonial(models.Model):
     username = models.CharField(max_length=100)
     message = models.TextField()
-    photo = models.ImageField(upload_to="uploads/images")
+    photo = models.ImageField(upload_to="uploads/images",
+                              null=True,
+                              blank=True)
     added_by = models.ForeignKey(Administrator,
                                  null=True,
                                  blank=True,

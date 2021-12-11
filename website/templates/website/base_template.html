@@ -121,10 +121,13 @@
       {% for testimonial in request.testimonials %}
       <div class="owl-item">
         <div class="card">
-          <div class="img-card"> <img {% if testimonial.photo %} src="{{testimonial.photo.url}}" {% else %}
-              src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              {% endif %} alt="{{testimonial.username}}"> </div>
-          <div class="testimonial mt-4 mb-2">{{testimonial.message}}</div>
+          <div class="testimonial mb-2">
+            <blockquote>
+              <p class="text text-center">
+              {{testimonial.message}}
+            </p>
+            </blockquote>
+          </div>
           <div class="name">{{testimonial.username}}</div>
         </div>
       </div>
