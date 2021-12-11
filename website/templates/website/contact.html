@@ -51,13 +51,18 @@
 
   <div class="py-4 row fadeInUp row" style="background-color: #e4e4e4a6; justify-content: space-between;">
     <div class="col-md-3 p-3">
-      <h4 class="text font-weight-bold">CONTACT</h4>
-      <p>Phone: {{request.contact.telephone}}</p>
+      <div class="pl-3">
+        <h4 class="text font-weight-bold">CONTACT</h4>
+        <p> <i class="text-sinel bi bi-phone"></i> Phone: <a
+            href="tel:{{request.contact.telephone}}">{{request.contact.telephone}}</a></p>
+        <p> <i class="text-sinel bi bi-envelope"></i> Email: <a
+            href="mailto:{{request.contact.email}}">{{request.contact.email}}</a></p>
+      </div>
       <hr>
     </div>
     <div class="col-md-3 p-3">
       <h4 class="text font-weight-bold">Location</h4>
-      <p>{{request.contact.address}}</p>
+      <p><i class="text-sinel bi bi-geo-alt"></i> {{request.contact.address}}</p>
     </div>
     <div class="col-md-6">
       <div class="mapouter d-flex justify-content-end pr-2" style="width: 100%;">

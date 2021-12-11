@@ -35,6 +35,10 @@ table tr:hover {
   background-color: #ddd;
 }
 
+.text-sinel {
+  color: #1fa9db;
+}
+
 blockquote {
   padding: 6px 16px;
   border: none;

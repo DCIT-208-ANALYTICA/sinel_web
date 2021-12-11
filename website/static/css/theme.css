@@ -13,13 +13,13 @@
 }
 
 body {
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   line-height: 1.5;
   color: var(--dark);
 }
 
 a {
-  color: #07be94;
+  color: #101c81;
   text-decoration: none;
   background-color: transparent;
 }
@@ -971,7 +971,7 @@ a.text-dark:focus {
   display: inline-block;
   padding-right: 0.5rem;
   color: rgba(255, 255, 255, 0.8);
-  content: "/";
+  content: '/';
 }
 
 .breadcrumb-dark .breadcrumb-item.active {
@@ -1187,7 +1187,7 @@ a.text-dark:focus {
 }
 
 .bg-image-overlay-dark::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -1236,7 +1236,7 @@ a.text-dark:focus {
 }
 
 .back-to-top::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 50%;
   left: 0;
@@ -1280,7 +1280,7 @@ a.text-dark:focus {
 
 .page-hero.overlay-dark::before,
 .page-banner.overlay-dark::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -1390,7 +1390,7 @@ a.text-dark:focus {
 }
 
 .card-doctor .header::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -1620,7 +1620,7 @@ a.text-dark:focus {
 .sidebar-block::after {
   display: block;
   clear: both;
-  content: "";
+  content: '';
 }
 
 .sidebar-title {
@@ -1630,7 +1630,7 @@ a.text-dark:focus {
 }
 
 .sidebar-title::after {
-  content: "";
+  content: '';
   display: block;
   margin-top: 10px;
   width: 50px;
