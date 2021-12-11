@@ -82,6 +82,7 @@ class Banner(models.Model):
 class Service(models.Model):
     title = models.CharField(max_length=100)
     description = CKEditor5Field()
+    doctors = models.ManyToManyField("TeamLead")
     image = models.ImageField(upload_to="uploads/images", )
     visible = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -137,6 +138,7 @@ class Testimonial(models.Model):
     service = models.ForeignKey(Service,
                                 null=True,
                                 blank=True,
+                                related_name="testimonials",
                                 on_delete=models.SET_NULL)
     doctor = models.ForeignKey(TeamLead,
                                null=True,

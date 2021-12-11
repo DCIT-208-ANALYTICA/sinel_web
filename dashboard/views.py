@@ -196,7 +196,10 @@ class CreateUpdateService(View):
     @method_decorator(staff_only())
     def get(self, request, *argd, **kwargs):
         service_id = request.GET.get("service_id", -1)
-        context = {"service": Service.objects.filter(id=service_id).first()}
+        context = {
+            "service": Service.objects.filter(id=service_id).first(),
+            "doctors": TeamLead.objects.filter(visible=True),
+        }
         return render(request, self.template_name, context)
 
     @method_decorator(staff_only())

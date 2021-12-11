@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.views.generic import View
-from .models import About, Media, Service, TeamLead
+from .models import About, Media, Service, TeamLead, Testimonial
 from blog.models import Post
 
 
@@ -57,5 +57,12 @@ class ServiceDetailsView(View):
     template_name = "website/service_details.html"
 
     def get(self, request, service_id, *args, **kwargs):
-        context = {"service": Service.objects.filter(id=service_id).first()}
+        service = get_object_or_404(Service, id=service_id)
+        doctors = service.doctors.filter(visible=True)
+        testimonials = service.testimonials.filter(visible=True)
+        context = {
+            "service": service,
+            "doctors": doctors,
+            "testimonials": testimonials,
+        }
         return render(request, self.template_name, context)

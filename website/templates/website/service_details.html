@@ -1,16 +1,18 @@
-{% extends 'website/base_template.html' %} 
-{% load static %} 
+{% extends 'website/base_template.html' %}
+{% load static %}
 
 {% block styleblock %}
 <link rel="stylesheet" href="{% static 'css/details.css' %}" />
 {% endblock %} {% block content %}
 
-<div class="row" style="height: 20em; background-color: #1fa9db;">
-  <div class="col-md-6"></div>
-  <div class="col-md-6">
-    
+<div class="row"
+  style="height: 20em; background-color: #1fa9db; border-bottom-right-radius: 5em;border-top-left-radius: 5em; overflow: hidden;">
+  <div class="col-md-6 d-flex align-items-center justify-content-center">
+    <h1 class="text text-light text-center">{{service.title}}</h1>
   </div>
-  <h1>hello</h1>
+  <div class="col-md-6 d-flex justify-content-end pr-0 mr-0">
+    <img src="{{service.image.url}}" alt="{{service.title}}" style="max-height: 20em;">
+  </div>
 </div>
 
 <div class="page-section">
@@ -24,4 +26,60 @@
   </div>
 </div>
 
+<div class="page-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 mt-5">
+        <h1 class="text-center mb-5 wow fadeInUp">Doctors</h1>
+        <div class="row justify-content-center">
+          {% for doctor in doctors %}
+          <div class="col-md-6 col-lg-4 wow zoomIn">
+            <div class="card-doctor">
+              <div class="header">
+                <img src="{{doctor.photo.url}}" alt="{{doctor.fullname}}">
+                <div class="meta">
+                  <a href="#">
+                    <span class="mai-call"></span></a>
+                  <a href="{{doctor.linkedin}}"><span class="bi bi-linkedin"></span></a>
+                </div>
+              </div>
+              <div class="body">
+                <p class="text-xl mb-0">{{doctor.fullname}}</p>
+                <span class="text-sm text-grey">{{doctor.title}}</span>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+
+
+{% block testimonials %}
+{% if testimonials %}
+<div class="p-3" style="background-color:rgb(31, 169, 219);">
+  <h1 class="text text-light text-center" style="font-family: cursive;">Those who came said...</h1>
+  <div class="owl-carousel owl-theme mt-5">
+    {% for testimonial in testimonials %}
+    <div class="owl-item">
+      <div class="card">
+        <div class="testimonial mb-2">
+          <blockquote>
+            <p class="text text-center">
+              {{testimonial.message}}
+            </p>
+          </blockquote>
+        </div>
+        <div class="name">{{testimonial.username}}</div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
 {% endblock %}
