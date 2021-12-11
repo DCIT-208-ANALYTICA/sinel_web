@@ -19,13 +19,13 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-8 wow fadeInUp">
-        <h1 class="text-center mb-3">{{service.title}}</h1>
         <div class="textt-lg">{{service.description|safe}}</div>
       </div>
     </div>
   </div>
 </div>
 
+{% if doctors %}
 <div class="page-section">
   <div class="container">
     <div class="row justify-content-center">
@@ -55,10 +55,9 @@
     </div>
   </div>
 </div>
-
+{% endif %}
 
 {% endblock %}
-
 
 {% block testimonials %}
 {% if testimonials %}
