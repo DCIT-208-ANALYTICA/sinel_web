@@ -78,16 +78,13 @@
               <a class="nav-link" href="{% url 'website:about' %}">About Us</a>
             </li>
             <li class="nav-item {% block contact_active %}{% endblock %}">
-              <a class="nav-link" href="{% url 'website:contact' %}">Contact</a>
+              <a class="nav-link" href="{% url 'website:contact' %}">Contact Us</a>
             </li>
             <li class="nav-item {% block client_active %}{% endblock %}">
               <a class="nav-link" href="{% url 'website:index' %}">Clients</a>
             </li>
             <li class="nav-item {% block partners_active %}{% endblock %}">
               <a class="nav-link" href="{% url 'website:index' %}">Partners</a>
-            </li>
-            <li class="nav-item {% block facility_active %}{% endblock %}">
-              <a class="nav-link" href="{% url 'website:index' %}">Facilities</a>
             </li>
             <div class="dropdown">
               <li class="nav-item {% block services_active %}{% endblock %}">
