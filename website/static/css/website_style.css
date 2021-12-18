@@ -201,8 +201,8 @@ body {
 
   #service-title-banner {
     height: fit-content;
-    border-bottom-right-radius: 3em;
-    border-top-left-radius: 3em;
+    border-bottom-right-radius: 0.2em;
+    border-top-left-radius: 0.2em;
     margin-left: 0.5em;
     margin-right: 0.5em;
   }
