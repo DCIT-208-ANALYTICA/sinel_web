@@ -82,11 +82,15 @@ class Banner(models.Model):
 class Service(models.Model):
     title = models.CharField(max_length=100)
     description = CKEditor5Field()
+    schedules = CKEditor5Field(default="")
     doctors = models.ManyToManyField("TeamLead")
     image = models.ImageField(upload_to="uploads/images", )
     visible = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self) -> str:
+        return self.title
 
 
 class Client(models.Model):
