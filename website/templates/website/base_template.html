@@ -79,11 +79,13 @@
       <div class="collapse navbar-collapse" id="navbarSupport">
         <ul class="navbar-nav ml-auto">
           <li class="">
-            <a href="{% url 'communications:book_appointment' %}#request-appointment" class="btn btn-primary p-3"><i class="bi bi-calendar"></i> Request Appointment</a>
+            <a href="{% url 'communications:book_appointment' %}#request-appointment" class="btn btn-primary p-3"><i
+                class="bi bi-calendar"></i> Request Appointment</a>
           </li>
-         
+
           <li class="ml-3">
-            <a href="tel:{{request.contact.telephone}}" class="btn btn-primary p-3"><i class="bi bi-telephone-plus"></i> Call Us</a>
+            <a href="tel:{{request.contact.telephone}}" class="btn btn-primary p-3"><i class="bi bi-telephone-plus"></i>
+              Call Us</a>
           </li>
         </ul>
       </div>
@@ -119,7 +121,7 @@
   {% endblock %}
   <!-- .banner-home -->
 
-  <footer class="page-footer">
+  <footer class="page-footer" style="background-color: rgb(31, 46, 100) !important;">
     <div class="container">
       <div class="row px-md-3">
         <div class="col-sm-6 col-lg-3 py-3">
@@ -155,9 +157,8 @@
       <hr />
 
       <p id="copyright">
-        Copyright &copy; 2020
-        <a target="_blank">Sinel</a>. All
-        right reserved
+      <p>Copyright &copy;
+        <script>document.write(new Date().getFullYear())</script> Sinel All Rights Reserved
       </p>
     </div>
   </footer>
