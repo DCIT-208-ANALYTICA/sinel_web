@@ -1,0 +1,42 @@
+{% extends 'website/base_template.html' %}
+{% load static %}
+
+{% block services_active %}active{% endblock %}
+
+{% block content %}
+
+<div class="page-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 wow fadeInUp">
+                <h1 class="text-center mb-3">Our Services</h1>
+                <div class="text-lg">
+                    <p>Welcome to Sinel Specialist Hospital. We are here to help you with all of your needs.
+                        Some of our services include Dietary Therapy, Dietetics, Radiology, Dermatology and more.
+                    </p>
+                    <p>We are committed to helping you and are available more than just in person. To find the
+                        entire list of services see below. For more information about a specific service
+                        click the link with that label.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-10 mt-5">
+                <div class="row justify-content-center">
+                    {% for service in services %}
+                    <div class="col-md-6 col-lg-4 wow zoomIn">
+                        <div class="card-doctor">
+                            <a href="{% url 'website:service_details' service.id %}" style="color:#05b4e1">
+                                <img class="img img-fluid" src="{{service.image.url}}" alt="{{service.title}}">
+                                <div class="body">
+                                    <p class="text-xl mb-0">{{service.title}}</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -11,17 +11,17 @@
 <link rel="stylesheet" href="/static/css/flexslider.css">
 <link rel="stylesheet" href="/static/css/main.css">
 <link rel="stylesheet" href="/static/css/font-icon.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 {% endblock %}
 
 {% block content %}
 
 <div class="page-banner overlay-dark bg-image" style="background-image: url({% static 'img/bg_image_1.jpg' %});">
-<div class="banner-section">
+  <div class="banner-section">
     <div class="container text-center wow fadeInUp">
       <nav aria-label="Breadcrumb">
         <ol class="breadcrumb breadcrumb-dark bg-transparent justify-content-center py-0 mb-2">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'website:index' %}">Home</a></li>
           <li class="breadcrumb-item active" aria-current="page">Gallery</li>
         </ol>
       </nav>
@@ -32,101 +32,134 @@
 
 <!-- gallery section -->
 <section id="gallery" class="gallery section">
-    <div class="section-header">
-        <h2 class="wow fadeInDown animated">Gallery</h2>
-        <p class="wow fadeInDown animated">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eget risus vitae massa <br> semper aliquam quis mattis quam.</p>
-    </div>
-    <div class="row no-gutter">
-      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a href="{% static 'img/bg_image_1.jpg' %}" class="work-box"> <img src="{% static 'img/bg_image_1.jpg' %}" alt="">
-        <div class="overlay">
-          <div class="overlay-caption">
-             <p><svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-</svg></span></p>
-             <br>
-             <p>Hi there Lorem ipsum dolor sit.</p>
+  <div class="section-header">
+    <h2 class="wow fadeInDown animated">Gallery</h2>
+    <p class="wow fadeInDown animated">We are committed to providing you with the best possible health care and we want
+      our facilities to reflect that. <br> Please see the photos below of our staff and facilities. </p>
+  </div>
+  <div class="row no-gutter">
+
+    {% if media %}
+      {% for item in media %}
+      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a href="{{item.file.url}}" class="work-box"> <img
+            src="{{item.file.url}}" alt="">
+          <div class="overlay">
+            <div class="overlay-caption">
+              <p><svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" fill="currentColor" class="bi bi-search"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                </svg></span></p>
+              <br>
+              <p>Hi there Lorem ipsum dolor sit.</p>
+            </div>
           </div>
-        </div>
-        <!-- overlay --> 
-        </a> </div>
-      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a href="{% static 'img/bg_image_1.jpg' %}" class="work-box"> <img src="{% static 'img/bg_image_1.jpg' %}" alt="">
-        <div class="overlay">
-          <div class="overlay-caption">
-            <p><svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-</svg></span></p>
+          <!-- overlay -->
+        </a>
+      </div>
+      {% endfor %}
+    {% else %}
+      <!-- Dummy pictures -->
+      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a href="{% static 'img/bg_image_1.jpg' %}" class="work-box"> <img
+            src="{% static 'img/bg_image_1.jpg' %}" alt="">
+          <div class="overlay">
+            <div class="overlay-caption">
+              <p><svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" fill="currentColor" class="bi bi-search"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                </svg></span></p>
+            </div>
           </div>
-        </div>
-        <!-- overlay --> 
+          <!-- overlay -->
         </a> </div>
-      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a href="{% static 'img/bg_image_1.jpg' %}" class="work-box"> <img src="{% static 'img/bg_image_1.jpg' %}" alt="">
-        <div class="overlay">
-          <div class="overlay-caption">
-            <p><svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-</svg></span></p>
+      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a href="{% static 'img/bg_image_1.jpg' %}" class="work-box"> <img
+            src="{% static 'img/bg_image_1.jpg' %}" alt="">
+          <div class="overlay">
+            <div class="overlay-caption">
+              <p><svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" fill="currentColor" class="bi bi-search"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                </svg></span></p>
+            </div>
           </div>
-        </div>
-        <!-- overlay --> 
+          <!-- overlay -->
         </a> </div>
-      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a href="{% static 'img/bg_image_1.jpg' %}" class="work-box"> <img src="{% static 'img/bg_image_1.jpg' %}" alt="">
-        <div class="overlay">
-          <div class="overlay-caption"> 
-            <p><svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-</svg></span></p>
+      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a href="{% static 'img/bg_image_1.jpg' %}" class="work-box"> <img
+            src="{% static 'img/bg_image_1.jpg' %}" alt="">
+          <div class="overlay">
+            <div class="overlay-caption">
+              <p><svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" fill="currentColor" class="bi bi-search"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                </svg></span></p>
+            </div>
           </div>
-        </div>
-        <!-- overlay --> 
+          <!-- overlay -->
         </a> </div>
-      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a href="{% static 'img/bg_image_1.jpg' %}" class="work-box"> <img src="{% static 'img/bg_image_1.jpg' %}" alt="">
-        <div class="overlay">
-          <div class="overlay-caption">
-            <p><svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-</svg></span></p>
+      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a href="{% static 'img/bg_image_1.jpg' %}" class="work-box"> <img
+            src="{% static 'img/bg_image_1.jpg' %}" alt="">
+          <div class="overlay">
+            <div class="overlay-caption">
+              <p><svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" fill="currentColor" class="bi bi-search"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                </svg></span></p>
+            </div>
           </div>
-        </div>
-        <!-- overlay --> 
+          <!-- overlay -->
         </a> </div>
-      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a href="{% static 'img/blog/blog_1.jpg' %}" class="work-box"> <img src="{% static 'img/blog/blog_1.jpg' %}" alt="">
-        <div class="overlay">
-          <div class="overlay-caption">
-            <p><svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-</svg></span></p>
+      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a href="{% static 'img/blog/blog_1.jpg' %}" class="work-box"> <img
+            src="{% static 'img/blog/blog_1.jpg' %}" alt="">
+          <div class="overlay">
+            <div class="overlay-caption">
+              <p><svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" fill="currentColor" class="bi bi-search"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                </svg></span></p>
+            </div>
           </div>
-        </div>
-        <!-- overlay --> 
+          <!-- overlay -->
         </a> </div>
-      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a href="{% static 'img/blog/blog_1.jpg' %}" class="work-box"> <img src="{% static 'img/blog/blog_1.jpg' %}" alt="">
-        <div class="overlay">
-          <div class="overlay-caption">
-            <p><svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-</svg></span></p>
+      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a href="{% static 'img/blog/blog_1.jpg' %}" class="work-box"> <img
+            src="{% static 'img/blog/blog_1.jpg' %}" alt="">
+          <div class="overlay">
+            <div class="overlay-caption">
+              <p><svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" fill="currentColor" class="bi bi-search"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                </svg></span></p>
+            </div>
           </div>
-        </div>
-        <!-- overlay --> 
+          <!-- overlay -->
         </a> </div>
-      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a href="{% static 'img/blog/blog_1.jpg' %}" class="work-box"> <img src="{% static 'img/blog/blog_1.jpg' %}" alt="">
-        <div class="overlay">
-          <div class="overlay-caption">
-             <p><svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-</svg></span></p>
+      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a href="{% static 'img/blog/blog_1.jpg' %}" class="work-box"> <img
+            src="{% static 'img/blog/blog_1.jpg' %}" alt="">
+          <div class="overlay">
+            <div class="overlay-caption">
+              <p><svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" fill="currentColor" class="bi bi-search"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                </svg></span></p>
+            </div>
           </div>
-        </div>
-        <!-- overlay --> 
+          <!-- overlay -->
         </a> </div>
-    </div>
+        {% endif %}
+  </div>
 </section>
-<!-- gallery section --> 
+<!-- gallery section -->
 {% endblock %}
 
 {% block scriptblock %}
-<script src="/static/js/jquery.flexslider-min.js"></script> 
-<script src="/static/js/jquery.fancybox.pack.js"></script>  
-<script src="/static/js/main.js"></script>  
-<script src="/static/js/retina.min.js"></script>  
+<script src="/static/js/jquery.flexslider-min.js"></script>
+<script src="/static/js/jquery.fancybox.pack.js"></script>
+<script src="/static/js/main.js"></script>
+<script src="/static/js/retina.min.js"></script>
 {% endblock %}

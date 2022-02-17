@@ -15,11 +15,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("website.urls")),
     path('dashboard/', include("dashboard.urls")),
+    path('accounts/', include("accounts.urls")),
     path('blog/', include("blog.urls")),
     path('api/v1/', include("rest_api_v1.urls")),
+    path("communications/", include("communications.urls")),
 ]
+
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# Customize django admin page.
+admin.site.site_header = "SINEL HOSPITAL ADMINISTRATION" # default: "Django Administration"
+admin.site.index_title = "Site Adminsitration"                    # default: "Site administration"
+admin.site.site_title =  'Sinel site admin'                # default: "Django site admin"

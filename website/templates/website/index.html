@@ -1,21 +1,21 @@
-{% extends 'website/base_template.html' %} 
+{% extends 'website/base_template.html' %}
 
 {% load static %}
+{% load humanize %}
 
 {% block home_active %}active{% endblock %}
 
 {% block content %}
 
 
-<div
-  class="page-hero bg-image overlay-dark"
-  style="background-image: url({% static 'img/bg_image_1.jpg' %})"
->
+<div class="page-hero bg-image overlay-dark" style="background-image: url({% static 'img/bg_image_1.jpg' %})">
   <div class="hero-section">
     <div class="container text-center wow zoomIn">
-      <span class="subhead">Let's make your life happier</span>
-      <h1 class="display-4">Healthy Living</h1>
-      <a href="#" class="btn btn-primary">Let's Consult</a>
+      <h1>Better Healthcare</h1>
+      <span class="subhead">From our Hospital to You</span>
+      <p class="mt-2">
+        <a href="{% url 'website:services' %}" class="btn btn-primary">Our Services</a>
+      </p>
     </div>
   </div>
 </div>
@@ -25,11 +25,12 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-4 py-3 py-md-0">
-          <div class="card-service wow fadeInUp">
+          <div class="card-service wow fadeInUp"
+            onclick="document.querySelector('iframe').contentDocument.querySelector('button').click()">
             <div class="circle-shape bg-secondary text-white">
               <span class="mai-chatbubbles-outline"></span>
             </div>
-            <p><span class="text text-primary">Chat</span> with a doctor</p>
+            <p><span class="text text-primary">Chat</span> with us</p>
           </div>
         </div>
         <div class="col-md-4 py-3 py-md-0">
@@ -45,7 +46,7 @@
             <div class="circle-shape bg-accent text-white">
               <span class="mai-basket"></span>
             </div>
-            <p><span>One</span>-Health Pharmacy</p>
+            <p><span>Sinel</span> Wellness Centre</p>
           </div>
         </div>
       </div>
@@ -62,14 +63,12 @@
             Center
           </h1>
           <p class="text-grey mb-4">
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-            erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-            et ea rebum. Accusantium aperiam earum ipsa eius, inventore nemo
-            labore eaque porro consequatur ex aspernatur. Explicabo, excepturi
-            accusantium! Placeat voluptates esse ut optio facilis!
+            Welcome to Sinel Specialist Hospital. Here we are committed to serving
+            you and providing you with the best possible health care. We offer
+            many different services according to your needs. We are located in Tema.
+            Click below to learn more about how we can help you.
           </p>
-          <a href="about.html" class="btn btn-primary">Learn More</a>
+          <a href="{% url 'website:about' %}" class="btn btn-primary">Learn More</a>
         </div>
         <div class="col-lg-6 wow fadeInRight" data-wow-delay="400ms">
           <div class="img-place custom-img-1">
@@ -85,82 +84,28 @@
 
 <div class="page-section">
   <div class="container">
-    <h1 class="text-center mb-5 wow fadeInUp">Our Doctors</h1>
-
-    <div class="owl-carousel wow fadeInUp" id="doctorSlideshow">
-      <div class="item">
-        <div class="card-doctor">
-          <div class="header">
-            <img src="{% static 'img/doctors/doctor_1.jpg' %}" alt="" />
-            <div class="meta">
-              <a href="#"><span class="mai-call"></span></a>
-              <a href="#"><span class="mai-logo-whatsapp"></span></a>
+    <div class="row justify-content-center">
+      <div class="col-lg-10 mt-5">
+        <h1 class="text-center mb-5 wow fadeInUp">Our Doctors</h1>
+        <div class="row justify-content-center">
+          {% for member in team %}
+          <div class="col-md-6 col-lg-4 wow zoomIn">
+            <div class="card-doctor">
+              <div class="header">
+                <img src="{{member.photo.url}}" alt="{{member.fullname}}">
+                <div class="meta">
+                  <a href="#">
+                    <span class="mai-call"></span></a>
+                  <a href="{{member.linkedin}}"><span class="bi bi-linkedin"></span></a>
+                </div>
+              </div>
+              <div class="body">
+                <p class="text-xl mb-0">{{member.fullname}}</p>
+                <span class="text-sm text-grey">{{member.title}}</span>
+              </div>
             </div>
           </div>
-          <div class="body">
-            <p class="text-xl mb-0">Dr. Stein Albert</p>
-            <span class="text-sm text-grey">Cardiology</span>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="card-doctor">
-          <div class="header">
-            <img src="{% static 'img/doctors/doctor_2.jpg' %}" alt="" />
-            <div class="meta">
-              <a href="#"><span class="mai-call"></span></a>
-              <a href="#"><span class="mai-logo-whatsapp"></span></a>
-            </div>
-          </div>
-          <div class="body">
-            <p class="text-xl mb-0">Dr. Alexa Melvin</p>
-            <span class="text-sm text-grey">Dental</span>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="card-doctor">
-          <div class="header">
-            <img src="{% static 'img/doctors/doctor_3.jpg' %}" alt="" />
-            <div class="meta">
-              <a href="#"><span class="mai-call"></span></a>
-              <a href="#"><span class="mai-logo-whatsapp"></span></a>
-            </div>
-          </div>
-          <div class="body">
-            <p class="text-xl mb-0">Dr. Rebecca Steffany</p>
-            <span class="text-sm text-grey">General Health</span>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="card-doctor">
-          <div class="header">
-            <img src="{% static 'img/doctors/doctor_3.jpg' %}" alt="" />
-            <div class="meta">
-              <a href="#"><span class="mai-call"></span></a>
-              <a href="#"><span class="mai-logo-whatsapp"></span></a>
-            </div>
-          </div>
-          <div class="body">
-            <p class="text-xl mb-0">Dr. Rebecca Steffany</p>
-            <span class="text-sm text-grey">General Health</span>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="card-doctor">
-          <div class="header">
-            <img src="{% static 'img/doctors/doctor_3.jpg' %}" alt="" />
-            <div class="meta">
-              <a href="#"><span class="mai-call"></span></a>
-              <a href="#"><span class="mai-logo-whatsapp"></span></a>
-            </div>
-          </div>
-          <div class="body">
-            <p class="text-xl mb-0">Dr. Rebecca Steffany</p>
-            <span class="text-sm text-grey">General Health</span>
-          </div>
+          {% endfor %}
         </div>
       </div>
     </div>
@@ -171,150 +116,39 @@
   <div class="container">
     <h1 class="text-center wow fadeInUp">Latest News</h1>
     <div class="row mt-5">
+      {% for post in posts %}
       <div class="col-lg-4 py-2 wow zoomIn">
         <div class="card-blog">
           <div class="header">
             <div class="post-category">
-              <a href="#">Covid19</a>
+              <a href="#">{{post.tags}}</a>
             </div>
-            <a href="blog-details.html" class="post-thumb">
-              <img src="{% static 'img/blog/blog_1.jpg' %}" alt="" />
+            <a href="{% url 'blog:post_detail' post.id %}" class="post-thumb">
+              <img src="{{post.thumbnail.url}}" alt="{{post.title}}">
             </a>
           </div>
           <div class="body">
             <h5 class="post-title">
-              <a href="blog-details.html"
-                >List of Countries without Coronavirus case</a
-              >
+              <a href="{% url 'blog:post_detail' post.id %}" class="post-thumb">{{post.title}}</a>
             </h5>
             <div class="site-info">
               <div class="avatar mr-2">
                 <div class="avatar-img">
-                  <img src="{% static 'img/person/person_1.jpg' %}" alt="" />
+                  <img src="{{post.by.photo.url}}" alt="">
                 </div>
-                <span>Roger Adams</span>
+                <span>{{post.by}}</span>
               </div>
-              <span class="mai-time"></span> 1 week ago
+              <span class="mai-time"></span>{{post.created_at|naturaltime}}
             </div>
           </div>
         </div>
       </div>
-      <div class="col-lg-4 py-2 wow zoomIn">
-        <div class="card-blog">
-          <div class="header">
-            <div class="post-category">
-              <a href="#">Covid19</a>
-            </div>
-            <a href="blog-details.html" class="post-thumb">
-              <img src="{% static 'img/blog/blog_2.jpg' %}" alt="" />
-            </a>
-          </div>
-          <div class="body">
-            <h5 class="post-title">
-              <a href="blog-details.html"
-                >Recovery Room: News beyond the pandemic</a
-              >
-            </h5>
-            <div class="site-info">
-              <div class="avatar mr-2">
-                <div class="avatar-img">
-                  <img src="{% static 'img/person/person_1.jpg' %}" alt="" />
-                </div>
-                <span>Roger Adams</span>
-              </div>
-              <span class="mai-time"></span> 4 weeks ago
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 py-2 wow zoomIn">
-        <div class="card-blog">
-          <div class="header">
-            <div class="post-category">
-              <a href="#">Covid19</a>
-            </div>
-            <a href="blog-details.html" class="post-thumb">
-              <img src="{% static 'img/blog/blog_3.jpg' %}" alt="" />
-            </a>
-          </div>
-          <div class="body">
-            <h5 class="post-title">
-              <a href="blog-details.html"
-                >What is the impact of eating too much sugar?</a
-              >
-            </h5>
-            <div class="site-info">
-              <div class="avatar mr-2">
-                <div class="avatar-img">
-                  <img src="{% static 'img/person/person_2.jpg' %}" alt="" />
-                </div>
-                <span>Diego Simmons</span>
-              </div>
-              <span class="mai-time"></span> 2 months ago
-            </div>
-          </div>
-        </div>
-      </div>
-
+      {% endfor %}
       <div class="col-12 text-center mt-4 wow zoomIn">
-        <a href="blog.html" class="btn btn-primary">Read More</a>
+        <a href="{% url 'blog:posts' %}" class="btn btn-primary">Read More</a>
       </div>
     </div>
   </div>
 </div>
 <!-- .page-section -->
-
-<div class="page-section">
-  <div class="container">
-    <h1 class="text-center wow fadeInUp">Make an Appointment</h1>
-
-    <form class="main-form">
-      <div class="row mt-5">
-        <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
-          <input type="text" class="form-control" placeholder="Full name" />
-        </div>
-        <div class="col-12 col-sm-6 py-2 wow fadeInRight">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Email address.."
-          />
-        </div>
-        <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
-          <input type="date" class="form-control" />
-        </div>
-        <div
-          class="col-12 col-sm-6 py-2 wow fadeInRight"
-          data-wow-delay="300ms"
-        >
-          <select name="departement" id="departement" class="custom-select">
-            <option value="general">General Health</option>
-            <option value="cardiology">Cardiology</option>
-            <option value="dental">Dental</option>
-            <option value="neurology">Neurology</option>
-            <option value="orthopaedics">Orthopaedics</option>
-          </select>
-        </div>
-        <div class="col-12 py-2 wow fadeInUp" data-wow-delay="300ms">
-          <input type="text" class="form-control" placeholder="Number.." />
-        </div>
-        <div class="col-12 py-2 wow fadeInUp" data-wow-delay="300ms">
-          <textarea
-            name="message"
-            id="message"
-            class="form-control"
-            rows="6"
-            placeholder="Enter message.."
-          ></textarea>
-        </div>
-      </div>
-
-      <button type="submit" class="btn btn-primary mt-3 wow zoomIn">
-        Submit Request
-      </button>
-    </form>
-  </div>
-</div>
-<!-- .page-section -->
-
 {% endblock %}

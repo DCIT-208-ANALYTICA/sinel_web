@@ -8,22 +8,23 @@
 {% block content %}
 <div class="page-banner overlay-dark bg-image" style="background-image: url({% static 'img/bg_image_1.jpg' %});">
   <div class="banner-section">
-      <div class="container text-center wow fadeInUp">
-        <nav aria-label="Breadcrumb">
-          <ol class="breadcrumb breadcrumb-dark bg-transparent justify-content-center py-0 mb-2">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Contact</li>
-          </ol>
-        </nav>
-        <h1 class="font-weight-normal">Contact</h1>
-      </div> <!-- .container -->
-    </div> <!-- .banner-section -->
-  </div> <!-- .page-banner -->
+    <div class="container text-center wow fadeInUp">
+      <nav aria-label="Breadcrumb">
+        <ol class="breadcrumb breadcrumb-dark bg-transparent justify-content-center py-0 mb-2">
+          <li class="breadcrumb-item"><a href="{% url 'website:index' %}">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Location</li>
+        </ol>
+      </nav>
+      <h1 class="font-weight-normal">Location</h1>
+    </div> <!-- .container -->
+  </div> <!-- .banner-section -->
+</div> <!-- .page-banner -->
 
-  <div class="page-section">
-    <div class="container">
-      <h1 class="text-center wow fadeInUp">Get in Touch</h1>
-
+<div class="page-section p-3">
+  <div class="container">
+    <h1 class="text-center wow fadeInUp">Get in Touch</h1>
+    <div class="row justify-content-center">
+      <p class="wow fadeInDown animated">We are available via telephone, email, chat, or the form below.</p>
       <form class="contact-form mt-5">
         <div class="row mb-3">
           <div class="col-sm-6 py-2 wow fadeInLeft">
@@ -48,12 +49,43 @@
     </div>
   </div>
 
-  <div class="maps-container wow fadeInUp">
-    <div id="google-maps"></div>
+  <div class="py-4 row fadeInUp row" style="background-color: #e4e4e4a6; justify-content: space-between;">
+    <div class="col-md-3 p-3">
+      <h4 class="text font-weight-bold">CONTACT</h4>
+      <p> <i class="text-sinel bi bi-phone"></i> Phone: <a
+          href="tel:{{request.contact.telephone}}">{{request.contact.telephone}}</a></p>
+      <p> <i class="text-sinel bi bi-envelope"></i> Email: <a
+          href="mailto:{{request.contact.email}}">{{request.contact.email}}</a></p>
+      <hr>
+    </div>
+    <div class="col-md-3 p-3">
+      <h4 class="text font-weight-bold">Location</h4>
+      <p><i class="text-sinel bi bi-geo-alt"></i> {{request.contact.address}}</p>
+    </div>
+    <div class="col-md-6 m-0 p-0">
+      <div class="mapouter d-flex justify-content-end" style="width: 100%;">
+        <div class="gmap_canvas col-12 m-0 p-0">
+          <iframe height="300" id="gmap_canvas" class="col-12"
+            src="https://maps.google.com/maps?q=Sinel%20Hospital&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"
+            scrolling="no" marginheight="0" marginwidth="0"></iframe>
+
+          <style>
+            .mapouter {
+              position: relative;
+              text-align: right;
+              height: 300px;
+              max-width: 800px;
+            }
+
+            .gmap_canvas {
+              overflow: hidden;
+              background: none !important;
+              height: 300px;
+              max-width: 800px;
+            }
+          </style>
+        </div>
+      </div>
+    </div>
   </div>
   {% endblock %}
-
-  {% block scriptblock %}
-  <script src="{% static 'js/google-maps.js' %}"></script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIA_zqjFMsJM_sxP9-6Pde5vVCTyJmUHM&callback=initMap"></script>
-{% endblock %}
