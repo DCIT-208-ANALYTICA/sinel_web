@@ -151,45 +151,4 @@
   </div>
 </div>
 <!-- .page-section -->
-
-<div id="request-appointment" class="page-section">
-  <div class="container">
-    <h1 class="text-center wow fadeInUp">Make an Appointment</h1>
-    <form action="{% url 'communications:book_appointment' %}" class="main-form" method="post">
-      {% csrf_token%}
-      <div class="row mt-5">
-        <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
-          <input type="text" name="fullname" class="form-control" placeholder="Full name" />
-        </div>
-        <div class="col-12 col-sm-6 py-2 wow fadeInRight">
-          <input type="text" name="email" class="form-control" placeholder="Email address.." />
-        </div>
-        <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
-          <label for="date">Date</label>
-          <input type="date" id="date" name="date" class="form-control" />
-        </div>
-        <div class="col-12 col-sm-6 py-2 wow fadeInRight" data-wow-delay="300ms">
-          <label for="service">Desired Service</label>
-          <select name="service" id="service" class="custom-select">
-            <option value="general">General Health</option>
-            <option value="cardiology">Cardiology</option>
-            <option value="dental">Dental</option>
-            <option value="neurology">Neurology</option>
-            <option value="orthopaedics">Orthopaedics</option>
-          </select>
-        </div>
-        <div class="col-12 py-2 wow fadeInUp" data-wow-delay="300ms">
-          <input type="text" name="number" class="form-control" placeholder="Phone" />
-        </div>
-        <div class="col-12 py-2 wow fadeInUp" data-wow-delay="300ms">
-          <textarea name="message" id="message" class="form-control" rows="6" placeholder="Enter message.."></textarea>
-        </div>
-      </div>
-
-      <button type="submit" class="btn btn-primary mt-3 wow zoomIn">Submit</button>
-    </form>
-  </div>
-</div>
-<!-- .page-section -->
-
 {% endblock %}
