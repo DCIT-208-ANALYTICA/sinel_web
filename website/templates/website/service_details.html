@@ -5,15 +5,14 @@
 <link rel="stylesheet" href="{% static 'css/details.css' %}" />
 {% endblock %} {% block content %}
 
-<div class="row" id="service-title-banner">
-  <div class="col-md-6 d-flex align-items-center justify-content-center">
+<div id="service-title-banner">
+  <div class="service-title">
     <h1 class="text text-light text-center">{{service.title}}</h1>
   </div>
-  <div class="col-md-6 d-flex pr-0 mr-0">
-    <img class="d-none d-md-block" src="{{service.image.url}}" alt="{{service.title}}" style="max-height: 20em;">
+  <div class="service-image">
+    <img class="" src="{{service.image.url}}" alt="{{service.title}}">
   </div>
 </div>
-
 
 <div class="row" style="position: relative;">
 

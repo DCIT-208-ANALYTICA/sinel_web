@@ -1,0 +1,40 @@
+header {
+  position: relative;
+}
+
+.topbar {
+  background-color: rgb(38, 53, 106);
+  padding: 0px !important;
+}
+
+@media screen and (max-width: 400px) {
+  .topbar {
+    width: 100vw;
+  }
+  .topbar ul {
+    justify-content: unset !important;
+    overflow-x: auto !important;
+  }
+}
+
+.nav-item {
+  padding: 0px !important;
+  margin: 0 !important;
+  color: white;
+  text-align: center;
+  display: block;
+}
+.nav-item.active .nav-link {
+  color: #1fa9db;
+}
+
+.nav-link {
+  color: white;
+}
+
+.mainnavbar {
+  position: sticky !important;
+  top: 0;
+  background-color: white;
+  z-index: 100;
+}
