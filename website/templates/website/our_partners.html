@@ -1,0 +1,33 @@
+{% extends 'website/base_template.html' %}
+
+{% load static %}
+
+{% block our_partners_active %}active{% endblock %}
+
+
+{% block content %}
+<div class="page-banner overlay-dark bg-image" style="background-image: url({% static 'img/bg_image_1.jpg' %});">
+  <div class="banner-section">
+    <div class="container text-center wow fadeInUp">
+      <nav aria-label="Breadcrumb">
+        <ol class="breadcrumb breadcrumb-dark bg-transparent justify-content-center py-0 mb-2">
+          <li class="breadcrumb-item"><a href="{% url 'website:index' %}">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Our Partners</li>
+        </ol>
+      </nav>
+      <h1 class="font-weight-normal">Our Partners</h1>
+    </div> <!-- .container -->
+  </div> <!-- .banner-section -->
+</div> <!-- .page-banner -->
+
+<div class="page-section p-3">
+  <div class="container">
+    <div class="my-4 row justify-content-center">
+      <h4 class="wow fadeInDown animated">
+        Collaboration is crucial to achieving sustainable health. We collaborate with various partners to provide our
+        clients with holistic wellbeing. This list will be updated regularly.
+      </h4>
+    </div>
+  </div>
+</div>
+{% endblock %}

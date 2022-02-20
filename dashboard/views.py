@@ -4,10 +4,10 @@ from django.utils.decorators import method_decorator
 from blog.forms import PostForm
 from communications.models import Appointment
 from sinel_web.utils.decorators import staff_only
-from website.models import About, Album, Contact, Media, Service, TeamLead, Testimonial
+from website.models import About, Album, Contact, Media, Partner, Service, TeamLead, Testimonial
 from blog.models import Post
 from django.contrib import messages
-from website.forms import MediaForm, ServiceForm, TeamLeadForm, TestimonialForm
+from website.forms import MediaForm, ServiceForm, TeamLeadForm, TestimonialForm, PartnerForm
 from django.utils.html import strip_tags
 from accounts.models import Administrator
 
@@ -412,4 +412,52 @@ class DeleteTestimonialView(View):
     def post(self, request, *argd, **kwargs):
         testimonial_id = request.POST.get("testimonial_id")
         Testimonial.objects.filter(id=testimonial_id).delete()
+        return redirect(request.META.get("HTTP_REFERER"))
+
+
+class PartnersView(View):
+    template_name = "dashboard/partners.html"
+
+    @method_decorator(staff_only())
+    def get(self, request, *argd, **kwargs):
+        context = {"partners": Partner.objects.all().order_by("-id")}
+        return render(request, self.template_name, context)
+
+
+class CreateUpdatePartner(View):
+    template_name = "dashboard/create_update_partner.html"
+    form_class = PartnerForm
+    model_class = Partner
+    object_id_field = "partner_id"
+
+    @method_decorator(staff_only())
+    def get(self, request, *argd, **kwargs):
+        partner_id = request.GET.get("partner_id", -1)
+        context = {"partner": Partner.objects.filter(id=partner_id).first()}
+        return render(request, self.template_name, context)
+
+    @method_decorator(staff_only())
+    def post(self, request, *argd, **kwargs):
+        object_id = request.POST.get(self.object_id_field) or None
+        instance = None
+        if object_id:
+            instance = get_object_or_404(self.model_class, id=object_id)
+        form = self.form_class(request.POST,
+                               request.FILES or None,
+                               instance=instance)
+        if form.is_valid():
+            form.save()
+        else:
+            for field, er in form.errors.items():
+                message = f"{field.title()}: {strip_tags(er)}"
+                messages.add_message(request, messages.ERROR, message)
+            return redirect(request.META.get("HTTP_REFERER"))
+        return redirect("dashboard:partners")
+
+
+class DeletePartnerView(View):
+    @method_decorator(staff_only())
+    def post(self, request, *argd, **kwargs):
+        partner_id = request.POST.get("partner_id")
+        Partner.objects.filter(id=partner_id).delete()
         return redirect(request.META.get("HTTP_REFERER"))

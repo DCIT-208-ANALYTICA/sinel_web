@@ -59,4 +59,15 @@ urlpatterns = [
     path("delete_testimonial",
          views.DeleteTestimonialView.as_view(),
          name="delete_testimonial"),
+
+    # Partners
+    path("partners", views.PartnersView.as_view(), name="partners"),
+    path(
+        "create_update_partner",
+        views.CreateUpdatePartner.as_view(),
+        name="create_update_partner",
+    ),
+    path("delete_partner",
+         views.DeletePartnerView.as_view(),
+         name="delete_partner"),
 ]

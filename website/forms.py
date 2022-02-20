@@ -1,6 +1,6 @@
 from django import forms
-from .models import (About, Client, Contact, Media, OpeningHour, Service,
-                     SocialMediaLink, TeamLead, Testimonial)
+from .models import (About, Client, Contact, Media, OpeningHour, Partner,
+                     Service, SocialMediaLink, TeamLead, Testimonial)
 
 
 class ContactForm(forms.ModelForm):
@@ -90,6 +90,16 @@ class TestimonialForm(forms.ModelForm):
         exclude = [
             "id",
             "added_by",
+            "created_at",
+            "update_at",
+        ]
+
+
+class PartnerForm(forms.ModelForm):
+    class Meta:
+        model = Partner
+        exclude = [
+            "id",
             "created_at",
             "update_at",
         ]

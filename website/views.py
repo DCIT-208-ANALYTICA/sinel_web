@@ -53,6 +53,14 @@ class ServicesView(View):
         return render(request, self.template_name, context)
 
 
+class OurPatnersView(View):
+    template_name = "website/our_partners.html"
+
+    def get(self, request, *args, **kwargs):
+        context = {"services": Service.objects.filter(visible=True)}
+        return render(request, self.template_name, context)
+
+
 class ServiceDetailsView(View):
     template_name = "website/service_details.html"
 

@@ -1,3 +1,4 @@
+from unicodedata import category
 from django.db import models
 from accounts.models import Administrator
 from django_ckeditor_5.fields import CKEditor5Field
@@ -154,3 +155,17 @@ class Testimonial(models.Model):
 
     def __str__(self) -> str:
         return self.username
+
+
+class Partner(models.Model):
+    name = models.CharField(max_length=100)
+    logo = models.ImageField()
+    description = models.TextField()
+    category = models.CharField(max_length=100)
+    website = models.URLField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    visible = models.BooleanField(default=False)
+
+    def __str__(self) -> str:
+        return self.name

@@ -1,6 +1,6 @@
 {% extends 'dashboard/base_template.html' %}
 {% block team-leads-page-active %}mm-active{% endblock %}
-{% block pagetitle %}Doctors{% endblock %}
+{% block pagetitle %}Partners{% endblock %}
 
 {% load static %}
 
@@ -13,19 +13,19 @@
           <i class="pe-7s-medal icon-gradient bg-tempting-azure"></i>
         </div>
         <div>
-          Doctors
+          Partners
           <div class="page-title-subheading">
             Here, you can add the doctors of the team (i.e., doctors, nurses, etc.).
           </div>
         </div>
       </div>
       <div class="page-title-actions">
-        <a href="{% url 'dashboard:create_update_team_lead' %}">
+        <a href="{% url 'dashboard:create_update_partner' %}">
           <button type="button" aria-haspopup="true" aria-expanded="false" class="btn-shadow btn btn-info">
             <span class="btn-icon-wrapper pr-2 opacity-7">
               <i class="fa  bi bi-plus fa-w-20"></i>
             </span>
-            New Lead
+            New Partner
           </button>
         </a>
       </div>
@@ -37,23 +37,21 @@
         <thead>
           <tr>
             <th>Actions</th>
-            <th>Photo</th>
-            <th>Full Name</th>
-            <th>Title</th>
-            <th>Bio</th>
-            <th>LinkedIn</th>
-            <th>Status</th>
+            <th>Logo</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Description</th>
           </tr>
         </thead>
         <tbody>
-          {% for team_lead in team_leads %}
+          {% for partner in partners %}
           <tr>
             <td>
               <div class="d-flex">
-                <form action="{% url 'dashboard:delete_team_lead' %}" method="POST" class="confirm-action"
+                <form action="{% url 'dashboard:delete_partner' %}" method="POST" class="confirm-action"
                   data-message="Sure you want to delete?">
                   {% csrf_token %}
-                  <input value={{team_lead.id}} name="team_lead_id" type="hidden">
+                  <input value={{partner.id}} name="partner_id" type="hidden">
                   <button class="btn-link btn">
                     <span class="text text-danger">
                       <i class="bi bi-trash btn-icon-wrapper"> </i>Delete
@@ -61,7 +59,7 @@
                   </button>
                 </form>
                 <button class="btn-link btn">
-                  <a href="{% url 'dashboard:create_update_team_lead' %}?team_lead_id={{team_lead.id}}">
+                  <a href="{% url 'dashboard:create_update_partner' %}?partner_id={{partner.id}}">
                     <i class="bi bi-pencil"></i>
                     Edit
                   </a>
@@ -69,31 +67,21 @@
               </div>
             </td>
             <td>
-              {% if team_lead.photo %}
-              <img width="50" height="50" class="rounded-circle" src="{{team_lead.photo.url}}" alt="{{team_lead}}"
+              {% if partner.logo %}
+              <img width="50" height="50" class="rounded-circle" src="{{partner.logo.url}}" alt="{{partner}}"
                 style="border: 1px solid rgba(11, 221, 204, 0.616);">
               {% else %}
               <img width="50" height="50" class="rounded-circle" src="{% static 'img/logo_small.png' %}" alt="">
               {% endif %}
             </td>
             <td>
-              {{team_lead.fullname}}
+              {{partner.name}}
             </td>
             <td>
-              {{team_lead.title}}
+              {{partner.category}}
             </td>
             <td>
-              {{team_lead.bio}}
-            </td>
-            <td>
-              {{team_lead.linkedin}}
-            </td>
-            <td>
-              {% if team_lead.is_active %}
-              <p class="text text-success">Active</p>
-              {% else %}
-              <p class="text text-danger">Inactive</p>
-              {% endif %}
+              {{partner.description}}
             </td>
           </tr>
           {% endfor %}
