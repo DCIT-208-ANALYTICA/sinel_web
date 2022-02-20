@@ -13,5 +13,8 @@ urlpatterns = [
     path("our-partners", views.OurPatnersView.as_view(), name="partners"),
     path("services/<str:service_id>/details",
          views.ServiceDetailsView.as_view(),
-         name="service_details")
+         name="service_details"),
+    path("more-pages/<str:page_id>/<str:slug>",
+         views.StaticPageView.as_view(),
+         name="static_page_view")
 ]

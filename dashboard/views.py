@@ -1,11 +1,11 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import View
 from django.utils.decorators import method_decorator
-from blog.forms import PostForm
+from blog.forms import PageForm, PostForm
 from communications.models import Appointment
 from sinel_web.utils.decorators import staff_only
 from website.models import About, Album, Contact, Media, Partner, Service, TeamLead, Testimonial
-from blog.models import Post
+from blog.models import Page, Post
 from django.contrib import messages
 from website.forms import MediaForm, ServiceForm, TeamLeadForm, TestimonialForm, PartnerForm
 from django.utils.html import strip_tags
@@ -460,4 +460,54 @@ class DeletePartnerView(View):
     def post(self, request, *argd, **kwargs):
         partner_id = request.POST.get("partner_id")
         Partner.objects.filter(id=partner_id).delete()
+        return redirect(request.META.get("HTTP_REFERER"))
+
+
+class PagesView(View):
+    template_name = "dashboard/pages.html"
+
+    @method_decorator(staff_only())
+    def get(self, request, *argd, **kwargs):
+        context = {"pages": Page.objects.all()}
+        return render(request, self.template_name, context)
+
+
+class CreateUpdatePageView(View):
+    template_name = "dashboard/create_update_page.html"
+    form_class = PageForm
+    model_class = Page
+    object_id_field = "page_id"
+
+    @method_decorator(staff_only())
+    def get(self, request, *argd, **kwargs):
+        page_id = request.GET.get("page_id", -1)
+        context = {"page": self.model_class.objects.filter(id=page_id).first()}
+        return render(request, self.template_name, context)
+
+    @method_decorator(staff_only())
+    def post(self, request, *argd, **kwargs):
+        object_id = request.POST.get(self.object_id_field) or None
+        instance = None
+        if object_id:
+            instance = get_object_or_404(self.model_class, id=object_id)
+        form = self.form_class(request.POST,
+                               request.FILES or None,
+                               instance=instance)
+        if form.is_valid():
+            page = form.save(commit=False)
+            page.by = request.user
+            page.save()
+        else:
+            for field, er in form.errors.items():
+                message = f"{field.title()}: {strip_tags(er)}"
+                messages.add_message(request, messages.ERROR, message)
+            return redirect(request.META.get("HTTP_REFERER"))
+        return redirect("dashboard:pages")
+
+
+class DeletePageView(View):
+    @method_decorator(staff_only())
+    def page(self, request, *argd, **kwargs):
+        page_id = request.POST.get("page_id")
+        Post.objects.filter(id=page_id).delete()
         return redirect(request.META.get("HTTP_REFERER"))

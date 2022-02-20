@@ -15,3 +15,20 @@ class Post(models.Model):
 
     def __str__(self) -> str:
         return self.title
+
+
+class Page(models.Model):
+    title = models.CharField(max_length=200)
+    slug = models.CharField(max_length=200)
+    content = CKEditor5Field()
+    by = models.ForeignKey(Administrator, on_delete=models.PROTECT)
+    visible = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self) -> str:
+        return self.title
+
+    def save(self, *args, **kwargs):
+        self.slug = "-".join(self.title.lower().split())
+        return super().save(*args, **kwargs)

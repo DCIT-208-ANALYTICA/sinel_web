@@ -70,4 +70,13 @@ urlpatterns = [
     path("delete_partner",
          views.DeletePartnerView.as_view(),
          name="delete_partner"),
+
+    # Pages
+    path("pages", views.PagesView.as_view(), name="pages"),
+    path(
+        "create_update_page",
+        views.CreateUpdatePageView.as_view(),
+        name="create_update_page",
+    ),
+    path("delete_page", views.DeletePageView.as_view(), name="delete_page"),
 ]

@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render
 from django.views.generic import View
 from .models import About, Media, Partner, Service, TeamLead, Testimonial
-from blog.models import Post
+from blog.models import Page, Post
 
 
 class IndexView(View):
@@ -84,5 +84,16 @@ class ServiceDetailsView(View):
             "service": service,
             "doctors": doctors,
             "testimonials": testimonials,
+        }
+        return render(request, self.template_name, context)
+
+
+class StaticPageView(View):
+    template_name = "website/static_page.html"
+
+    def get(self, request, page_id, *args, **kwargs):
+        page = get_object_or_404(Page, id=page_id)
+        context = {
+            "page": page,
         }
         return render(request, self.template_name, context)

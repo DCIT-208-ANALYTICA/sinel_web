@@ -160,8 +160,18 @@
             <li><a href="#">Career</a></li>
           </ul>
         </div>
+
         <div class="col-sm-6 col-lg-3 py-3">
           <h5>More</h5>
+          <ul class="footer-menu">
+            {% for page in request.pages %}
+            <li><a href="{% url 'website:static_page_view' page.id page.slug %}">{{page.title}}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="col-sm-6 col-lg-3 py-3">
+          <h5>General</h5>
           <ul class="footer-menu">
             <li><a href="#">Terms & Condition</a></li>
             <li><a href="#">Privacy</a></li>
