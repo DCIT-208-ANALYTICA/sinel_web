@@ -43,12 +43,14 @@
         <a class="nav-link" href="{% url 'website:contact' %}">Location</a>
       </span>
       <span class="nav-item {% block our_partners_active %}{% endblock %}">
-        <a class="nav-link" href="{% url 'website:our_partners' %}">Our Partners</a>
+        <a class="nav-link" href="{% url 'website:partners' %}">Our Partners</a>
+      </span>
+      <span class="nav-item {% block doctors_active %}{% endblock %}">
+        <a class="nav-link" href="{% url 'website:doctors' %}">Our Doctors</a>
       </span>
       <div class="dropdown">
         <span class="nav-item {% block services_active %}{% endblock %}">
           <a class="nav-link" href="{% url 'website:services' %}">Services</a>
-
           <div class="dropdown-content" style="z-index: 200;">
             {% for service in request.services %}
             <a class="nav-link" href="{% url 'website:service_details' service.id %}">{{service.title}}</a>
@@ -115,7 +117,8 @@
       <h4 class="mt-4"> <a href="{% url 'website:index' %}"><i class="bi bi-house"></i> Home</a></h4>
       <h4 class="mt-4"> <a href="{% url 'website:about' %}"><i class="bi bi-info"></i> About Us</a></h4>
       <h4 class="mt-4"> <a href="{% url 'website:contact' %}"><i class="bi bi-map"></i> Location</a></h4>
-      <h4 class="mt-4"> <a href="{% url 'website:services' %}"><i class="bi bi-gear"></i> Our Partners</a></h4>
+      <h4 class="mt-4"> <a href="{% url 'website:partners' %}"><i class="bi bi-gear"></i> Our Partners</a></h4>
+      <h4 class="mt-4"> <a href="{% url 'website:doctors' %}"><i class="bi bi-gear"></i> Our Doctors</a></h4>
       <h4 class="mt-4"> <a href="{% url 'website:services' %}"><i class="bi bi-gear"></i> Services</a></h4>
       <h4 class="mt-4"> <a href="{% url 'website:gallery' %}"><i class="bi bi-image"></i> Gallery</a></h4>
       <h4 class="mt-4"> <a href="{% url 'blog:posts' %}"><i class="bi bi-book"></i> Blog</a></h4>
