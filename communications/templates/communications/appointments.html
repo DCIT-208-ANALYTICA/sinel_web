@@ -10,6 +10,12 @@
 <div id="request-appointment" class="page-section">
   <div class="container">
     <h1 class="text-center wow fadeInUp">Make an Appointment</h1>
+    <p class="text text-center">
+      The following form generates a request for an appointment, not a confirmed appointment.
+      A representative will contact you within 48 hours of submitting this form to assist you with your appointment
+      request. By submitting this form, you consent to receive health information from Sinel Specialist Hospital through
+      email.
+    </p>
     <form action="{% url 'communications:book_appointment' %}" class="main-form" method="post">
       {% csrf_token%}
       <div class="row mt-5">
