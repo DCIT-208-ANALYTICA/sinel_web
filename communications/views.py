@@ -14,7 +14,8 @@ class BookAppointment(View):
     def post(self, request, **kwargs):
         form = self.form_class(request.POST)
         if form.is_valid():
-            form.save()
+            a = form.save()
+            print("time", a.time)
             return redirect("website:index")
         else:
             print(form.errors)
