@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 from django.views.generic import View
-from .models import About, Media, Service, TeamLead, Testimonial
+from .models import About, Media, Partner, Service, TeamLead, Testimonial
 from blog.models import Post
 
 
@@ -66,7 +66,10 @@ class OurPatnersView(View):
     template_name = "website/our_partners.html"
 
     def get(self, request, *args, **kwargs):
-        context = {"services": Service.objects.filter(visible=True)}
+        context = {
+            "partners":
+            Partner.objects.filter(visible=True).order_by("category")
+        }
         return render(request, self.template_name, context)
 
 
