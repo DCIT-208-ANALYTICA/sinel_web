@@ -20,65 +20,68 @@
   </div> <!-- .banner-section -->
 </div> <!-- .page-banner -->
 
-<div class="page-section bg-light">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4 py-3 wow zoomIn">
-        <div class="card-service">
-          <div class="circle-shape bg-secondary text-white">
-            </a><span class="mai-chatbubbles-outline"></span>
+<div class="bg-light">
+  <div class="page-section py-3 mt-md-n5 custom-index">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-4 py-3 py-md-0">
+          <div class="card-service wow fadeInUp"
+            onclick="document.querySelector('iframe').contentDocument.querySelector('button').click()">
+            <div class="circle-shape bg-secondary text-white">
+              <span class="mai-chatbubbles-outline"></span>
+            </div>
+            <p><span class="text text-primary">Chat</span> with us</p>
           </div>
-          <p><span>Chat</span> with a doctor</p>
         </div>
-      </div>
-      <div class="col-md-4 py-3 wow zoomIn">
-        <div class="card-service">
-          <div class="circle-shape bg-primary text-white">
-            <span class="mai-shield-checkmark"></span>
+        <div class="col-md-4 py-3 py-md-0">
+          <div class="card-service wow fadeInUp">
+            <div class="circle-shape bg-primary text-white">
+              <span class="mai-shield-checkmark"></span>
+            </div>
+            <p><span>One</span>-Health Protection</p>
           </div>
-          <p><span>One</span>-Health Protection</p>
         </div>
-      </div>
-      <div class="col-md-4 py-3 wow zoomIn">
-        <div class="card-service">
-          <div class="circle-shape bg-accent text-white">
-            <span class="mai-basket"></span>
+        <div class="col-md-4 py-3 py-md-0">
+          <div class="card-service wow fadeInUp">
+            <div class="circle-shape bg-accent text-white">
+              <span class="mai-basket"></span>
+            </div>
+            <p>Wellness Centre</p>
           </div>
-          <p><span>One</span>-Health Pharmacy</p>
         </div>
       </div>
     </div>
   </div>
-</div>
+  <!-- .page-section -->
 
-<div class="page-section">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-8 wow fadeInUp">
-        <div class="text-lg">
-          {{about.overview|safe}}
+  <div class="page-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 wow fadeInUp">
+          <div class="text-lg">
+            {{about.overview|safe}}
+          </div>
         </div>
-      </div>
 
-      <div class="col-lg-8 wow mt-5 fadeInUp">
-        <div class="text-lg">
-          {{about.mission|safe}}
+        <div class="col-lg-8 wow mt-5 fadeInUp">
+          <div class="text-lg">
+            {{about.mission|safe}}
+          </div>
         </div>
-      </div>
 
-      <div class="col-lg-8 wow mt-5 fadeInUp">
-        <div class="text-lg">
-          {{about.vision|safe}}
+        <div class="col-lg-8 wow mt-5 fadeInUp">
+          <div class="text-lg">
+            {{about.vision|safe}}
+          </div>
         </div>
-      </div>
 
-      <div class="col-lg-8 wow mt-5 fadeInUp">
-        <div class="text-lg">
-          {{about.value|safe}}
+        <div class="col-lg-8 wow mt-5 fadeInUp">
+          <div class="text-lg">
+            {{about.value|safe}}
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 </div>
 {% endblock %}

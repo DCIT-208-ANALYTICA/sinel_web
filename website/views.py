@@ -9,6 +9,7 @@ class IndexView(View):
 
     def get(self, request, *args, **kwargs):
         context = {
+            "about": About.objects.first(),
             "team": TeamLead.objects.filter(visible=True),
             "posts": Post.objects.filter(visible=True).order_by("-id")[:5],
         }
