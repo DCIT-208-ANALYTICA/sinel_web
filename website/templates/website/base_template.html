@@ -66,10 +66,13 @@
 
   {% block nav %}
   <nav class="mainnavbar navbar navbar-expand-lg navbar-light shadow-sm">
-    <div class="container">
+    <div class="container col-12">
       <div id="menu-toggler">
         <img src="{% static 'img/menu.png' %}" alt="Toggle side drawer">
       </div>
+
+      <div class="col-md-2 col-1"></div>
+
       <a class="navbar-brand" href="{% url 'website:index' %}">
         <img src="{% static 'img/logo.png' %}" alt="sinel logo" height="50">
       </a>
@@ -81,14 +84,18 @@
 
       <div class="collapse navbar-collapse" id="navbarSupport">
         <ul class="navbar-nav ml-auto">
-          <li class="">
+          <li class="ml-3 mb-1">
             <a href="{% url 'communications:book_appointment' %}#request-appointment" class="btn btn-primary p-3"><i
-                class="bi bi-calendar"></i> Request Appointment</a>
+                class="bi bi-calendar"></i> Request an Appointment</a>
           </li>
 
-          <li class="ml-3">
+          <li class="ml-3 mb-1">
             <a href="tel:{{request.contact.telephone}}" class="btn btn-primary p-3"><i class="bi bi-telephone-plus"></i>
-              Call Us</a>
+              Call {{request.contact.telephone}}</a>
+          </li>
+          <li class="ml-3">
+            <a href="tel:{{request.contact.telephone}}" class="btn btn-primary p-3"><i class="bi bi-whatsapp"></i>
+              WhatsApp</a>
           </li>
         </ul>
       </div>
@@ -102,30 +109,12 @@
     <div class="overlay"></div>
     <div class="content">
       <span class="close" onclick="toggleSideDrawer()"><i class="bi bi-x-lg"></i></span>
-      <h1>hi</h1>
-      <h1>hi</h1>
-      <h1>hi</h1>
-      <h1>hi</h1>
-      <h1>hi</h1>
-      <h1>hi</h1>
-      <h1>hi</h1>
-      <h1>hi</h1>
-      <h1>hi</h1>
-      <h1>hi</h1>
-      <h1>hi</h1>
-      <h1>hi</h1>
-      <h1>hi</h1>
-      <h1>hi</h1>
-      <h1>hi</h1>
-      <h1>hi</h1>
-      <h1>hi</h1>
-      <h1>hi</h1>
-      <h1>hi</h1>
-      <h1>hi</h1>
-      <h1>hi</h1>
-      <h1>hi</h1>
-      <h1>hi</h1>
-      <h1>hi</h1>
+      <h4 class="mt-4"> <a href="{% url 'website:index' %}"><i class="bi bi-house"></i> Home</a></h4>
+      <h4 class="mt-4"> <a href="{% url 'website:about' %}"><i class="bi bi-info"></i> About Us</a></h4>
+      <h4 class="mt-4"> <a href="{% url 'website:contact' %}"><i class="bi bi-map"></i> Location</a></h4>
+      <h4 class="mt-4"> <a href="{% url 'website:services' %}"><i class="bi bi-gear"></i> Services</a></h4>
+      <h4 class="mt-4"> <a href="{% url 'website:gallery' %}"><i class="bi bi-image"></i> Gallery</a></h4>
+      <h4 class="mt-4"> <a href="{% url 'blog:posts' %}"><i class="bi bi-book"></i> Blog</a></h4>
     </div>
   </div>
 

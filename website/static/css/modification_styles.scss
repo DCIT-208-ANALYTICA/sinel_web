@@ -16,10 +16,6 @@ body {
     justify-content: unset !important;
     overflow-x: auto !important;
   }
-
-  #menu-toggler {
-    position: relative !important;
-  }
 }
 
 .nav-item {
@@ -54,7 +50,6 @@ body.no-scroll {
   width: 3em;
   padding: 0.2em;
   background-color: rgba(0, 0, 0, 0.1);
-  position: absolute;
   left: 1em;
   border-radius: 3em;
   align-items: center;
@@ -84,15 +79,16 @@ body.no-scroll {
   }
 
   .overlay {
-    width: 100vw;
+    width: 0;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0);
     position: absolute;
     overflow-y: scroll;
-    transition: all 0.1s ease-in-out;
+    transition: background-color 0.1s ease-in-out;
 
     &.active {
       background-color: rgba(0, 0, 0, 0.4);
+      width: 100vw;
     }
   }
 
