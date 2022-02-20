@@ -67,6 +67,9 @@
   {% block nav %}
   <nav class="mainnavbar navbar navbar-expand-lg navbar-light shadow-sm">
     <div class="container">
+      <div id="menu-toggler">
+        <img src="{% static 'img/menu.png' %}" alt="Toggle side drawer">
+      </div>
       <a class="navbar-brand" href="{% url 'website:index' %}">
         <img src="{% static 'img/logo.png' %}" alt="sinel logo" height="50">
       </a>
@@ -94,7 +97,37 @@
     <!-- .container -->
   </nav>
   {% endblock %}
-  </header>
+
+  <div id="nav-drawer">
+    <div class="overlay"></div>
+    <div class="content">
+      <span class="close" onclick="toggleSideDrawer()"><i class="bi bi-x-lg"></i></span>
+      <h1>hi</h1>
+      <h1>hi</h1>
+      <h1>hi</h1>
+      <h1>hi</h1>
+      <h1>hi</h1>
+      <h1>hi</h1>
+      <h1>hi</h1>
+      <h1>hi</h1>
+      <h1>hi</h1>
+      <h1>hi</h1>
+      <h1>hi</h1>
+      <h1>hi</h1>
+      <h1>hi</h1>
+      <h1>hi</h1>
+      <h1>hi</h1>
+      <h1>hi</h1>
+      <h1>hi</h1>
+      <h1>hi</h1>
+      <h1>hi</h1>
+      <h1>hi</h1>
+      <h1>hi</h1>
+      <h1>hi</h1>
+      <h1>hi</h1>
+      <h1>hi</h1>
+    </div>
+  </div>
 
   {% block content %} {% endblock %}
 
@@ -170,6 +203,7 @@
   <script src="{% static 'vendor/wow/wow.min.js' %}"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.js"></script>
   <script src="{% static 'js/theme.js' %}"></script>
+  <script src="{% static 'js/modification.js' %}"></script>
 
   <!--Start of Tawk.to Script-->
   <script type="text/javascript">
