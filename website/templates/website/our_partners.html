@@ -23,7 +23,7 @@
           <h3 class="col-12 mt-5 mb-3 text text-center">{{category}}</h3>
           {% for partner in partners %}
           {% if partner.category == category %}
-          <div class="col-4 mb-2 wow zoomIn">
+          <div class="col-md-4 mb-2 wow zoomIn">
             <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
               <img src="{{partner.logo.url}}" alt="{{partner.fullname}}" height="100">
               <h4 class="text text-center text-muted">{{partner.name}}</h4>
