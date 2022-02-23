@@ -66,9 +66,12 @@ class OurPatnersView(View):
     template_name = "website/our_partners.html"
 
     def get(self, request, *args, **kwargs):
+        partners = Partner.objects.filter(visible=True).order_by("category")
+        categories = partners.values("category").distinct()
+        categories = set([cat["category"] for cat in categories])
         context = {
-            "partners":
-            Partner.objects.filter(visible=True).order_by("category")
+            "categories": categories,
+            "partners": partners,
         }
         return render(request, self.template_name, context)
 
