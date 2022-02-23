@@ -40,7 +40,7 @@
             <th>Logo</th>
             <th>Name</th>
             <th>Category</th>
-            <th>Description</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
@@ -81,7 +81,11 @@
               {{partner.category}}
             </td>
             <td>
-              {{partner.description}}
+              {% if partner.visible %}
+              <p class="text text-success">Visible</p>
+              {% else %}
+              <p class="text text-danger">Not Visble</p>
+              {% endif %}
             </td>
           </tr>
           {% endfor %}

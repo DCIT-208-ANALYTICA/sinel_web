@@ -160,7 +160,7 @@ class Testimonial(models.Model):
 class Partner(models.Model):
     name = models.CharField(max_length=100)
     logo = models.ImageField()
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
     category = models.CharField(max_length=100)
     website = models.URLField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
