@@ -7,7 +7,15 @@
 
 <div id="service-title-banner">
   <div class="service-title">
-    <h1 class="text text-light text-center">{{service.title}}</h1>
+    <div>
+      <h1 class="text text-light text-center">{{service.title}}</h1>
+      <p>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fsinelhospital.com/{% url 'website:service_details' service.id %}"
+          target="_blank" rel="noopener">
+          <span class="text text-light"><i class="bi bi-share-fill"></i></span>
+        </a>
+      </p>
+    </div>
   </div>
   <div class="service-image">
     <img class="" src="{{service.image.url}}" alt="{{service.title}}">

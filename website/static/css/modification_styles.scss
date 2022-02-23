@@ -116,3 +116,74 @@ body.no-scroll {
     }
   }
 }
+
+// Service Details
+
+#service-schedules-box {
+  border: 2px solid #1fa9db;
+  background-color: #1fa9db;
+  color: white;
+  position: sticky;
+  overflow: auto;
+  right: 5em;
+  top: 10vh;
+  left: 2em;
+  width: fit-content;
+  height: fit-content;
+  margin-top: 2em;
+  border-radius: 1em;
+  padding: 0.5em;
+}
+
+#service-schedules-box h3 {
+  padding: 0;
+}
+
+#service-title-banner {
+  background-color: #1fa9db;
+  height: 400px;
+  border-bottom-right-radius: 5em;
+  border-top-left-radius: 5em;
+  overflow: hidden;
+  position: relative;
+
+  .service-title {
+    position: absolute;
+    left: 0;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.2) !important;
+    color: white;
+    height: inherit;
+    align-items: center;
+    display: flex;
+    padding-left: 20%;
+  }
+
+  .service-image {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      width: 100%;
+      height: inherit;
+      overflow-x: hidden;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  #service-schedules-box {
+    position: relative;
+    margin: 0;
+    padding: 0;
+  }
+
+  #service-title-banner {
+    height: fit-content;
+    border-bottom-right-radius: 0.2em;
+    border-top-left-radius: 0.2em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+  }
+}
