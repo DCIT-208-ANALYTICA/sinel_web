@@ -6,6 +6,7 @@ services:
       context: ./
       dockerfile: ./Dockerfile.prod
     command: gunicorn sinel_web.wsgi:application --bind 0.0.0.0:8000
+    restart: always
     volumes:
       - static_volume:/home/sinel_web/app/static
       - assets_volume:/home/sinel_web/app/assets
@@ -17,6 +18,7 @@ services:
       - db
   db:
     image: postgres:13.0-alpine
+    restart: always
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
@@ -25,6 +27,7 @@ services:
       - 5432:5432
   nginx:
     build: ./nginx
+    restart: always
     volumes:
       - static_volume:/home/sinel_web/app/static
       - assets_volume:/home/sinel_web/app/assets
