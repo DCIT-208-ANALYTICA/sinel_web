@@ -4,7 +4,7 @@ body {
 }
 
 .topbar {
-  background-color: rgb(38, 53, 106);
+  background-color: #26356a;
   padding: 0px !important;
 }
 
@@ -120,8 +120,8 @@ body.no-scroll {
 // Service Details
 
 #service-schedules-box {
-  border: 2px solid #1fa9db;
-  background-color: #1fa9db;
+  border: 2px solid #26356a;
+  background-color: #26356a;
   color: white;
   position: sticky;
   overflow: auto;
@@ -130,6 +130,7 @@ body.no-scroll {
   left: 2em;
   width: fit-content;
   height: fit-content;
+  box-shadow: 0px 0px 5px #26356a;
   margin-top: 2em;
   border-radius: 1em;
   padding: 0.5em;
