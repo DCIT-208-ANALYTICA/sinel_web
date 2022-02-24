@@ -4,10 +4,10 @@ from django.utils.decorators import method_decorator
 from blog.forms import PageForm, PostForm
 from communications.models import Appointment
 from sinel_web.utils.decorators import staff_only
-from website.models import About, Album, Contact, Media, Partner, Service, TeamLead, Testimonial
+from website.models import About, Album, Contact, Media, Notification, Partner, Service, TeamLead, Testimonial
 from blog.models import Page, Post
 from django.contrib import messages
-from website.forms import MediaForm, ServiceForm, TeamLeadForm, TestimonialForm, PartnerForm
+from website.forms import MediaForm, NotificationForm, ServiceForm, TeamLeadForm, TestimonialForm, PartnerForm
 from django.utils.html import strip_tags
 from accounts.models import Administrator
 
@@ -507,7 +507,56 @@ class CreateUpdatePageView(View):
 
 class DeletePageView(View):
     @method_decorator(staff_only())
-    def page(self, request, *argd, **kwargs):
+    def post(self, request, *argd, **kwargs):
         page_id = request.POST.get("page_id")
-        Post.objects.filter(id=page_id).delete()
+        Page.objects.filter(id=page_id).delete()
+        return redirect(request.META.get("HTTP_REFERER"))
+
+
+class NotificationsView(View):
+    template_name = "dashboard/notifications.html"
+
+    @method_decorator(staff_only())
+    def get(self, request, *argd, **kwargs):
+        context = {"notifications": Notification.objects.all()}
+        return render(request, self.template_name, context)
+
+
+class CreateUpdateNotificationView(View):
+    template_name = "dashboard/create_update_notification.html"
+    form_class = NotificationForm
+    model_class = Notification
+    object_id_field = "notification_id"
+
+    @method_decorator(staff_only())
+    def get(self, request, *argd, **kwargs):
+        notification_id = request.GET.get("notification_id", -1)
+        context = {
+            "notification":
+            self.model_class.objects.filter(id=notification_id).first()
+        }
+        return render(request, self.template_name, context)
+
+    @method_decorator(staff_only())
+    def post(self, request, *argd, **kwargs):
+        object_id = request.POST.get(self.object_id_field) or None
+        instance = None
+        if object_id:
+            instance = get_object_or_404(self.model_class, id=object_id)
+        form = self.form_class(request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+        else:
+            for field, er in form.errors.items():
+                message = f"{field.title()}: {strip_tags(er)}"
+                messages.add_message(request, messages.ERROR, message)
+            return redirect(request.META.get("HTTP_REFERER"))
+        return redirect("dashboard:notifications")
+
+
+class DeleteNotificationView(View):
+    @method_decorator(staff_only())
+    def post(self, request, *argd, **kwargs):
+        notification_id = request.POST.get("notification_id")
+        Notification.objects.filter(id=notification_id).delete()
         return redirect(request.META.get("HTTP_REFERER"))

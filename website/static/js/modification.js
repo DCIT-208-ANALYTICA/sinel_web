@@ -18,3 +18,21 @@ function toggleSideDrawer() {
 	overlay?.classList.toggle("active")
 	content?.classList.toggle("active")
 }
+
+const notificationBar = document.querySelector(".notification-bar")
+if (notificationBar != null) {
+	let notificationId = notificationBar.dataset.notificationId
+	let ids = localStorage.getItem("notificationId")?.split(",")
+	if (!ids?.includes(notificationId.toString())) {
+		notificationBar.classList.add("active")
+	}
+}
+function closeNotificationBar(notificationId) {
+	notificationBar?.classList.remove("active")
+	if (notificationBar != null) {
+		let ids = localStorage.getItem("notificationId")
+		ids += `,${notificationId}`
+		localStorage.setItem('notificationId', ids);
+	}
+
+}

@@ -220,4 +220,34 @@ body.no-scroll {
     margin-right: 0.5em;
   }
 }
+
+.notification-bar {
+  background-color: #383838;
+  padding: 0.5em 2em;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 210;
+  color: white;
+  display: none;
+  overflow: auto;
+}
+
+.notification-bar.active {
+  display: block !important;
+}
+
+.notification-bar .close-notification {
+  position: absolute;
+  color: white;
+  right: 1em;
+  padding: 0.2em;
+  top: 1em;
+  cursor: pointer;
+}
+
+.notification-bar .close-notification:hover {
+  background-color: #26356a;
+}
 /*# sourceMappingURL=modification_styles.css.map */

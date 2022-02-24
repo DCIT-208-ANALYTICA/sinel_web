@@ -1,4 +1,3 @@
-from unicodedata import category
 from django.db import models
 from accounts.models import Administrator
 from django_ckeditor_5.fields import CKEditor5Field
@@ -169,3 +168,15 @@ class Partner(models.Model):
 
     def __str__(self) -> str:
         return self.name
+
+
+class Notification(models.Model):
+    title = models.CharField(max_length=100)
+    message = models.TextField()
+    expires_at = models.DateTimeField()
+    available_at = models.DateTimeField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self) -> str:
+        return self.title

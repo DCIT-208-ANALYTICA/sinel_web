@@ -79,4 +79,17 @@ urlpatterns = [
         name="create_update_page",
     ),
     path("delete_page", views.DeletePageView.as_view(), name="delete_page"),
+
+    # Notifications
+    path("notifications",
+         views.NotificationsView.as_view(),
+         name="notifications"),
+    path(
+        "create_update_notification",
+        views.CreateUpdateNotificationView.as_view(),
+        name="create_update_notification",
+    ),
+    path("delete_notification",
+         views.DeleteNotificationView.as_view(),
+         name="delete_notification"),
 ]

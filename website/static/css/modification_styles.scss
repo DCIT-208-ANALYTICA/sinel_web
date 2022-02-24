@@ -188,3 +188,32 @@ body.no-scroll {
     margin-right: 0.5em;
   }
 }
+
+// Notification bar
+.notification-bar {
+  background-color: rgb(56, 56, 56);
+  padding: 0.5em 2em;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 210;
+  color: white;
+  display: none;
+  overflow: auto;
+
+  &.active {
+    display: block !important;
+  }
+
+  .close-notification {
+    position: absolute;
+    color: white;
+    right: 1em;
+    padding: 0.2em;
+    top: 1em;
+    cursor: pointer;
+    &:hover {
+      background-color: #26356a;
+    }
+  }
+}

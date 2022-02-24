@@ -249,6 +249,12 @@
                                     <i class="metismenu-icon bi bi-book"></i> Pages
                                 </a>
                             </li>
+                            <li>
+                                <a href="{% url 'dashboard:notifications'%}"
+                                    class="{% block notifications-page-active %}{% endblock %}">
+                                    <i class="metismenu-icon bi bi-bell"></i> Notifications
+                                </a>
+                            </li>
                             <li class="app-sidebar__heading">Apps</li>
                             <li>
                                 <a href="{% url 'dashboard:posts'%}" class="{% block blog-page-active %}{% endblock %}">

@@ -1,5 +1,7 @@
+from matplotlib.style import available
 from blog.models import Page
-from website.models import Contact, Service, Testimonial
+from website.models import Contact, Notification, Service, Testimonial
+from django.utils import timezone
 
 
 class CustomMiddleWares(object):
@@ -8,7 +10,11 @@ class CustomMiddleWares(object):
 
     def __call__(self, request):
         request.contact = Contact.objects.first()
+        request.notification = Notification.objects.filter(
+            available_at__lte=timezone.now(),
+            expires_at__gt=timezone.now()).order_by("-updated_at").first()
         request.pages = Page.objects.filter(visible=True).order_by("title")[:5]
         request.services = Service.objects.filter(visible=True)
         request.testimonials = Testimonial.objects.filter(visible=True)
+        print(request.notification, request.notification.id)
         return self.get_response(request)
