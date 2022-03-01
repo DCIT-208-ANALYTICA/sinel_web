@@ -173,10 +173,16 @@ class Partner(models.Model):
 class Notification(models.Model):
     title = models.CharField(max_length=100)
     message = models.TextField()
+    url = models.URLField(max_length=200, default="")
     expires_at = models.DateTimeField()
     available_at = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    content_hash = models.CharField(max_length=100)
+
+    def save(self, *args, **kwargs) -> None:
+        self.content_hash = hash(self.title + self.message)
+        return super().save(*args, **kwargs)
 
     def __str__(self) -> str:
         return self.title
