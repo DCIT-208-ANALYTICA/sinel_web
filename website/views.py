@@ -55,10 +55,16 @@ class ServicesView(View):
 
 
 class DoctorsView(View):
-    template_name = "website/doctors.html"
+    template_name = "website/team.html"
 
     def get(self, request, *args, **kwargs):
-        context = {"doctors": TeamLead.objects.filter(visible=True)}
+        team_leads = TeamLead.objects.filter(visible=True)
+        specialities = team_leads.values("title").distinct()
+        specialities = set([item["title"] for item in specialities])
+        context = {
+            "doctors": team_leads,
+            "specialities": specialities,
+        }
         return render(request, self.template_name, context)
 
 

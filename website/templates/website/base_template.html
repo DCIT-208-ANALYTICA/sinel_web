@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <meta name="copyright" content="MACode ID, https://sinel.com/" />
-  <title>Sinel Specialist Hospital</title>
+  <title>Sinel | Your Specialist Family Hospital</title>
 
   {% load static %}
   <link rel="stylesheet" href="{% static 'css/maicons.css' %}" />
@@ -57,7 +57,7 @@
         <a class="nav-link" href="{% url 'website:partners' %}">Our Partners</a>
       </span>
       <span class="nav-item {% block doctors_active %}{% endblock %}">
-        <a class="nav-link" href="{% url 'website:doctors' %}">Our Doctors</a>
+        <a class="nav-link" href="{% url 'website:doctors' %}">Our Team</a>
       </span>
       <div class="dropdown">
         <span class="nav-item {% block services_active %}{% endblock %}">
@@ -129,7 +129,7 @@
       <h4 class="mt-4"> <a href="{% url 'website:about' %}"><i class="bi bi-question-diamond"></i> About Us</a></h4>
       <h4 class="mt-4"> <a href="{% url 'website:contact' %}"><i class="bi bi-geo-alt"></i> Location</a></h4>
       <h4 class="mt-4"> <a href="{% url 'website:partners' %}"><i class="bi bi-heart"></i> Our Partners</a></h4>
-      <h4 class="mt-4"> <a href="{% url 'website:doctors' %}"><i class="bi bi-people"></i> Our Doctors</a></h4>
+      <h4 class="mt-4"> <a href="{% url 'website:doctors' %}"><i class="bi bi-people"></i> Our Team</a></h4>
       <h4 class="mt-4"> <a href="{% url 'website:services' %}"><i class="bi bi-gear"></i> Services</a></h4>
       <h4 class="mt-4"> <a href="{% url 'website:gallery' %}"><i class="bi bi-image"></i> Gallery</a></h4>
       <h4 class="mt-4"> <a href="{% url 'blog:posts' %}"><i class="bi bi-book"></i> Sinel News</a></h4>

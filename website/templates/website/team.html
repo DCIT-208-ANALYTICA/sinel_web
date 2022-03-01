@@ -9,11 +9,14 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8 wow fadeInUp">
-                <h1 class="text-center mb-3">Our Doctors</h1>
+                <h1 class="text-center mb-3">Our Team</h1>
             </div>
             <div class="col-lg-10 mt-5">
                 <div class="row justify-content-center">
+                    {% for speciality in specialities %}
+                    <h3 class="col-12 mt-5 mb-3 text text-center">{{speciality}}</h3>
                     {% for member in doctors %}
+                    {% if member.title == speciality %}
                     <div class="col-md-12 wow zoomIn">
                         <div class="card">
                             <div class="card-body row">
@@ -51,6 +54,8 @@
                             </div>
                         </div>
                     </div>
+                    {%endif%}
+                    {% endfor %}
                     {% endfor %}
                 </div>
             </div>
