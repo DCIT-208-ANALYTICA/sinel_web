@@ -199,7 +199,6 @@ body.no-scroll {
 @media (max-width: 768px) {
   #service-schedules-box {
     position: relative;
-    margin: 0;
     padding: 0;
   }
   #service-title-banner {

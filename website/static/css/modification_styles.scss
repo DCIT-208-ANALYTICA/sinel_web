@@ -123,21 +123,16 @@ body.no-scroll {
   border: 2px solid #26356a;
   background-color: #26356a;
   color: white;
-  // position: sticky;
   overflow: auto;
-  // right: 5em;
-  // top: 10vh;
-  // left: 2em;
-  // width: fit-content;
   height: fit-content;
   margin: 2em;
   box-shadow: 0px 0px 5px #26356a;
   border-radius: 1em;
   padding: 1em;
-}
 
-#service-schedules-box h3 {
-  padding: 0;
+  h3 {
+    padding: 0;
+  }
 }
 
 #service-title-banner {
@@ -176,7 +171,6 @@ body.no-scroll {
 @media (max-width: 768px) {
   #service-schedules-box {
     position: relative;
-    margin: 0;
     padding: 0;
   }
 

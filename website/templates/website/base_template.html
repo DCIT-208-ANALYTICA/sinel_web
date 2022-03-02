@@ -33,7 +33,7 @@
   {% if request.notification %}
   {% block notification_block %}
   <div class="notification-bar" data-notification-id="{{request.notification.content_hash}}">
-    <a {%if request.notification.url %} href="{{request.notification.url}}"{%endif%} style="color: white;">
+    <a {%if request.notification.url %} href="{{request.notification.url}}" {%endif%} style="color: white;">
       <h4>{{request.notification.title}}</h4>
       <p>{{request.notification.message}}</p>
     </a>
@@ -112,7 +112,8 @@
               Call {{request.contact.telephone}}</a>
           </li>
           <li class="ml-3">
-            <a href="tel:{{request.contact.telephone}}" class="btn btn-primary p-3"><i class="bi bi-whatsapp"></i>
+            <a href="https://api.whatsapp.com/send?phone={{request.contact.telephone}}" class="btn btn-primary p-3"><i
+                class="bi bi-whatsapp"></i>
               WhatsApp</a>
           </li>
         </ul>
@@ -199,9 +200,12 @@
 
           <h5 class="mt-3">Social Media</h5>
           <div class="footer-sosmed mt-3">
-            <a href="https://www.facebook.com/SINELHOSPITALTEMA" target="_blank"><span class="mai-logo-facebook-f"></span></a>
-            <a href="https://www.instagram.com/sinelhospital/" target="_blank"><span class="mai-logo-instagram"></span></a>
-            <a href="https://www.youtube.com/channel/UCdRPeJPD-ixsa1y9zVFkKIQ" target="_blank"><span class="mai-logo-youtube"></span></a>
+            <a href="https://www.facebook.com/SINELHOSPITALTEMA" target="_blank"><span
+                class="mai-logo-facebook-f"></span></a>
+            <a href="https://www.instagram.com/sinelhospital/" target="_blank"><span
+                class="mai-logo-instagram"></span></a>
+            <a href="https://www.youtube.com/channel/UCdRPeJPD-ixsa1y9zVFkKIQ" target="_blank"><span
+                class="mai-logo-youtube"></span></a>
           </div>
         </div>
       </div>
