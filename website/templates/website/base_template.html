@@ -32,11 +32,13 @@
   <!-- Notification -->
   {% if request.notification %}
   {% block notification_block %}
-  <div class="notification-bar" data-notification-id="{{request.notification.id}}">
-    <h4>{{request.notification.title}}</h4>
-    <p>{{request.notification.message}}</p>
-    <span class=" close-notification" onclick="closeNotificationBar('{{request.notification.id}}')"><i
-      class="bi bi-x-lg"></i></span>
+  <div class="notification-bar" data-notification-id="{{request.notification.content_hash}}">
+    <a {%if request.notification.url %} href="{{request.notification.url}"{%endif%} style="color: white;">
+      <h4>{{request.notification.title}}</h4>
+      <p>{{request.notification.message}}</p>
+    </a>
+    <span class=" close-notification" onclick="closeNotificationBar('{{request.notification.content_hash}}')"><i
+        class="bi bi-x-lg"></i></span>
   </div>
   {% endblock %}
   {% endif %}

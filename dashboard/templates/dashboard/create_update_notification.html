@@ -50,6 +50,12 @@
                         <label for="notification_content">Message</label>
                         <textarea class="form-control" name="message" required>{{notification.message}}</textarea>
 
+                        <div class="form-group">
+                            <label for="url">URL</label>
+                            <input class="form-control" type="url" name="url" id="url" value="{{notification.url}}"
+                                placeholder="URL">
+                        </div>
+
                         <div class="row form-group">
                             <div class="col-md-6">
                                 <label for="available_at">Available At</label>
