@@ -85,11 +85,11 @@
             <div class="card-doctor">
               <div class="header">
                 <img src="{{member.photo.url}}" alt="{{member.fullname}}">
+                {% if member.linkedin %}
                 <div class="meta">
-                  <a href="#">
-                    <span class="mai-call"></span></a>
                   <a href="{{member.linkedin}}"><span class="bi bi-linkedin"></span></a>
                 </div>
+                {% endif %}
               </div>
               <div class="body">
                 <p class="text-xl mb-0">{{member.fullname}}</p>
