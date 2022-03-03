@@ -34,5 +34,12 @@ function closeNotificationBar(notificationId) {
 		ids += `,${notificationId}`
 		localStorage.setItem('notificationId', ids);
 	}
-
 }
+
+window.addEventListener("scroll", (event) => {
+	if (window.pageYOffset > 200) {
+		menuToggler.classList.remove("hide")
+	} else {
+		menuToggler.classList.add("hide")
+	}
+})
