@@ -44,7 +44,28 @@
   {% endif %}
   <!-- Back to top button -->
   <div class="back-to-top"></div>
-  <div class="topbar">
+
+  <div class="d-flex d-none d-sm-block d-md-none justify-content-between"
+    style="border-bottom: 1px solid gray; background-color: #26356a; padding-top: 0.2em;">
+    <a href="{% url 'communications:book_appointment' %}" class="btn text text-center p-0"
+      style="flex-grow: 1; color: white">
+      <i class="bi bi-calendar"></i>
+      <p class="text text-center">Book</p>
+    </a>
+    <a href="tel:{{request.contact.telephone}}" class="btn text text-center p-0"
+      style="border-left: 1px solid white; flex-grow: 1; color: white">
+      <i class="bi bi-telephone-plus"></i>
+      <p class="text text-center">Call</p>
+    </a>
+    <a href="https://api.whatsapp.com/send?phone={{request.contact.telephone}}" class="btn text text-center p-0"
+      style="border-left: 1px solid white; flex-grow: 1; color: white">
+      <i class="bi bi-whatsapp"></i>
+      <p class="text text-center">WhatsApp</p>
+    </a>
+  </div>
+
+
+  <div class="topbar d-none d-md-block">
     <ul class="d-flex justify-content-end">
       <span class="nav-item {% block home_active %}{% endblock %}">
         <a class="nav-link" href="{% url 'website:index' %}">Home</a>
@@ -95,12 +116,12 @@
         <img src="{% static 'img/logo.png' %}" alt="sinel logo" height="50">
       </a>
 
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupport"
+      <button class="navbar-toggler d-none" type="button" data-toggle="collapse" data-target="#navbarSupport"
         aria-controls="navbarSupport" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupport">
+      <div class="collapse navbar-collapse d-none d-md-block" id="navbarSupport">
         <ul class="navbar-nav ml-auto">
           <li class="ml-3 mb-1">
             <a href="{% url 'communications:book_appointment' %}" class="btn btn-primary p-3"><i
