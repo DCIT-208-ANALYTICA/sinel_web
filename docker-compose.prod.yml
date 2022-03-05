@@ -26,7 +26,7 @@ services:
     env_file:
       - ./.env.prod.db
     ports:
-      - 5432:5432
+      - 5555:5432
   nginx:
     container_name: sinel_nginx
     build: ./nginx
@@ -38,8 +38,8 @@ services:
       - ./data/certbot/www:/var/www/certbot
     command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
     ports:
-      - 80:80
-      - 443:443
+      - 44:80
+      - 4443:443
     depends_on:
       - web
   certbot:
