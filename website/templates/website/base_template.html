@@ -113,7 +113,8 @@
       <div class="col-md-2 col-1"></div>
 
       <a class="navbar-brand" href="{% url 'website:index' %}">
-        <img src="{% static 'img/logo.png' %}" alt="sinel logo" height="50">
+        <img class="d-none d-md-block" src="{% static 'img/sinel_logo2.png' %}" alt="sinel logo" height="50">
+        <img class="d-sm-block d-md-none" src="{% static 'img/logo.png' %}" alt="sinel logo" height="50">
       </a>
 
       <button class="navbar-toggler d-none" type="button" data-toggle="collapse" data-target="#navbarSupport"
