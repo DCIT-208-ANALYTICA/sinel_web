@@ -40,6 +40,8 @@ services:
     ports:
       - 80:80
       - 443:443
+    depends_on:
+      - web
   certbot:
     container_name: sinel_certbot
     image: certbot/certbot
