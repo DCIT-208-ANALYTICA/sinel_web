@@ -12,12 +12,13 @@
                 <h1 class="text-center mb-3">Our Team</h1>
             </div>
             <div class="col-lg-10 mt-5">
-                <div class="row justify-content-center">
-                    {% for speciality in specialities %}
-                    <h3 class="col-12 mt-5 mb-3 text text-center">{{speciality}}</h3>
+                {% for speciality in specialities %}
+                <h3 class="col-12 mt-5 mb-3 text text-center">{{speciality}}</h3>
+                <div class="d-horizontal-scroll">
+                    <span class="control-btn previous"><i class="bi bi-chevron-left"></i></span>
                     {% for member in doctors %}
                     {% if member.title == speciality %}
-                    <div class="col-md-6 col-lg-4 wow zoomIn">
+                    <div class="col-12 col-md-6 col-lg-4 wow zoomIn">
                         <div class="card-doctor">
                             <div class="header">
                                 <img src="{{member.photo.url}}" alt="{{member.fullname}}">
@@ -33,10 +34,11 @@
                             </div>
                         </div>
                     </div>
-                    {%endif%}
+                    {% endif %}
                     {% endfor %}
-                    {% endfor %}
+                    <span class="control-btn next"><i class="bi bi-chevron-right"></i></span>
                 </div>
+                {% endfor %}
             </div>
         </div>
     </div>

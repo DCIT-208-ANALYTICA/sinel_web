@@ -1,4 +1,6 @@
 from django.shortcuts import redirect, render
+
+from website.models import Service
 from .forms import AppointmnentForm
 from django.views.generic import View
 
@@ -9,13 +11,14 @@ class BookAppointment(View):
     form_class = AppointmnentForm
 
     def get(self, request, *args, **kwargs):
-        return render(request, self.template_name)
+        services = Service.objects.filter(visible=True)
+        context = {"services": services}
+        return render(request, self.template_name, context)
 
     def post(self, request, **kwargs):
         form = self.form_class(request.POST)
         if form.is_valid():
             a = form.save()
-            print("time", a.time)
             return redirect("website:index")
         else:
             print(form.errors)

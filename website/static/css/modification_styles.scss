@@ -228,3 +228,58 @@ body.no-scroll {
     }
   }
 }
+
+.d-horizontal-scroll {
+  display: flex;
+  overflow-x: auto;
+  position: relative;
+  justify-content: space-between;
+
+  &.center {
+    justify-content: center;
+  }
+
+  &::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(#1fa9db, 0);
+  }
+
+  &.hide-controls {
+    .control-btn {
+      display: none;
+    }
+  }
+
+  .control-btn {
+    position: sticky;
+    background-color: #1fa9db;
+    z-index: 2;
+    height: 3em;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3em;
+    border-radius: 100%;
+    padding: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.1);
+    user-select: none;
+    color: white;
+
+    &:hover {
+      background-color: rgba(#1fa9db, 0.9);
+    }
+
+    &.next {
+      right: 1em;
+    }
+    &.previous {
+      left: 1em;
+    }
+  }
+}

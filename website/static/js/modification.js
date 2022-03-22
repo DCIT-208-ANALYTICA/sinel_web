@@ -43,3 +43,32 @@ window.addEventListener("scroll", (event) => {
 		menuToggler.classList.add("hide")
 	}
 })
+
+// Horizontal scroll
+const horizontalScrollContainers = document.querySelectorAll(".d-horizontal-scroll")
+horizontalScrollContainers?.forEach(container => {
+	// Is contain scrollable?
+	if (container.scrollWidth <= container.clientWidth) {
+		container.classList.add("hide-controls")
+		container.classList.add("center")
+	}
+
+	const previous = container.querySelector(".previous")
+	const next = container.querySelector(".next")
+	let width = container.querySelector("div").clientWidth
+	width = width == 0 ? 200 : width
+
+	previous.addEventListener("click", event => {
+		container.scrollBy({
+			left: -width,
+			behavior: 'smooth'
+		})
+	})
+
+	next.addEventListener("click", event => {
+		container.scrollBy({
+			left: width,
+			behavior: 'smooth'
+		})
+	})
+})

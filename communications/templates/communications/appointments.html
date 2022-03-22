@@ -10,54 +10,61 @@
 <div id="request-appointment" class="page-section">
   <div class="container">
     <h1 class="text-center wow fadeInUp">Make an Appointment</h1>
-    <h6 class="text text-center" style="">
-      The following form generates a request for an appointment, not a confirmed appointment.
-      A representative will contact you within 48 hours of submitting this form to assist you with your appointment
-      request. By submitting this form, you consent to receive health information from Sinel Specialist Hospital through
-      email.
+    <h6 class="col-12 col-md-8 text text-justify mx-auto">
+      If you are experiencing a medical emergency, come to our hospital immediately. For location details, Click <a
+        href="{% url 'website:contact' %}">here</a>.
+      <br>
+      <br>
+
+      The following form generates an appointment. A representative will contact you within 48hrs of submitting this
+      form to assist you with your appointment request.”
     </h6>
     <form action="{% url 'communications:book_appointment' %}" class="main-form" method="post">
       {% csrf_token%}
       <div class="row mt-5">
-        <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
+        <span class="col-12 text text-danger">Required *</span>
+        <div class="col-12 col-sm-6 py-2">
+          <label for="fullname"><small>Fullname <span class="text text-danger">*</span></small></label>
           <input type="text" name="fullname" class="form-control" placeholder="Full name" required />
         </div>
-        <div class="col-12 col-sm-6 py-2 wow fadeInRight">
+        <div class="col-12 col-sm-6 py-2">
+          <label for="fullname"><small>Email</small></label>
           <input type="text" name="email" class="form-control" placeholder="Email address.." />
         </div>
-        <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
-          <label for="date">Preferred Appointment Date</small></label>
+        <div class="col-12 col-sm-6 py-2" data-delay="300ms">
+          <label for="date"><small>Preferred Appointment Date <span class="text text-danger">*</span></small></label>
           <input type="date" id="date" name="date" class="form-control" required />
         </div>
-        <div class="col-12 col-sm-6 py-2 wow fadeInRight">
-          <label for="time">Preferred Appointment Time</label>
+        <div class="col-12 col-sm-6 py-2 fadeInRight">
+          <label for="time"><small>Preferred Appointment Time <span class="text text-danger">*</span></small></label>
           <input type="time" name="time" class="form-control" required />
         </div>
-        <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
+        <div class="col-12 col-sm-6 py-2" data-delay="300ms">
           <label for="date_of_birth">Date of Birth</label>
           <input type="date" id="date_of_birth" name="date_of_birth" class="form-control" />
         </div>
-        <div class="col-12 col-sm-6 py-2 wow fadeInRight" data-wow-delay="300ms">
-          <label for="service">Desired Service</label>
+        <div class="col-12 col-sm-6 py-2 fadeInRight" data-delay="300ms">
+          <label for="service"><small>Desired Service <span class="text text-danger">*</span></small></label>
           <select name="service" id="service" class="custom-select" required>
-            <option value="general">General Health</option>
-            <option value="cardiology">Cardiology</option>
-            <option value="dental">Dental</option>
-            <option value="neurology">Neurology</option>
-            <option value="orthopaedics">Orthopaedics</option>
+            <option value="">---Select Service---</option>
+            {% for service in services %}
+            <option value="{{service.title}}">{{service.title}}</option>
+            {% endfor %}
             <option value="other">Other</option>
           </select>
         </div>
-        <div class="col-12 col-sm-12 py-2 wow fadeInRight">
-          <label for="number">Phone</label>
+        <div class="col-12 col-sm-12 py-2">
+          <label for="number"><small>Phone <span class="text text-danger">*</span></small></label>
           <input type="text" name="number" class="form-control" placeholder="Phone" required />
         </div>
-        <div class="col-12 py-2 wow fadeInUp" data-wow-delay="300ms">
-          <textarea name="message" id="message" class="form-control" rows="6" placeholder="Enter message.."></textarea>
+        <div class="col-12 py-2 fadeInUp" data-delay="300ms">
+          <label for="message"><small>Message <span class="text text-danger">*</span></small></label>
+          <textarea name="message" id="message" class="form-control" rows="6" placeholder="Enter message.."
+            required></textarea>
         </div>
       </div>
 
-      <button type="submit" class="btn btn-primary mt-3 wow zoomIn">Submit</button>
+      <button type="submit" class="btn btn-primary mt-3 zoomIn">Submit</button>
     </form>
   </div>
 </div>

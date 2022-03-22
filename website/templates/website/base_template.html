@@ -93,7 +93,7 @@
         </span>
       </div>
       <span class="nav-item {% block gallery_active %}{% endblock %}">
-        <a class="nav-link" href="{% url 'website:gallery' %}">Gallery</a>
+        <a class="nav-link" href="{% url 'website:gallery' %}">M</a>
       </span>
       <span class="nav-item {% block blog_active %}{% endblock %}">
         <a class="nav-link" href="{% url 'blog:posts' %}">Sinel News</a>
@@ -156,7 +156,7 @@
       <h4 class="mt-4"> <a href="{% url 'website:partners' %}"><i class="bi bi-heart"></i> Our Partners</a></h4>
       <h4 class="mt-4"> <a href="{% url 'website:doctors' %}"><i class="bi bi-people"></i> Our Team</a></h4>
       <h4 class="mt-4"> <a href="{% url 'website:services' %}"><i class="bi bi-gear"></i> Services</a></h4>
-      <h4 class="mt-4"> <a href="{% url 'website:gallery' %}"><i class="bi bi-image"></i> Gallery</a></h4>
+      <h4 class="mt-4"> <a href="{% url 'website:gallery' %}"><i class="bi bi-image"></i> M</a></h4>
       <h4 class="mt-4"> <a href="{% url 'blog:posts' %}"><i class="bi bi-book"></i> Sinel News</a></h4>
     </div>
   </div>
@@ -190,31 +190,6 @@
     <div class="container">
       <div class="row px-md-3">
         <div class="col-sm-6 col-lg-3 py-3">
-          <h5>Company</h5>
-          <ul class="footer-menu">
-            <li><a href="/about">About Us</a></li>
-            <li><a href="#">Career</a></li>
-          </ul>
-        </div>
-
-        <div class="col-sm-6 col-lg-3 py-3">
-          <h5>More</h5>
-          <ul class="footer-menu">
-            {% for page in request.pages %}
-            <li><a href="{% url 'website:static_page_view' page.id page.slug %}">{{page.title}}</a></li>
-            {% endfor %}
-          </ul>
-        </div>
-
-        <div class="col-sm-6 col-lg-3 py-3">
-          <h5>General</h5>
-          <ul class="footer-menu">
-            <li><a href="#">Terms & Condition</a></li>
-            <li><a href="#">Privacy</a></li>
-          </ul>
-        </div>
-
-        <div class="col-sm-6 col-lg-3 py-3">
           <h5>Contact</h5>
           <p class="footer-link mt-2">{{request.contact.address}}</p>
           <a href="#" class="footer-link">{{request.contact.telephone}}</a>
@@ -230,6 +205,15 @@
                 class="mai-logo-youtube"></span></a>
           </div>
         </div>
+        <div class="col-sm-8 col-lg-8 py-3">
+          <h5>Company</h5>
+          <ul class="row footer-menu">
+            {% for page in request.pages %}
+            <li class="col-md-3 col-6"><a href="{% url 'website:static_page_view' page.id page.slug %}">{{page.title}}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+
       </div>
 
       <hr />
