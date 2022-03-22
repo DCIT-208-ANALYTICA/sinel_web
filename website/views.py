@@ -12,7 +12,7 @@ class IndexView(View):
             "about":
             About.objects.first(),
             "team":
-            TeamLead.objects.filter(visible=True).order_by("-updated_at")[:5],
+            TeamLead.objects.filter(visible=True).order_by("updated_at"),
             "posts":
             Post.objects.filter(visible=True).order_by("-id")[:5],
         }
