@@ -209,7 +209,8 @@
           <h5>Company</h5>
           <ul class="row footer-menu">
             {% for page in request.pages %}
-            <li class="col-md-3 col-6"><a href="{% url 'website:static_page_view' page.id page.slug %}">{{page.title}}</a></li>
+            <li class="col-md-3 col-6"><a
+                href="{% url 'website:static_page_view' page.id page.slug %}">{{page.title}}</a></li>
             {% endfor %}
           </ul>
         </div>
@@ -236,15 +237,27 @@
 
   <!--Start of Tawk.to Script-->
   <script type="text/javascript">
+    // Start of Tawk.to Script
     var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
     (function () {
       var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
       s1.async = true;
-      s1.src = 'https://embed.tawk.to/61a4b93e9099530957f71e6e/1flln7c04';
+      s1.src = 'https://embed.tawk.to/6239e8322bd26d087e7426bb/1fup361u2';
       s1.charset = 'UTF-8';
       s1.setAttribute('crossorigin', '*');
       s0.parentNode.insertBefore(s1, s0);
     })();
+    // End of Tawk.to Script
+
+    // var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    // (function () {
+    //   var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+    //   s1.async = true;
+    //   s1.src = 'https://embed.tawk.to/61a4b93e9099530957f71e6e/1flln7c04';
+    //   s1.charset = 'UTF-8';
+    //   s1.setAttribute('crossorigin', '*');
+    //   s0.parentNode.insertBefore(s1, s0);
+    // })();
 
     $(document).ready(function () {
       var silder = $(".owl-carousel");
