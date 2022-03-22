@@ -7,7 +7,7 @@ class Contact(models.Model):
     gps = models.CharField(max_length=100)
     email = models.EmailField()
     address = models.CharField(max_length=100)
-    telephone = models.CharField(max_length=20)
+    telephone = models.CharField(max_length=100)
     lat_lng = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
